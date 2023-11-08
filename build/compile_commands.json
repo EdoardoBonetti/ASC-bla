@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/ebonetti/Desktop/LapackTest/ASC-bla/build",
+  "command": "/usr/bin/g++-12  -I/home/ebonetti/Desktop/LapackTest/ASC-bla/src -g -o CMakeFiles/test_vector.dir/tests/test_vector.cc.o -c /home/ebonetti/Desktop/LapackTest/ASC-bla/tests/test_vector.cc",
+  "file": "/home/ebonetti/Desktop/LapackTest/ASC-bla/tests/test_vector.cc"
+},
+{
+  "directory": "/home/ebonetti/Desktop/LapackTest/ASC-bla/build",
+  "command": "/usr/bin/g++-12  -I/home/ebonetti/Desktop/LapackTest/ASC-bla/src -g -o CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o -c /home/ebonetti/Desktop/LapackTest/ASC-bla/tests/test_lapack.cc",
+  "file": "/home/ebonetti/Desktop/LapackTest/ASC-bla/tests/test_lapack.cc"
+},
+{
+  "directory": "/home/ebonetti/Desktop/LapackTest/ASC-bla/build",
+  "command": "/usr/bin/g++-12 -Dbla_EXPORTS -I/home/ebonetti/Desktop/LapackTest/ASC-bla/src -isystem /usr/include/python3.10 -isystem /home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include -g -fPIC -fvisibility=hidden -o CMakeFiles/bla.dir/src/bind_bla.cpp.o -c /home/ebonetti/Desktop/LapackTest/ASC-bla/src/bind_bla.cpp",
+  "file": "/home/ebonetti/Desktop/LapackTest/ASC-bla/src/bind_bla.cpp"
+}
+]

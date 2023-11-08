@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-aa35d59e6d291488e834.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ASC_bla",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "bla::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bla-Debug-b2d2200ece76c719e853.json",
+					"name" : "bla",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_lapack::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_lapack-Debug-3078cde58e8d29a78ba3.json",
+					"name" : "test_lapack",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_vector::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_vector-Debug-1439ccffffe2eb904eeb.json",
+					"name" : "test_vector",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ebonetti/Desktop/LapackTest/ASC-bla/build",
+		"source" : "/home/ebonetti/Desktop/LapackTest/ASC-bla"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
