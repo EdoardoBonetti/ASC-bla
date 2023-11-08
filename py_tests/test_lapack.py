@@ -1,5 +1,9 @@
 
 from ASCsoft.bla import Vector
+import ASCsoft.bla as bla
+
+# print the bla possible imports
+print (dir(bla))
 
 n = 1000000
 x = Vector(n)

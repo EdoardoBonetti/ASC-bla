@@ -8,6 +8,8 @@
 #include "vector.h"
 // #include "matrix.h"
 
+#include "lapack_interface.h"
+
 using namespace ASC_bla;
 namespace py = pybind11;
 
@@ -48,9 +50,15 @@ PYBIND11_MODULE(bla, m) {
 
       .def("__rmul__", [](Vector<double>& self,
                           double scal) { return Vector<double>(scal * self); })
-      
+
       .def("__mul__", [](Vector<double>& self,
-                          double scal) { return Vector<double>(scal * self); })
+                         double scal) { return Vector<double>(scal * self); })
+
+      // Inner Product between two vectors
+      .def("__mul__", [](Vector<double>& self,
+                         Vector<double>& other) { return self * other; })
+      .def("__rmul__", [](Vector<double>& self,
+                          Vector<double>& other) { return self * other; })
 
       .def("__str__",
            [](const Vector<double>& self) {
@@ -79,7 +87,7 @@ PYBIND11_MODULE(bla, m) {
       ;
 
   // from here my Matrix implementation
-  py::class_<Matrix<double, RowMajor>>(m, "Matrix",  py::buffer_protocol())
+  py::class_<Matrix<double, RowMajor>>(m, "Matrix", py::buffer_protocol())
       //.def(py::init<size_t, size_t>(), py::arg("rows"), py::arg("cols"),
       //     "create matrix : rows x cols")
       //  .def("__getitem__",
@@ -288,17 +296,24 @@ PYBIND11_MODULE(bla, m) {
                         v.SizeCols() * v.SizeRows() * sizeof(double));
             return v;
           }))
-          
-             .def_buffer([](Matrix<double, RowMajor> &v) -> py::buffer_info {
+
+      .def_buffer([](Matrix<double, RowMajor>& v) -> py::buffer_info {
         return py::buffer_info(
-        v.Data(),                               /* Pointer to buffer */
+            v.Data(),                                /* Pointer to buffer */
             sizeof(double),                          /* Size of one scalar */
-            py::format_descriptor<double>::format(), /* Python struct-style format descriptor */
-            2,                                      /* Number of dimensions */
-            { v.SizeRows(), v.SizeCols() },                 /* Buffer dimensions */
-            { sizeof(double) * v.SizeCols(),             /* Strides (in bytes) for each index */
-              sizeof(double) }
-        );
-    })
-          ;
+            py::format_descriptor<double>::format(), /* Python struct-style
+                                                        format descriptor */
+            2,                                       /* Number of dimensions */
+            {v.SizeRows(), v.SizeCols()},            /* Buffer dimensions */
+            {sizeof(double) *
+                 v.SizeCols(), /* Strides (in bytes) for each index */
+             sizeof(double)});
+      });
+
+  // and 4 classes : LapackLU, LapackQR,LapackEVP,  LapackSVD.
+
+  py::class_<LapackLU<RowMajor>>(m, "LapackLU")
+      .def(py::init<Matrix<double, RowMajor>>(), py::arg("A"),
+           "create LU decomposition of given matrix");
 }
+

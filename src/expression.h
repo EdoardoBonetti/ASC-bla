@@ -14,6 +14,7 @@ namespace ASC_bla
    public:
     auto Upcast() const { return static_cast<const T&>(*this); }
     size_t Size() const { return Upcast().Size(); }
+    size_t Dist() const { return Upcast().Dist(); }
     auto operator()(size_t i) const { return Upcast()(i); }
     auto& operator()(size_t i) { return Upcast()(i); }
   };
@@ -28,7 +29,8 @@ namespace ASC_bla
     SumVecExpr (TA a, TB b) : a_(a), b_(b) { }
     auto Upcast() { return SumExpr(a_, b_); }
     auto operator() (size_t i) const { return a_(i)+b_(i); }
-    size_t Size() const { return a_.Size(); }      
+    size_t Size() const { return a_.Size(); }
+    size_t Dist() const { return a_.Dist(); }
   };
   
   template <typename TA, typename TB>
@@ -46,6 +48,7 @@ namespace ASC_bla
     auto Upcast() { return ScalVecExpr(scal_, vec_); }
     auto operator() (size_t i) const { return scal_*vec_(i); }
     size_t Size() const { return vec_.Size(); }
+    size_t Dist() const { return vec_.Dist(); }
   };
 
   template <typename T>
@@ -66,6 +69,7 @@ namespace ASC_bla
     auto Upcast() { return ScalVecExpr(scal_, vec_); }
     auto operator()(size_t i) const { return scal_ + vec_(i); }
     size_t Size() const { return vec_.Size(); }
+    size_t Dist() const { return vec_.Dist(); }
   };
 
   template <typename T>
@@ -162,6 +166,7 @@ namespace ASC_bla
       return sum;
     }
     size_t Size() const { return mat_.SizeRows(); }
+    size_t Dist() const { return vec_.Dist(); }
   };
 
   template <typename TM, typename TV>
@@ -249,6 +254,21 @@ namespace ASC_bla
   template <typename TA, typename TB>
   auto operator-(const MatExpr<TA>& a, const MatExpr<TB>& b) {
     return SumMatSubExpr(a.Upcast(), b.Upcast());
+  }
+
+  // define and inner product between two vectors
+  template <typename TA, typename TB>
+  auto operator*(const VecExpr<TA>& a, const VecExpr<TB>& b) {
+    return InnerProduct(a.Upcast(), b.Upcast());
+  }
+
+  template <typename TA, typename TB>
+  auto InnerProduct(const VecExpr<TA>& a, const VecExpr<TB>& b) {
+    auto sum = 0.0;
+    for (size_t i = 0; i < a.Size(); i++) {
+      sum += a(i) * b(i);
+    }
+    return sum;
   }
 }
  
