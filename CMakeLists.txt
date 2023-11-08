@@ -42,11 +42,13 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE PYBIND11_DIR)
 list(APPEND CMAKE_PREFIX_PATH "${PYBIND11_DIR}")
 find_package(pybind11 CONFIG REQUIRED)
+find_package(LAPACK REQUIRED)
 
 add_executable(test_vector tests/test_vector.cc)
-
-find_package(LAPACK REQUIRED)
+add_executable(test_matrix tests/test_matrix.cc)
 add_executable(test_lapack tests/test_lapack.cc)
+
+#add_executable(test_lapack tests/test_lapack.cc)
 target_link_libraries(test_lapack PUBLIC ${LAPACK_LIBRARIES})
 
 pybind11_add_module(bla src/bind_bla.cpp)
