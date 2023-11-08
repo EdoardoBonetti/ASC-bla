@@ -5,6 +5,7 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/clapack.h \
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/expression.h \
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h \
+  /home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h \
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/vector.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -48,16 +49,20 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
   /usr/include/c++/11/bits/sstream.tcc \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/bits/stl_algobase.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/stl_construct.h \
   /usr/include/c++/11/bits/stl_function.h \
   /usr/include/c++/11/bits/stl_iterator.h \
   /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/11/bits/stl_iterator_base_types.h \
   /usr/include/c++/11/bits/stl_pair.h \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/streambuf.tcc \
   /usr/include/c++/11/bits/streambuf_iterator.h \
   /usr/include/c++/11/bits/string_view.tcc \
   /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/cctype \
   /usr/include/c++/11/cerrno \
   /usr/include/c++/11/clocale \
@@ -106,6 +111,7 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
   /usr/include/c++/11/tr1/special_function_util.h \
   /usr/include/c++/11/type_traits \
   /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -337,13 +343,21 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/c++/11/cctype:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/c++/11/bits/string_view.tcc:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
-/usr/include/c++/11/bits/istream.tcc:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/c++/11/bits/streambuf.tcc:
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/wctype.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
@@ -381,6 +395,10 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/c++/11/streambuf:
+
 /usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/c++/11/bits/locale_facets.h:
@@ -407,6 +425,10 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/c++/11/bits/stl_pair.h:
 
+/usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/bits/string_view.tcc:
+
 /home/ebonetti/Desktop/LapackTest/ASC-bla/src/vector.h:
 
 /usr/include/c++/11/bits/ios_base.h:
@@ -431,13 +453,15 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/c++/11/type_traits:
 
-/usr/include/c++/11/bits/stringfwd.h:
+/usr/include/c++/11/bits/stl_bvector.h:
 
-/usr/include/c++/11/bits/basic_ios.tcc:
+/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+/home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h:
+
+/usr/include/c++/11/tr1/beta_function.tcc:
 
 /usr/include/stdlib.h:
-
-/usr/include/c++/11/cerrno:
 
 /usr/include/c++/11/bits/alloc_traits.h:
 
@@ -445,13 +469,19 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/stdc-predef.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/c++/11/bits/streambuf.tcc:
 
-/usr/include/c++/11/bits/cxxabi_forced.h:
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /home/ebonetti/Desktop/LapackTest/ASC-bla/tests/test_lapack.cc:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+/usr/include/c++/11/bits/cxxabi_forced.h:
+
+/usr/include/c++/11/cerrno:
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
@@ -464,6 +494,8 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 /usr/include/c++/11/bits/stl_iterator.h:
 
 /usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
 
 /usr/include/c++/11/bits/concept_check.h:
 
@@ -491,17 +523,17 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/c++/11/backward/binders.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
-
-/home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h:
-
-/usr/include/c++/11/tr1/beta_function.tcc:
-
 /usr/include/c++/11/bits/functexcept.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/11/tr1/poly_hermite.tcc:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/bits/stringfwd.h:
+
+/usr/include/c++/11/cctype:
 
 /usr/include/c++/11/clocale:
 
@@ -528,6 +560,8 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 /usr/include/c++/11/debug/debug.h:
 
 /usr/include/c++/11/ext/alloc_traits.h:
+
+/usr/include/c++/11/vector:
 
 /home/ebonetti/Desktop/LapackTest/ASC-bla/src/clapack.h:
 
@@ -570,10 +604,6 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 /usr/include/c++/11/ostream:
 
 /usr/include/c++/11/pstl/pstl_config.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/include/c++/11/streambuf:
 
 /usr/include/c++/11/bits/predefined_ops.h:
 
@@ -621,13 +651,13 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/features.h:
 
+/home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h:
+
 /usr/include/c++/11/bits/basic_string.h:
 
 /usr/include/linux/errno.h:
 
 /usr/include/math.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
@@ -637,10 +667,6 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 
 /usr/include/sched.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/wctype.h:
-
 /usr/include/stdint.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
@@ -648,11 +674,3 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: /home/ebonetti/Desktop/Lapack
 /usr/include/c++/11/typeinfo:
 
 /usr/include/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:

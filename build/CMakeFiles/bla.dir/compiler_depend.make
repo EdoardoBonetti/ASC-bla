@@ -427,8 +427,13 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   ../src/matrix.h \
   /usr/include/c++/12/iostream \
   ../src/expression.h \
-  ../src/vector.h
+  ../src/vector.h \
+  ../src/lapack_interface.h \
+  /usr/include/c++/12/complex \
+  ../src/clapack.h
 
+
+/usr/include/c++/12/complex:
 
 ../src/expression.h:
 
@@ -1094,6 +1099,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/c++/12/tr1/ell_integral.tcc:
 
+../src/clapack.h:
+
 /usr/include/c++/12/cwctype:
 
 /usr/include/c++/12/tr1/hypergeometric.tcc:
@@ -1175,6 +1182,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/include/python3.10/pyhash.h:
+
+../src/lapack_interface.h:
 
 /usr/include/c++/12/bits/hash_bytes.h:
 

@@ -65,6 +65,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_vector.dir/DependInfo.cmake"
+  "CMakeFiles/test_matrix.dir/DependInfo.cmake"
   "CMakeFiles/test_lapack.dir/DependInfo.cmake"
   "CMakeFiles/bla.dir/DependInfo.cmake"
   )

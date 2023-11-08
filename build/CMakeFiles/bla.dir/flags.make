@@ -6,5 +6,5 @@ CXX_DEFINES = -Dbla_EXPORTS
 
 CXX_INCLUDES = -I/home/ebonetti/Desktop/LapackTest/ASC-bla/src -isystem /usr/include/python3.10 -isystem /home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include
 
-CXX_FLAGS = -g -fPIC -fvisibility=hidden
+CXX_FLAGS = -O3 -DNDEBUG -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects
 

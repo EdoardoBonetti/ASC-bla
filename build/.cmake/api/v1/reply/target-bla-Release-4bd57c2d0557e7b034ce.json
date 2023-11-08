@@ -15,8 +15,8 @@
 			"python_add_library",
 			"pybind11_add_module",
 			"install",
-			"include_directories",
-			"target_link_libraries"
+			"target_link_libraries",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -33,7 +33,7 @@
 			{
 				"command" : 3,
 				"file" : 3,
-				"line" : 52,
+				"line" : 54,
 				"parent" : 0
 			},
 			{
@@ -57,23 +57,29 @@
 			{
 				"command" : 4,
 				"file" : 3,
-				"line" : 54,
+				"line" : 56,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
+				"file" : 2,
+				"line" : 232,
+				"parent" : 1
+			},
+			{
+				"command" : 6,
 				"file" : 3,
 				"line" : 36,
 				"parent" : 0
 			},
 			{
-				"command" : 6,
+				"command" : 5,
 				"file" : 0,
 				"line" : 3335,
 				"parent" : 3
 			},
 			{
-				"command" : 6,
+				"command" : 5,
 				"file" : 2,
 				"line" : 194,
 				"parent" : 1
@@ -86,7 +92,15 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fPIC -fvisibility=hidden"
+					"fragment" : "-O3 -DNDEBUG -fPIC -fvisibility=hidden"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-flto"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fno-fat-lto-objects"
 				}
 			],
 			"defines" : 
@@ -98,16 +112,16 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 6,
+					"backtrace" : 7,
 					"path" : "/home/ebonetti/Desktop/LapackTest/ASC-bla/src"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"isSystem" : true,
 					"path" : "/usr/include/python3.10"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 9,
 					"isSystem" : true,
 					"path" : "/home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include"
 				}
@@ -117,9 +131,9 @@
 			{
 				"backtraces" : 
 				[
-					8,
-					8,
-					8
+					9,
+					9,
+					9
 				],
 				"standard" : "17"
 			},
@@ -150,6 +164,11 @@
 		[
 			{
 				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "-flto",
 				"role" : "flags"
 			}
 		],

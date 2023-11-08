@@ -1,1 +1,1 @@
-/usr/bin/g++-12 -g CMakeFiles/test_vector.dir/tests/test_vector.cc.o -o test_vector 
+/usr/bin/g++-12 -O3 -DNDEBUG CMakeFiles/test_vector.dir/tests/test_vector.cc.o -o test_vector 

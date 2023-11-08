@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ebonetti/Desktop/LapackTest/ASC-bla/src
 
-CXX_FLAGS = -g
+CXX_FLAGS = -O3 -DNDEBUG
 
