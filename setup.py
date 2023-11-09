@@ -7,5 +7,5 @@ setup(
     author="J. Schoeberl, E. Bonetti",
     license="MIT",
     packages=["ASCsoft"],
-    cmake_args=[]
+    cmake_args=["-Wall"], 
 )

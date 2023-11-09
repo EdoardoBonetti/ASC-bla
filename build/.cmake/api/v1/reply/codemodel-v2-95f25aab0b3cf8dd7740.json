@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Release-26c7bd0717dd9cff6dcc.json",
+					"jsonFile" : "directory-.-Release-edb50161e9e4f1a4b1c7.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -18,8 +18,7 @@
 					[
 						0,
 						1,
-						2,
-						3
+						2
 					]
 				}
 			],
@@ -36,8 +35,7 @@
 					[
 						0,
 						1,
-						2,
-						3
+						2
 					]
 				}
 			],
@@ -46,28 +44,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "bla::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-bla-Release-4bd57c2d0557e7b034ce.json",
+					"jsonFile" : "target-bla-Release-c60e6729b50e44baf86d.json",
 					"name" : "bla",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test_lapack::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_lapack-Release-0fc7d280f7a6ff182cad.json",
+					"jsonFile" : "target-test_lapack-Release-9ad870d9b8841dba58ee.json",
 					"name" : "test_lapack",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "test_matrix::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_matrix-Release-84fffb15aa6298b27e7d.json",
-					"name" : "test_matrix",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
 					"id" : "test_vector::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_vector-Release-a4fa4855736561c9cd44.json",
+					"jsonFile" : "target-test_vector-Release-df4abf7654fbaecda895.json",
 					"name" : "test_vector",
 					"projectIndex" : 0
 				}

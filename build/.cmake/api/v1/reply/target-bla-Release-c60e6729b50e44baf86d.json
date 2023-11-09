@@ -33,7 +33,7 @@
 			{
 				"command" : 3,
 				"file" : 3,
-				"line" : 54,
+				"line" : 98,
 				"parent" : 0
 			},
 			{
@@ -57,7 +57,7 @@
 			{
 				"command" : 4,
 				"file" : 3,
-				"line" : 56,
+				"line" : 100,
 				"parent" : 0
 			},
 			{
@@ -69,7 +69,7 @@
 			{
 				"command" : 6,
 				"file" : 3,
-				"line" : 36,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
@@ -170,6 +170,18 @@
 				"backtrace" : 6,
 				"fragment" : "-flto",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libopenblas.so",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"

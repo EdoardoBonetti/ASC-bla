@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "test_lapack"
+			"path" : "test_vector"
 		}
 	],
 	"backtrace" : 1,
@@ -11,8 +11,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries",
-			"include_directories"
+			"include_directories",
+			"target_sources"
 		],
 		"files" : 
 		[
@@ -26,19 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 49,
+				"line" : 83,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 52,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 36,
+				"line" : 84,
 				"parent" : 0
 			}
 		]
@@ -55,7 +55,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/ebonetti/Desktop/LapackTest/ASC-bla/src"
 				}
 			],
@@ -74,7 +74,7 @@
 			]
 		}
 	],
-	"id" : "test_lapack::@6890427a1f51a3e7e1df",
+	"id" : "test_vector::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -86,27 +86,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "/usr/lib/x86_64-linux-gnu/libopenblas.so",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lm",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-ldl",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "test_lapack",
-	"nameOnDisk" : "test_lapack",
+	"name" : "test_vector",
+	"nameOnDisk" : "test_vector",
 	"paths" : 
 	{
 		"build" : ".",
@@ -120,6 +105,14 @@
 			[
 				0
 			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
 		}
 	],
 	"sources" : 
@@ -127,8 +120,18 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "tests/test_lapack.cc",
+			"path" : "tests/test_vector.cc",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "src/vector.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "src/expression.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

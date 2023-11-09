@@ -175,19 +175,6 @@ test_vector/fast:
 .PHONY : test_vector/fast
 
 #=============================================================================
-# Target rules for targets named test_matrix
-
-# Build rule for target.
-test_matrix: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_matrix
-.PHONY : test_matrix
-
-# fast build rule for target.
-test_matrix/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/build
-.PHONY : test_matrix/fast
-
-#=============================================================================
 # Target rules for targets named test_lapack
 
 # Build rule for target.
@@ -261,30 +248,6 @@ tests/test_lapack.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lapack.dir/build.make CMakeFiles/test_lapack.dir/tests/test_lapack.cc.s
 .PHONY : tests/test_lapack.cc.s
 
-tests/test_matrix.o: tests/test_matrix.cc.o
-.PHONY : tests/test_matrix.o
-
-# target to build an object file
-tests/test_matrix.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/tests/test_matrix.cc.o
-.PHONY : tests/test_matrix.cc.o
-
-tests/test_matrix.i: tests/test_matrix.cc.i
-.PHONY : tests/test_matrix.i
-
-# target to preprocess a source file
-tests/test_matrix.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/tests/test_matrix.cc.i
-.PHONY : tests/test_matrix.cc.i
-
-tests/test_matrix.s: tests/test_matrix.cc.s
-.PHONY : tests/test_matrix.s
-
-# target to generate assembly for a file
-tests/test_matrix.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/tests/test_matrix.cc.s
-.PHONY : tests/test_matrix.cc.s
-
 tests/test_vector.o: tests/test_vector.cc.o
 .PHONY : tests/test_vector.o
 
@@ -323,7 +286,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... bla"
 	@echo "... test_lapack"
-	@echo "... test_matrix"
 	@echo "... test_vector"
 	@echo "... src/bind_bla.o"
 	@echo "... src/bind_bla.i"
@@ -331,9 +293,6 @@ help:
 	@echo "... tests/test_lapack.o"
 	@echo "... tests/test_lapack.i"
 	@echo "... tests/test_lapack.s"
-	@echo "... tests/test_matrix.o"
-	@echo "... tests/test_matrix.i"
-	@echo "... tests/test_matrix.s"
 	@echo "... tests/test_vector.o"
 	@echo "... tests/test_vector.i"
 	@echo "... tests/test_vector.s"

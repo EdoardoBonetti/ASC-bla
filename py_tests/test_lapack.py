@@ -1,9 +1,9 @@
 
 from ASCsoft.bla import Vector
-import ASCsoft.bla as bla
+from ASCsoft.bla import LapackLU
 
 # print the bla possible imports
-print (dir(bla))
+
 
 n = 1000000
 x = Vector(n)

@@ -60,6 +60,7 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -67,7 +68,9 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/12/bits/specfun.h \
   /usr/include/c++/12/bits/stl_algobase.h \
   /usr/include/c++/12/bits/functexcept.h \
@@ -114,6 +117,7 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/12/exception \
   /usr/include/c++/12/bits/exception.h \
   /usr/include/c++/12/bits/exception_ptr.h \
@@ -182,6 +186,8 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/12/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -222,6 +228,7 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
   /usr/include/c++/12/bits/stl_bvector.h \
   /usr/include/c++/12/bits/vector.tcc \
   ../src/clapack.h \
+  ../src/clapack.h \
   ../src/matrix.h \
   ../src/vector.h
 
@@ -231,8 +238,6 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/c++/12/bits/stl_bvector.h:
 
 /usr/include/c++/12/bits/stl_vector.h:
-
-/usr/include/c++/12/bits/stl_uninitialized.h:
 
 ../src/expression.h:
 
@@ -267,6 +272,10 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/errno.h:
+
+/usr/include/c++/12/bits/stl_uninitialized.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
@@ -340,6 +349,12 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 
 /usr/include/ctype.h:
 
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/c++/12/bits/localefwd.h:
+
+/usr/include/stdint.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
 /usr/include/c++/12/tr1/poly_laguerre.tcc:
@@ -347,10 +362,6 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/c++/12/bits/postypes.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
@@ -371,10 +382,6 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/c++/12/bits/refwrap.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/c++/12/bits/localefwd.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
@@ -444,6 +451,12 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
 /usr/include/c++/12/bits/stringfwd.h:
 
 /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h:
@@ -462,17 +475,19 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 
 /usr/include/c++/12/tr1/hypergeometric.tcc:
 
-/usr/include/c++/12/bits/char_traits.h:
-
-/usr/include/stdint.h:
-
 /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h:
 
 /usr/include/c++/12/bits/basic_ios.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
 /usr/include/c++/12/complex:
 
 ../src/lapack_interface.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
@@ -487,6 +502,10 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/c++/12/tr1/exp_integral.tcc:
 
 /usr/include/c++/12/bits/hash_bytes.h:
+
+/usr/include/c++/12/bits/char_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
@@ -527,6 +546,12 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
@@ -646,11 +671,9 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 
 /usr/include/c++/12/cstdint:
 
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
 /usr/include/c++/12/bits/locale_classes.tcc:
 
@@ -663,7 +686,3 @@ CMakeFiles/test_lapack.dir/tests/test_lapack.cc.o: ../tests/test_lapack.cc \
 /usr/include/c++/12/new:
 
 /usr/include/c++/12/bits/nested_exception.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:

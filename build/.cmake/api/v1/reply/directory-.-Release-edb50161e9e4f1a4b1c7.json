@@ -17,13 +17,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 56,
+				"line" : 100,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 57,
+				"line" : 101,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 102,
 				"parent" : 0
 			}
 		]
@@ -49,6 +55,16 @@
 			"paths" : 
 			[
 				"src/vector.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "ASCsoft/include",
+			"paths" : 
+			[
+				"src/matrix.h"
 			],
 			"type" : "file"
 		}

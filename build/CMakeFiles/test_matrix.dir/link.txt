@@ -1,1 +1,0 @@
-/usr/bin/g++-12 -O3 -DNDEBUG CMakeFiles/test_matrix.dir/tests/test_matrix.cc.o -o test_matrix 

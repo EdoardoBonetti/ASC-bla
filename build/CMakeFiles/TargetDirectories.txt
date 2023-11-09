@@ -1,5 +1,4 @@
 /home/ebonetti/Desktop/LapackTest/ASC-bla/build/CMakeFiles/test_vector.dir
-/home/ebonetti/Desktop/LapackTest/ASC-bla/build/CMakeFiles/test_matrix.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/build/CMakeFiles/test_lapack.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/build/CMakeFiles/bla.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/build/CMakeFiles/edit_cache.dir

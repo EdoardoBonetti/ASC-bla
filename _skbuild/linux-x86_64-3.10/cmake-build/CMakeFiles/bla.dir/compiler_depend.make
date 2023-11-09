@@ -7,20 +7,20 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h \
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h \
   /home/ebonetti/Desktop/LapackTest/ASC-bla/src/vector.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/attr.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/buffer_info.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/cast.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/class.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/common.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/descr.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/init.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/internals.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/type_caster_base.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/typeid.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/gil.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/options.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pybind11.h \
-  /tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pytypes.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/attr.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/buffer_info.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/cast.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/class.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/common.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/descr.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/init.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/internals.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/type_caster_base.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/typeid.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/gil.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/options.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pybind11.h \
+  /tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pytypes.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -479,6 +479,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
@@ -488,8 +490,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
@@ -535,6 +535,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/x86_64-linux-gnu/bits/select2.h:
 
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
@@ -559,10 +561,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
 /usr/include/x86_64-linux-gnu/asm/types.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
@@ -585,8 +583,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/python3.10/warnings.h:
 
-/usr/include/python3.10/unicodeobject.h:
-
 /usr/include/python3.10/typeslots.h:
 
 /usr/include/python3.10/tracemalloc.h:
@@ -594,8 +590,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 /usr/include/python3.10/traceback.h:
 
 /usr/include/python3.10/sysmodule.h:
-
-/usr/include/python3.10/sliceobject.h:
 
 /usr/include/python3.10/pythread.h:
 
@@ -671,7 +665,9 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
-/usr/include/c++/11/bits/concept_check.h:
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/common.h:
+
+/usr/include/c++/11/bits/stl_pair.h:
 
 /usr/include/c++/11/bits/stl_relops.h:
 
@@ -695,8 +691,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/debug/assertions.h:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pybind11.h:
-
 /usr/include/c++/11/bits/std_abs.h:
 
 /usr/include/c++/11/bits/stl_heap.h:
@@ -709,33 +703,25 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/functional:
 
-/usr/include/x86_64-linux-gnu/bits/statx-generic.h:
-
-/usr/include/c++/11/bits/stl_function.h:
-
 /usr/include/c++/11/bits/stl_construct.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/buffer_info.h:
 
 /usr/include/python3.10/structseq.h:
 
 /usr/include/c++/11/bits/stl_algo.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/python3.10/pylifecycle.h:
-
-/usr/include/c++/11/bits/predefined_ops.h:
-
-/usr/include/c++/11/bits/sstream.tcc:
-
-/usr/include/c++/11/bits/locale_facets.h:
-
-/usr/include/python3.10/cellobject.h:
-
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/11/bits/range_access.h:
 
 /usr/include/python3.10/cpython/bytesobject.h:
 
 /usr/include/c++/11/bits/ostream.tcc:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/internals.h:
 
 /usr/include/python3.10/pystrcmp.h:
 
@@ -793,8 +779,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/internals.h:
-
 /usr/include/python3.10/fileobject.h:
 
 /usr/include/c++/11/bits/istream.tcc:
@@ -811,69 +795,35 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/math.h:
 
-/usr/include/asm-generic/types.h:
+/usr/include/python3.10/weakrefobject.h:
 
-/usr/include/c++/11/bits/stl_raw_storage_iter.h:
-
-/usr/include/c++/11/pstl/execution_defs.h:
-
-/usr/include/c++/11/iosfwd:
-
-/usr/include/c++/11/bits/memoryfwd.h:
-
-/usr/include/c++/11/bits/invoke.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
-/usr/include/python3.10/code.h:
-
-/usr/include/python3.10/tupleobject.h:
-
-/home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
-/usr/include/c++/11/bits/basic_string.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/python3.10/pymacro.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/python3.10/descrobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/c++/11/bits/alloc_traits.h:
-
-/usr/include/c++/11/bits/basic_string.tcc:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/gil.h:
+/usr/include/asm-generic/errno-base.h:
 
 /usr/include/asm-generic/posix_types.h:
 
 /usr/include/python3.10/exports.h:
 
-/usr/include/asm-generic/bitsperlong.h:
+/usr/include/python3.10/unicodeobject.h:
 
-/usr/include/c++/11/bits/stl_tempbuf.h:
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/typeid.h:
 
-/usr/include/c++/11/backward/auto_ptr.h:
+/usr/include/c++/11/tr1/poly_hermite.tcc:
 
-/usr/include/python3.10/genobject.h:
+/usr/include/c++/11/ext/concurrence.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/c++/11/pstl/pstl_config.h:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/type_caster_base.h:
+/usr/include/locale.h:
 
 /usr/include/asm-generic/int-ll64.h:
 
 /usr/include/python3.10/cpython/pymem.h:
 
 /home/ebonetti/Desktop/LapackTest/ASC-bla/src/vector.h:
+
+/usr/include/python3.10/sliceobject.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/cast.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
@@ -889,45 +839,35 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/system_error:
 
+/home/ebonetti/Desktop/LapackTest/ASC-bla/src/expression.h:
+
+/usr/include/c++/11/bits/concept_check.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/class.h:
+
 /usr/include/alloca.h:
 
 /usr/include/c++/11/limits:
 
-/usr/include/python3.10/weakrefobject.h:
+/usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
-/usr/include/asm-generic/errno-base.h:
+/usr/include/c++/11/pstl/execution_defs.h:
 
-/usr/include/x86_64-linux-gnu/bits/sched.h:
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/gil.h:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/options.h:
+/usr/include/c++/11/bits/node_handle.h:
 
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+/usr/include/c++/11/bits/string_view.tcc:
 
-/usr/include/python3.10/floatobject.h:
+/usr/include/c++/11/utility:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/common.h:
+/usr/include/c++/11/iosfwd:
 
-/usr/include/python3.10/fileutils.h:
+/usr/include/c++/11/bits/memoryfwd.h:
 
-/usr/include/c++/11/cxxabi.h:
+/usr/include/c++/11/bits/invoke.h:
 
-/usr/include/c++/11/bits/uniform_int_dist.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/usr/include/python3.10/setobject.h:
-
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
-
-/usr/include/linux/close_range.h:
-
-/usr/include/python3.10/cpython/import.h:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/attr.h:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/typeid.h:
-
-/usr/include/c++/11/complex:
+/usr/include/asm-generic/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
@@ -937,23 +877,69 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/bits/align.h:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/buffer_info.h:
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/home/ebonetti/Desktop/LapackTest/ASC-bla/src/expression.h:
+/usr/include/python3.10/pylifecycle.h:
 
-/usr/include/c++/11/bits/stl_pair.h:
+/usr/include/c++/11/bits/predefined_ops.h:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/class.h:
+/usr/include/c++/11/bits/sstream.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+/usr/include/c++/11/bits/locale_facets.h:
 
-/usr/include/python3.10/ceval.h:
+/usr/include/python3.10/cellobject.h:
 
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/init.h:
+/usr/include/x86_64-linux-gnu/bits/statx-generic.h:
 
-/usr/include/c++/11/istream:
+/usr/include/c++/11/bits/stl_function.h:
 
-/usr/include/python3.10/funcobject.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/descr.h:
+
+/usr/include/python3.10/rangeobject.h:
+
+/usr/include/c++/11/cstdio:
+
+/usr/include/c++/11/string_view:
+
+/usr/include/linux/limits.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pybind11.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/python3.10/enumobject.h:
+
+/usr/include/c++/11/bits/forward_list.h:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/attr.h:
+
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
+/usr/include/c++/11/backward/auto_ptr.h:
+
+/usr/include/python3.10/genobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
@@ -983,17 +969,29 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/forward_list:
 
+/usr/include/python3.10/tupleobject.h:
+
+/home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/c++/11/bits/basic_string.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/python3.10/pymacro.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/python3.10/descrobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/include/c++/11/complex:
+
 /usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-/home/ebonetti/Desktop/LapackTest/ASC-bla/src/lapack_interface.h:
-
-/usr/include/python3.10/enumobject.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
@@ -1019,23 +1017,25 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/bits/exception.h:
 
+/usr/include/c++/11/bits/basic_string.tcc:
+
+/usr/include/c++/11/cxxabi.h:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/python3.10/setobject.h:
+
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
+
+/usr/include/linux/close_range.h:
+
 /usr/include/c++/11/bits/nested_exception.h:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/cast.h:
 
 /usr/include/c++/11/cerrno:
 
 /usr/include/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/11/bits/range_access.h:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/descr.h:
-
-/usr/include/c++/11/version:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -1043,29 +1043,27 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/init.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/python3.10/cpython/code.h:
+
 /usr/include/c++/11/bits/erase_if.h:
 
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
-/usr/include/c++/11/bits/stl_bvector.h:
-
-/usr/include/c++/11/bits/forward_list.h:
-
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
-
-/usr/include/python3.10/rangeobject.h:
-
-/usr/include/c++/11/cstdio:
-
-/usr/include/c++/11/string_view:
-
-/usr/include/linux/limits.h:
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/options.h:
 
 /usr/include/c++/11/bits/functexcept.h:
 
 /usr/include/c++/11/cstdint:
 
 /usr/include/linux/types.h:
+
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pytypes.h:
+
+/usr/include/python3.10/cpython/import.h:
 
 /usr/include/python3.10/patchlevel.h:
 
@@ -1075,31 +1073,25 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
-/usr/include/c++/11/bits/allocator.h:
-
 /usr/include/c++/11/bits/unordered_set.h:
+
+/usr/include/c++/11/bits/allocator.h:
 
 /usr/include/c++/11/memory:
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
-/usr/include/c++/11/tr1/poly_hermite.tcc:
-
-/tmp/pip-build-env-sfno3wx_/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/pytypes.h:
-
-/usr/include/c++/11/ext/concurrence.h:
-
-/usr/include/locale.h:
-
 /usr/include/c++/11/tuple:
-
-/usr/include/c++/11/ext/numeric_traits.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/initializer_list:
 
 /usr/include/c++/11/ios:
+
+/usr/include/c++/11/istream:
+
+/usr/include/python3.10/funcobject.h:
 
 /usr/include/python3.10/dictobject.h:
 
@@ -1167,6 +1159,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/python3.10/cpython/objimpl.h:
 
+/tmp/pip-build-env-zs5auk6i/overlay/local/lib/python3.10/dist-packages/pybind11/include/pybind11/detail/type_caster_base.h:
+
 /usr/include/c++/11/tr1/gamma.tcc:
 
 /usr/include/c++/11/bits/locale_classes.tcc:
@@ -1199,15 +1193,11 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/c++/11/unordered_map:
 
-/usr/include/c++/11/bits/node_handle.h:
-
-/usr/include/c++/11/bits/string_view.tcc:
-
-/usr/include/c++/11/utility:
-
 /usr/include/wchar.h:
 
 /usr/include/c++/11/vector:
+
+/usr/include/c++/11/version:
 
 /usr/include/endian.h:
 
@@ -1235,7 +1225,15 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/python3.10/bytearrayobject.h:
 
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/python3.10/ceval.h:
+
 /usr/include/python3.10/classobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/python3.10/code.h:
 
 /usr/include/c++/11/bits/ios_base.h:
 
@@ -1246,10 +1244,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 /usr/include/c++/11/iostream:
 
 /usr/include/python3.10/cpython/ceval.h:
-
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
-
-/usr/include/python3.10/cpython/code.h:
 
 /usr/include/python3.10/cpython/listobject.h:
 
@@ -1269,6 +1263,8 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/python3.10/cpython/methodobject.h:
 
+/usr/include/python3.10/fileutils.h:
+
 /usr/include/python3.10/cpython/picklebufobject.h:
 
 /usr/include/c++/11/backward/binders.h:
@@ -1277,9 +1273,9 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 
 /usr/include/python3.10/cpython/pydebug.h:
 
-/usr/include/python3.10/cpython/odictobject.h:
-
 /usr/include/linux/stddef.h:
+
+/usr/include/python3.10/cpython/odictobject.h:
 
 /usr/include/python3.10/cpython/pyerrors.h:
 
@@ -1306,6 +1302,10 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: /home/ebonetti/Desktop/LapackTest/ASC-bla
 /usr/include/sched.h:
 
 /usr/include/python3.10/eval.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/python3.10/floatobject.h:
 
 /usr/include/c++/11/bits/hashtable.h:
 

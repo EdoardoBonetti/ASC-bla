@@ -13,6 +13,12 @@
 using namespace ASC_bla;
 namespace py = pybind11;
 
+extern "C" {
+#include <clapack.h>
+
+#include "clapack.h"
+}
+
 PYBIND11_MODULE(bla, m) {
   m.doc() = "Basic linear algebra module";  // optional module docstring
 

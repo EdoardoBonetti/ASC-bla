@@ -1,5 +1,4 @@
 /home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/test_vector.dir
-/home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/test_matrix.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/test_lapack.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/bla.dir
 /home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/edit_cache.dir

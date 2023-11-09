@@ -58,6 +58,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   size_t SizeCols() const { return cols_; }
   size_t SizeRows() const { return rows_; }
   T* Data() const { return data_; }
+  size_t Dist() const { return dist_; }
   T& operator()(size_t i, size_t j) {
     if (ORD == RowMajor) {
       return data_[dist_ * i + j];
@@ -183,6 +184,12 @@ constexpr ORDERING operator!(ORDERING ordering) {
 template <typename T, ORDERING ORD>
 auto Transpose(const Matrix<T, ORD>& m) {
   return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.Data());
+}
+
+// transpose of a MatrixView
+template <typename T, ORDERING ORD>
+auto Transpose(const MatrixView<T, ORD>& m) {
+  return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.Dist(), m.Data());
 }
 
 template <typename T, ORDERING ORD>

@@ -47,10 +47,14 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
   /usr/include/linux/errno.h \
@@ -84,6 +88,7 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -91,7 +96,9 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/12/bits/std_abs.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -99,6 +106,7 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/assert.h \
@@ -198,6 +206,7 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/python3.10/cpython/unicodeobject.h \
   /usr/include/python3.10/longobject.h \
   /usr/include/python3.10/longintrepr.h \
@@ -430,6 +439,7 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
   ../src/vector.h \
   ../src/lapack_interface.h \
   /usr/include/c++/12/complex \
+  ../src/clapack.h \
   ../src/clapack.h
 
 
@@ -498,8 +508,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/c++/12/bits/enable_special_members.h:
 
 /usr/include/c++/12/bits/hashtable_policy.h:
-
-/usr/include/c++/12/bits/hashtable.h:
 
 /usr/include/c++/12/unordered_map:
 
@@ -577,8 +585,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/c++/12/bits/postypes.h:
 
-/usr/include/c++/12/bits/shared_ptr.h:
-
 /usr/include/c++/12/bits/functional_hash.h:
 
 /usr/include/c++/12/tuple:
@@ -618,10 +624,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/c++/12/bits/streambuf_iterator.h:
 
 /usr/include/c++/12/forward_list:
-
-/usr/include/c++/12/bits/allocated_ptr.h:
-
-/usr/include/c++/12/bits/nested_exception.h:
 
 /usr/include/c++/12/bits/exception_ptr.h:
 
@@ -667,19 +669,15 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/python3.10/compile.h:
 
-/usr/include/c++/12/pstl/pstl_config.h:
+/usr/include/python3.10/modsupport.h:
 
-/usr/include/c++/12/bits/functexcept.h:
+/usr/include/wctype.h:
 
-/usr/include/python3.10/pyerrors.h:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+/usr/include/sched.h:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
-/usr/include/python3.10/modsupport.h:
+/usr/include/c++/12/pstl/pstl_config.h:
 
 /usr/include/c++/12/new:
 
@@ -727,6 +725,12 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
+/usr/include/c++/12/bits/shared_ptr.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:
+
 /usr/include/python3.10/pystrtod.h:
 
 /usr/include/python3.10/codecs.h:
@@ -745,21 +749,23 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
+/usr/include/c++/12/bits/hashtable.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/c++/12/cstdio:
+
+/usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h:
+
+/usr/include/linux/types.h:
+
 /usr/include/c++/12/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_stat.h:
 
-/usr/include/c++/12/bits/specfun.h:
-
-/usr/include/python3.10/cpython/bytesobject.h:
-
 /usr/include/python3.10/cpython/odictobject.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/c++/12/bits/stl_algobase.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
@@ -807,19 +813,23 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h:
 
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
+
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/c++/12/bits/alloc_traits.h:
-
-/usr/include/limits.h:
-
 /usr/include/python3.10/complexobject.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/c++/12/bits/cpp_type_traits.h:
+
+/usr/include/python3.10/weakrefobject.h:
 
 /usr/include/inttypes.h:
 
@@ -849,6 +859,32 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
+/usr/include/python3.10/context.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/python3.10/pythread.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/12/bits/alloc_traits.h:
+
+/usr/include/limits.h:
+
+/usr/include/c++/12/bits/allocated_ptr.h:
+
+/usr/include/c++/12/bits/nested_exception.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/c++/12/optional:
+
+/usr/include/python3.10/pythonrun.h:
+
+/usr/include/python3.10/floatobject.h:
+
 /usr/include/python3.10/cpython/abstract.h:
 
 /usr/include/python3.10/typeslots.h:
@@ -867,23 +903,17 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
+/usr/include/python3.10/iterobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/python3.10/Python.h:
 
-/usr/include/c++/12/bits/exception_defines.h:
-
 /home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include/pybind11/attr.h:
 
-/usr/include/python3.10/memoryobject.h:
-
-/usr/include/python3.10/enumobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
-
-/usr/include/asm-generic/errno-base.h:
+/usr/include/asm-generic/types.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -891,15 +921,27 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/c++/12/ext/type_traits.h:
 
-/usr/include/asm-generic/types.h:
+/usr/include/python3.10/memoryobject.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
+/usr/include/python3.10/enumobject.h:
 
-/usr/include/python3.10/iterobject.h:
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h:
+
+/usr/include/c++/12/memory:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/c++/12/cxxabi.h:
+
+/usr/include/x86_64-linux-gnu/asm/types.h:
 
 /usr/include/stdc-predef.h:
 
@@ -914,12 +956,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/python3.10/pymacconfig.h:
 
 /usr/include/c++/12/bits/concept_check.h:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/python3.10/weakrefobject.h:
-
-/usr/include/c++/12/bits/cpp_type_traits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h:
 
@@ -937,23 +973,17 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/12/bits/cpu_defines.h:
 
-/usr/include/python3.10/funcobject.h:
-
 /usr/include/python3.10/objimpl.h:
+
+/usr/include/python3.10/funcobject.h:
 
 /usr/include/python3.10/patchlevel.h:
 
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
 /usr/include/x86_64-linux-gnu/python3.10/pyconfig.h:
-
-/usr/include/c++/12/bits/string_view.tcc:
-
-/usr/include/python3.10/cpython/ceval.h:
-
-/usr/include/c++/12/bits/predefined_ops.h:
-
-/usr/include/stdint.h:
-
-/usr/include/endian.h:
 
 /usr/include/python3.10/methodobject.h:
 
@@ -962,6 +992,16 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/c++/12/bits/stl_iterator_base_types.h:
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
+
+/usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h:
+
+/usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/python3.10/unicodeobject.h:
 
 /usr/include/python3.10/sliceobject.h:
 
@@ -1007,7 +1047,7 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/home/ebonetti/.local/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/include/c++/12/version:
 
@@ -1047,9 +1087,39 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
+/usr/include/c++/12/bits/istream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/python3.10/cpython/bytesobject.h:
+
+/usr/include/c++/12/bits/specfun.h:
+
+/usr/include/python3.10/pyerrors.h:
+
+/usr/include/c++/12/bits/stl_algobase.h:
+
+/usr/include/c++/12/bits/functexcept.h:
+
+/usr/include/c++/12/bits/string_view.tcc:
+
+/usr/include/python3.10/cpython/ceval.h:
+
+/usr/include/stdint.h:
+
+/usr/include/endian.h:
+
+/usr/include/c++/12/bits/predefined_ops.h:
+
+/usr/include/c++/12/bits/exception_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
@@ -1149,16 +1219,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/linux/stat.h:
 
-/usr/include/c++/12/cstdio:
-
-/usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h:
-
-/usr/include/linux/types.h:
-
-/usr/include/c++/12/cxxabi.h:
-
-/usr/include/x86_64-linux-gnu/asm/types.h:
-
 /usr/include/asm-generic/int-ll64.h:
 
 /usr/include/c++/12/bits/cxxabi_init_exception.h:
@@ -1197,14 +1257,6 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/python3.10/cpython/pystate.h:
 
-/usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h:
-
-/usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/python3.10/unicodeobject.h:
-
 /usr/include/c++/12/cstring:
 
 /usr/include/ctype.h:
@@ -1213,15 +1265,19 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 
 /usr/include/wchar.h:
 
-/usr/include/c++/12/optional:
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
-/usr/include/python3.10/pythonrun.h:
-
-/usr/include/python3.10/floatobject.h:
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
 /usr/include/python3.10/rangeobject.h:
 
 /usr/include/python3.10/tupleobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
+
+/usr/include/python3.10/cpython/tupleobject.h:
 
 /usr/include/python3.10/moduleobject.h:
 
@@ -1262,31 +1318,3 @@ CMakeFiles/bla.dir/src/bind_bla.cpp.o: ../src/bind_bla.cpp \
 /usr/include/python3.10/abstract.h:
 
 /usr/include/python3.10/genericaliasobject.h:
-
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
-
-/usr/include/python3.10/pythread.h:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/c++/12/bits/istream.tcc:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
-/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
-
-/usr/include/python3.10/cpython/tupleobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/c++/12/memory:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/python3.10/context.h:
