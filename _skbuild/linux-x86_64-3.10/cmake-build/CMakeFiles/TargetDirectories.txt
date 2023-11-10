@@ -1,9 +1,0 @@
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/test_vector.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/test_lapack.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/bla.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/edit_cache.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/rebuild_cache.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/list_install_components.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/install.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/install/local.dir
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles/install/strip.dir

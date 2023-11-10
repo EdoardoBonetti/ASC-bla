@@ -1,3 +1,0 @@
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-install/ASCsoft/bla.cpython-310-x86_64-linux-gnu.so
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-install/ASCsoft/include/vector.h
-/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-install/ASCsoft/include/matrix.h
