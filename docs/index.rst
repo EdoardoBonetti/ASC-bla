@@ -13,7 +13,7 @@ Installation is via git-clone:
 
 ..  code-block::
     
-    git clone https://github.com/TUWien-ASC/ASC-bla.git
+    git clone https://github.com/EdoardoBonetti/ASC-bla
 
 
 To configure and build some tests do
@@ -26,6 +26,8 @@ To configure and build some tests do
     cmake ..
     make
     
+The cpp tests are contained in the folder `cpp_tests`, the executables can be found in `build/cpp_tests`.
+
 
 To use ASC-bla in your code, set the compiler include path properly, and include the header files
 
@@ -94,3 +96,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
