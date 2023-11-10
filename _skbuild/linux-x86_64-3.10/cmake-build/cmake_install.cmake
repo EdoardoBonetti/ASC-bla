@@ -1,8 +1,8 @@
-# Install script for directory: /home/ebonetti/Desktop/LapackTest/ASC-bla
+# Install script for directory: /home/edo/ASC-bla
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-install")
+  set(CMAKE_INSTALL_PREFIX "/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/ASCsoft/bla.cpython-310-x86_64-linux-gnu.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft" TYPE MODULE FILES "/home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/bla.cpython-310-x86_64-linux-gnu.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft" TYPE MODULE FILES "/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/bla.cpython-310-x86_64-linux-gnu.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/ASCsoft/bla.cpython-310-x86_64-linux-gnu.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/ASCsoft/bla.cpython-310-x86_64-linux-gnu.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -59,11 +59,11 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft/include" TYPE FILE FILES "/home/ebonetti/Desktop/LapackTest/ASC-bla/src/vector.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft/include" TYPE FILE FILES "/home/edo/ASC-bla/src/vector.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft/include" TYPE FILE FILES "/home/ebonetti/Desktop/LapackTest/ASC-bla/src/matrix.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/ASCsoft/include" TYPE FILE FILES "/home/edo/ASC-bla/src/matrix.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -74,5 +74,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ebonetti/Desktop/LapackTest/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/edo/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -96,8 +96,21 @@ namespace ASC_bla
     MultMatMatLapack(Transpose(b), Transpose(a), Transpose(c));
   };
 
-  template <ORDERING ORD>
-  class LapackLU {
+  
+
+template < ORDERING ORD>
+  class LapackView
+  {
+    protected:
+    Matrix<double, ORD> a;
+   public:
+
+  };
+
+template <ORDERING ORD>
+class LapackView : public LapackLU<LapackView<ORD>> {
+
+ protected:
     Matrix<double, ORD> a;
     std::vector<integer> ipiv;
 
@@ -151,6 +164,18 @@ namespace ASC_bla
       dgetri_(&n, &a(0, 0), &lda, ipiv.data(), &work[0], &lwork, &info);
       return std::move(a);
     }
+
+template <typename T, ORDERING ORD>
+std::ostream& operator<<(std::ostream& os, const Matrix<T, ORD>& m) {
+  os << std::endl;
+  for (size_t i = 0; i < m.SizeRows(); i++) {
+    for (size_t j = 0; j < m.SizeCols(); j++) {
+      os << m(i, j) << " ";
+    }
+    os << std::endl;
+  }
+  return os;
+}
 
     Matrix<double, ORD> LFactor() const {
       Matrix<double, ORD> L(a.SizeRows(), a.SizeCols());
@@ -383,6 +408,20 @@ namespace ASC_bla
 
     // b overwritten with A^{-1} b
   };
+
+// lapack view
+template < ORDERING ORD>
+std::ostream& operator<<(std::ostream& os, const LapackView< ORD>& lpv) {
+  os << std::endl;
+  Matrix<double, ORD> m (lpv.Mat())
+  for (size_t i = 0; i < lpv.SizeRows(); i++) {
+    for (size_t j = 0; j < m.SizeCols(); j++) {
+      os << m(i, j) << " ";
+    }
+    os << std::endl;
+  }
+  return os;
+}
   }  // namespace ASC_bla
 
 #endif
