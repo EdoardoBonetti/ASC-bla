@@ -1,4 +1,4 @@
-# ASC-bla
+# TomBino
 A simple basic linear algebra implementation using modern C++.
 [
 [![RTD](https://readthedocs.org/projects/asc-bla/badge/?version=latest)]([https://asc-bla.readthedocs.io/en/latest/?badge=latest)](https://tombino.readthedocs.io/en/latest/)
