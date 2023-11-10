@@ -1,15 +1,21 @@
+// Purpose: Interface to LAPACK library.
+// Date: 10.11.2023
+
+// To Do:
+// - add documentation
+// - add tests
+// - add complex case
+
 #ifndef FILE_LAPACK_INTERFACE_H
 #define FILE_LAPACK_INTERFACE_H
 
 #include <complex>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "matrix.h"
 #include "vector.h"
-
-// include std vector
-#include <vector>
 
 typedef int integer;
 typedef integer logical;
@@ -18,12 +24,12 @@ typedef double doublereal;
 typedef std::complex<float> singlecomplex;
 typedef std::complex<double> doublecomplex;
 
-// Windows SDK defines VOID in the file WinNT.h
-#ifndef VOID
+#ifndef VOID  // Windows SDK defines VOID in the file WinNT.h
 typedef void VOID;
 #endif
 typedef int ftnlen;
-typedef int L_fp;  // ?
+typedef int L_fp;  // ? Needed for interfacing with Fortran: it corresponds to
+                   // the type of a function pointer in Fortran.
 
 extern "C" {
 #include <clapack.h>
@@ -34,61 +40,83 @@ extern "C" {
 namespace ASC_bla
 {
 
-  // BLAS-1 functions:
+// BLAS-1 functions:
+template <typename SX, typename SY>
+void AddVectorLapack(double alpha, VectorView<double, SX> x, VectorView<double, SY> y) {
+  integer n = x.Size();
+  integer incx = x.Dist();
+  integer incy = y.Dist();
+  int err = daxpy_(&n, &alpha, &x(0), &incx, &y(0), &incy);
+  if (err != 0) std::cerr << "lapack add vector returned errcode " << err << std::endl;
+}
 
-  /*
-    int daxpy_(integer *n, doublereal *da, doublereal *dx, 
-    integer *incx, doublereal *dy, integer *incy);
-  */
-  // y += alpha x
-  template <typename SX, typename SY>
-  void AddVectorLapack (double alpha, VectorView<double,SX> x, VectorView<double,SY> y)
-  {
-    integer n = x.Size();
-    integer incx = x.Dist();
-    integer incy = y.Dist();
-    int err = 
-      daxpy_ (&n, &alpha, &x(0),  &incx, &y(0), &incy);
-    if (err != 0)
-      std::cerr << "daxpy returned errcode " << err << std::endl;
-  }
+template <typename SX, typename SY>
+void SwapVectorsLapack(VectorView<double, SX> x, VectorView<double, SY> y) {
+  integer n = x.Size();
+  integer incx = x.Dist();
+  integer incy = y.Dist();
+  int err = dswap_(&n, &x(0), &incx, &y(0), &incy);
+  if (err != 0) std::cerr << "lapack swap returned errcode " << err << std::endl;
+}
+
+template <typename SX, typename SY>
+double InnerProductLapack(VectorView<double, SX> x, VectorView<double, SY> y) {
+  integer n = x.Size();
+  integer incx = x.Dist();
+  integer incy = y.Dist();
+  double res = ddot_(&n, &x(0), &incx, &y(0), &incy);
+  return res;
+}
+
+template <typename SX>
+double NormLapack(VectorView<double, SX> x) {
+  integer n = x.Size();
+  integer incx = x.Dist();
+  double res = dnrm2_(&n, &x(0), &incx);
+  return res;
+}
 
   // BLAS-2 functions:
 
-  // BLAS-3 functions:
+// matrix-vector multiplication
+template <ORDERING OA, typename SX, typename SY>
+void MultMatVecLapack(MatrixView<double, OA> a, VectorView<double, SX> b, VectorView<double, SY> c) {
+  char transa_ = (OA == ColMajor) ? 'N' : 'T';
 
-  /*
-    int dgemm_ (char *transa, char *transb, integer *m, integer *
-    n, integer *k, doublereal *alpha, doublereal *a, integer *lda,
-    doublereal *b, integer *ldb, doublereal *beta, doublereal *c__,
-    integer *ldc);
-  */
+  integer n = c.Size();
+  integer m = a.SizeRows();
 
-  // c = a*b
-  template <ORDERING OA, ORDERING OB>
-  void MultMatMatLapack(MatrixView<double, OA> a, MatrixView<double, OB> b,
-                        MatrixView<double, ColMajor> c) {
-    char transa_ = (OA == ColMajor) ? 'N' : 'T';
-    char transb_ = (OB == ColMajor) ? 'N' : 'T';
+  double alpha = 1.0;
+  integer lda = std::max(a.Dist(), 1ul);
+  integer incx = std::max(b.Dist(), 1ul);
+  double beta = 0;
+  integer incy = std::max(c.Dist(), 1ul);
 
-    integer n = c.SizeRows();
-    integer m = c.SizeCols();
-    integer k = a.SizeCols();
+  int err = dgemv_(&transa_, &n, &m, &alpha, a.Data(), &lda, b.Data(), &incx, &beta, c.Data(), &incy);
 
-    double alpha = 1.0;
-    double beta = 0;
-    integer lda = std::max(a.Dist(), 1ul);
-    integer ldb = std::max(b.Dist(), 1ul);
-    integer ldc = std::max(c.Dist(), 1ul);
+  if (err != 0) throw std::runtime_error(std::string("MultMatVec got error") + std::to_string(err));
+};
 
-    int err = dgemm_(&transa_, &transb_, &n, &m, &k, &alpha, a.Data(), &lda,
-                     b.Data(), &ldb, &beta, c.Data(), &ldc);
+// BLAS-3 functions:
+template <ORDERING OA, ORDERING OB>
+void MultMatMatLapack(MatrixView<double, OA> a, MatrixView<double, OB> b, MatrixView<double, ColMajor> c) {
+  char transa_ = (OA == ColMajor) ? 'N' : 'T';
+  char transb_ = (OB == ColMajor) ? 'N' : 'T';
 
-    if (err != 0)
-      throw std::runtime_error(std::string("MultMatMat got error") +
-                               std::to_string(err));
-    // MultMatMat got error"+std::to_string(err)));
-  };
+  integer n = c.SizeRows();
+  integer m = c.SizeCols();
+  integer k = a.SizeCols();
+
+  double alpha = 1.0;
+  double beta = 0;
+  integer lda = std::max(a.Dist(), 1ul);
+  integer ldb = std::max(b.Dist(), 1ul);
+  integer ldc = std::max(c.Dist(), 1ul);
+
+  int err = dgemm_(&transa_, &transb_, &n, &m, &k, &alpha, a.Data(), &lda, b.Data(), &ldb, &beta, c.Data(), &ldc);
+
+  if (err != 0) throw std::runtime_error(std::string("MultMatMat got error") + std::to_string(err));
+};
 
   template <ORDERING OA, ORDERING OB>
   void MultMatMatLapack(MatrixView<double, OA> a, MatrixView<double, OB> b,
@@ -96,26 +124,36 @@ namespace ASC_bla
     MultMatMatLapack(Transpose(b), Transpose(a), Transpose(c));
   };
 
-  
-
-template < ORDERING ORD>
-  class LapackView
-  {
-    protected:
-    Matrix<double, ORD> a;
-   public:
-
-  };
-
-template <ORDERING ORD>
-class LapackView : public LapackLU<LapackView<ORD>> {
-
- protected:
+  template <ORDERING ORD>
+  class LapackLU {
     Matrix<double, ORD> a;
     std::vector<integer> ipiv;
 
    public:
-    LapackLU(Matrix<double, ORD> _a) : a(std::move(_a)), ipiv(a.SizeRows()) {
+    // constructor , if flag apply is True then decompose immediately, if False
+    // then decompose when needed
+    LapackLU(Matrix<double, ORD> _a, bool apply = true) : a(std::move(_a)), ipiv(a.SizeRows()) {
+      if (apply) {
+        integer m = a.SizeRows();
+        if (m == 0) return;
+        integer n = a.SizeCols();
+        integer lda = a.Dist();
+        integer info;
+
+        // int dgetrf_(integer *m, integer *n, doublereal *a,
+        //             integer * lda, integer *ipiv, integer *info);
+
+        dgetrf_(&n, &m, &a(0, 0), &lda, &ipiv[0], &info);
+      }
+    }
+
+    // destructor
+    ~LapackLU() = default;
+
+    // Matrix getter
+    Matrix<double, ORD> GetMatrix() const { return a; }
+
+    void Decompose() {
       integer m = a.SizeRows();
       if (m == 0) return;
       integer n = a.SizeCols();
@@ -127,7 +165,6 @@ class LapackView : public LapackLU<LapackView<ORD>> {
 
       dgetrf_(&n, &m, &a(0, 0), &lda, &ipiv[0], &info);
     }
-
     // b overwritten with A^{-1} b
     template <typename Db>
     void Solve(VectorView<double, Db> b) const {
@@ -165,17 +202,17 @@ class LapackView : public LapackLU<LapackView<ORD>> {
       return std::move(a);
     }
 
-template <typename T, ORDERING ORD>
-std::ostream& operator<<(std::ostream& os, const Matrix<T, ORD>& m) {
-  os << std::endl;
-  for (size_t i = 0; i < m.SizeRows(); i++) {
-    for (size_t j = 0; j < m.SizeCols(); j++) {
-      os << m(i, j) << " ";
-    }
-    os << std::endl;
-  }
-  return os;
-}
+    // template <typename T, ORDERING ORD>
+    // std::ostream& operator<<(std::ostream& os, const Matrix<T, ORD>& m) {
+    //   os << std::endl;
+    //   for (size_t i = 0; i < m.SizeRows(); i++) {
+    //     for (size_t j = 0; j < m.SizeCols(); j++) {
+    //       os << m(i, j) << " ";
+    //     }
+    //     os << std::endl;
+    //   }
+    //   return os;
+    // }
 
     Matrix<double, ORD> LFactor() const {
       Matrix<double, ORD> L(a.SizeRows(), a.SizeCols());
@@ -409,19 +446,6 @@ std::ostream& operator<<(std::ostream& os, const Matrix<T, ORD>& m) {
     // b overwritten with A^{-1} b
   };
 
-// lapack view
-template < ORDERING ORD>
-std::ostream& operator<<(std::ostream& os, const LapackView< ORD>& lpv) {
-  os << std::endl;
-  Matrix<double, ORD> m (lpv.Mat())
-  for (size_t i = 0; i < lpv.SizeRows(); i++) {
-    for (size_t j = 0; j < m.SizeCols(); j++) {
-      os << m(i, j) << " ";
-    }
-    os << std::endl;
-  }
-  return os;
-}
   }  // namespace ASC_bla
 
 #endif
