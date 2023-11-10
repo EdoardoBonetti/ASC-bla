@@ -318,14 +318,16 @@ PYBIND11_MODULE(bla, m) {
 
   // and 4 classes : LapackLU, LapackQR,LapackEVP,  LapackSVD.
 
-  py::class_<LapackLU<RowMajor>>(m, "LapackLU")
-      .def(py::init<Matrix<double, RowMajor>>(), py::arg("A"), "create LU decomposition of given matrix")
-      .def("__str__",
-           [](const LapackLU<RowMajor>& self) {
-             std::stringstream str;
-             str << self;
-             return str.str();
-           })
-      .def("L", [](const LapackLU<RowMajor>& self) { self.LFactor(); });
+  // py::class_<LapackLU<RowMajor>>(m, "LapackLU")
+  //     .def(py::init<Matrix<double, RowMajor>>(), py::arg("A"), "create LU decomposition of given matrix")
+  //     .def("__str__",
+  //          [](const LapackLU<RowMajor>& self) {
+  //            std::stringstream str;
+  //            str << self;
+  //            return str.str();
+  //          })
+  //     .def("L", [](const LapackLU<RowMajor>& self) { self.LFactor(); });
+
+  // we wrap the lapack mult matrix matrix
 }
 
