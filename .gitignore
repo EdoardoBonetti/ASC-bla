@@ -1,24 +1,25 @@
 
 # Ignore everything
-#*
-
-# But not these files...
-!/.gitignore
-
-#setup.py
-!setup.py
-!README.md
-!pyproject.toml
-!LICENSE
-!CMakeLists.txt
-!build.sh
-!readthedocs.yaml
-!.clang-format
+*
 
 # ...even if they are in subdirectories
 !*/
+!ASCsoft/
 !docs/
 !src/
-!test/
-!py_test/
-!ASCsoft/
+!test_cpp/
+!test_py/
+
+
+# But not these files...
+!.clang-format
+!/.gitignore
+!readthedocs.yaml
+!build.sh
+!CMakeLists.txt
+!LICENSE
+!pyproject.toml
+!README.md
+!setup.py
+
+
