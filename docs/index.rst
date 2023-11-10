@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ASC-bla's documentation!
+Welcome to TomBino's documentation!
 ===================================
 
 ASC-bla is a C++ library for basic linear algebra operations.
@@ -20,7 +20,7 @@ To configure and build some tests do
 
 ..  code-block::
 
-    cd ASC-bla
+    cd TomBino
     mkdir build
     cd build
     cmake ..
@@ -29,24 +29,24 @@ To configure and build some tests do
 The cpp tests are contained in the folder `cpp_tests`, the executables can be found in `build/cpp_tests`.
 
 
-To use ASC-bla in your code, set the compiler include path properly, and include the header files
+To use TomBino in your code, set the compiler include path properly, and include the header files
 
 ..  code-block::
 
     #include <vector.h>
     #include <matrix.h>
 
-All objects are implemented in the namespace ASC_bla. To use them with less typing, you can set
+All objects are implemented in the namespace Tombino_bla. To use them with less typing, you can set
 
 ..  code-block::
     
-    namespace bla = ASC_bla;
+    namespace bla = Tombino_bla;
 
 or even
 
 ..  code-block::
     
-    using namespace ASC_bla;
+    using namespace Tombino_bla;
 
     
 

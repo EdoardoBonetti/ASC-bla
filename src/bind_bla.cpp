@@ -10,7 +10,7 @@
 
 #include "lapack_interface.h"
 
-using namespace ASC_bla;
+using namespace Tombino_bla;
 namespace py = pybind11;
 
 extern "C" {
@@ -319,11 +319,13 @@ PYBIND11_MODULE(bla, m) {
   // and 4 classes : LapackLU, LapackQR,LapackEVP,  LapackSVD.
 
   py::class_<LapackLU<RowMajor>>(m, "LapackLU")
-      .def(py::init<Matrix<double, RowMajor>>(), py::arg("A"), "create LU decomposition of given matrix");
-  //.def("__str__", [](const LapackLU<RowMajor>& self) {
-  //  std::stringstream str;
-  //  str << self;
-  //  return str.str();
-  //});
+      .def(py::init<Matrix<double, RowMajor>>(), py::arg("A"), "create LU decomposition of given matrix")
+      .def("__str__",
+           [](const LapackLU<RowMajor>& self) {
+             std::stringstream str;
+             str << self;
+             return str.str();
+           })
+      .def("L", [](const LapackLU<RowMajor>& self) { self.LFactor(); });
 }
 

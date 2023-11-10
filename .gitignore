@@ -4,7 +4,7 @@
 
 # ...even if they are in subdirectories
 !*/
-!ASCsoft/
+!TomBino/
 !docs/
 !src/
 !test_cpp/

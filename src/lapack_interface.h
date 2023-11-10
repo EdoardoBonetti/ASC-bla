@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 
+#include "expression.h"
 #include "matrix.h"
 #include "vector.h"
 
@@ -37,8 +38,15 @@ extern "C" {
 #include "clapack.h"
 }
 
-namespace ASC_bla
-{
+namespace Tombino_bla {
+
+// this class is used to create syntactic sugar for the lapack functions using:
+// Z = X + Y | Lapack;
+//  instead of:
+// AddVectorLapack(1, X, Y, Z);
+
+class T_Lapack {};
+static constexpr T_Lapack Lapack;
 
 // BLAS-1 functions:
 template <typename SX, typename SY>
@@ -49,6 +57,8 @@ void AddVectorLapack(double alpha, VectorView<double, SX> x, VectorView<double, 
   int err = daxpy_(&n, &alpha, &x(0), &incx, &y(0), &incy);
   if (err != 0) std::cerr << "lapack add vector returned errcode " << err << std::endl;
 }
+
+//
 
 template <typename SX, typename SY>
 void SwapVectorsLapack(VectorView<double, SX> x, VectorView<double, SY> y) {
@@ -152,6 +162,18 @@ void MultMatMatLapack(MatrixView<double, OA> a, MatrixView<double, OB> b, Matrix
 
     // Matrix getter
     Matrix<double, ORD> GetMatrix() const { return a; }
+
+    // << operator
+    friend std::ostream& operator<<(std::ostream& os, const LapackLU<ORD>& lu) {
+      os << std::endl;
+      for (size_t i = 0; i < lu.a.SizeRows(); i++) {
+        for (size_t j = 0; j < lu.a.SizeCols(); j++) {
+          os << lu.a(i, j) << " ";
+        }
+        os << std::endl;
+      }
+      return os;
+    }
 
     void Decompose() {
       integer m = a.SizeRows();
@@ -446,6 +468,6 @@ void MultMatMatLapack(MatrixView<double, OA> a, MatrixView<double, OB> b, Matrix
     // b overwritten with A^{-1} b
   };
 
-  }  // namespace ASC_bla
+  }  // namespace Tombino_bla
 
 #endif

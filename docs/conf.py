@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'ASC-bla'
+project = 'TomBino'
 copyright = '2023, J. Schoeberl'
-author = 'J. Schoeberl'
+author = 'E. Bonetti, J. Schoeberl'
 
 
 # -- General configuration ---------------------------------------------------

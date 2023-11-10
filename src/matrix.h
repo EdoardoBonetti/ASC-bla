@@ -6,7 +6,7 @@
 #include "expression.h"
 #include "vector.h"
 
-namespace ASC_bla {
+namespace Tombino_bla {
 enum ORDERING { RowMajor, ColMajor };
 template <typename T, ORDERING ORD>
 class MatrixView : public MatExpr<MatrixView<T, ORD>> {
@@ -222,5 +222,5 @@ auto Inverse(const Matrix<T, ORD>& m) {
   return eye;
 }
 
-}  // namespace ASC_bla
+}  // namespace Tombino_bla
 #endif

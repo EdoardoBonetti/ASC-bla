@@ -5,60 +5,44 @@
 
 #include "expression.h"
 
+namespace Tombino_bla {
 
-namespace ASC_bla
-{
+template <typename T, typename TDIST = std::integral_constant<size_t, 1>>
+class VectorView : public VecExpr<VectorView<T, TDIST>> {
+ protected:
+  T* data_;
+  size_t size_;
+  TDIST dist_;
 
+ public:
+  VectorView(size_t size, T* data) : data_(data), size_(size) {}
 
- 
-  template <typename T, typename TDIST = std::integral_constant<size_t,1> >
-  class VectorView : public VecExpr<VectorView<T,TDIST>>
-  {
-  protected:
-    T * data_;
-    size_t size_;
-    TDIST dist_;
-  public:
-    VectorView (size_t size, T * data)
-      : data_(data), size_(size) { }
-    
-    VectorView (size_t size, TDIST dist, T * data)
-      : data_(data), size_(size), dist_(dist) { }
-    
-    template <typename TB>
-    VectorView & operator= (const VecExpr<TB> & v2)
-    {
-      for (size_t i = 0; i < size_; i++)
-        data_[dist_*i] = v2(i);
-      return *this;
-    }
+  VectorView(size_t size, TDIST dist, T* data) : data_(data), size_(size), dist_(dist) {}
 
-    VectorView & operator= (T scal)
-    {
-      for (size_t i = 0; i < size_; i++)
-        data_[dist_*i] = scal;
-      return *this;
-    }
+  template <typename TB>
+  VectorView& operator=(const VecExpr<TB>& v2) {
+    for (size_t i = 0; i < size_; i++) data_[dist_ * i] = v2(i);
+    return *this;
+  }
 
-    auto View() const { return VectorView(size_, dist_, data_); }
-    size_t Size() const { return size_; }
-    size_t Dist() const { return dist_; }
-    T & operator()(size_t i) { return data_[dist_*i]; }
-    const T & operator()(size_t i) const { return data_[dist_*i]; }
-    
-    auto Range(size_t first, size_t next) const {
-      return VectorView(next-first, dist_, data_+first);
-    }
+  VectorView& operator=(T scal) {
+    for (size_t i = 0; i < size_; i++) data_[dist_ * i] = scal;
+    return *this;
+  }
 
-    auto Slice(size_t first, size_t slice) const {
-      return VectorView<T,size_t> (size_/slice, dist_*slice, data_+first*dist_);
-    }
-      
-  };
-  
-  
+  auto View() const { return VectorView(size_, dist_, data_); }
+  size_t Size() const { return size_; }
+  size_t Dist() const { return dist_; }
+  T& operator()(size_t i) { return data_[dist_ * i]; }
+  const T& operator()(size_t i) const { return data_[dist_ * i]; }
 
-  
+  auto Range(size_t first, size_t next) const { return VectorView(next - first, dist_, data_ + first); }
+
+  auto Slice(size_t first, size_t slice) const {
+    return VectorView<T, size_t>(size_ / slice, dist_ * slice, data_ + first * dist_);
+  }
+};
+
   template <typename T>
   class Vector : public VectorView<T>
   {
@@ -119,7 +103,7 @@ namespace ASC_bla
       ost << ", " << v(i);
     return ost;
   }
-  
-}
+
+  }  // namespace Tombino_bla
 
 #endif

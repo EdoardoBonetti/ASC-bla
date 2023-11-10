@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.20)
-project(ASC_bla)
+project(TomBino)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -36,7 +36,7 @@ target_link_libraries(test_lapack PUBLIC LAPACK::LAPACK)
 
 pybind11_add_module(bla src/bind_bla.cpp)
 
-install(TARGETS bla DESTINATION ASCsoft)
-install(FILES src/vector.h DESTINATION ASCsoft/include)
-install(FILES src/matrix.h DESTINATION ASCsoft/include)
+install(TARGETS bla DESTINATION TomBino)
+install(FILES src/vector.h DESTINATION TomBino/include)
+install(FILES src/matrix.h DESTINATION TomBino/include)
 target_link_libraries(bla PUBLIC LAPACK::LAPACK)

@@ -5,21 +5,18 @@
 /* Author: Joachim Schoeberl, Edoardo Bonetti                             */
 /* Date:   13. 10. 2023                                                   */
 /**************************************************************************/
-namespace ASC_bla
-{
+namespace Tombino_bla {
 
-  template <typename T>
-  class VecExpr
-  {
-   public:
-    auto Upcast() const { return static_cast<const T&>(*this); }
-    size_t Size() const { return Upcast().Size(); }
-    size_t Dist() const { return Upcast().Dist(); }
-    auto operator()(size_t i) const { return Upcast()(i); }
-    auto& operator()(size_t i) { return Upcast()(i); }
-  };
-  
- 
+template <typename T>
+class VecExpr {
+ public:
+  auto Upcast() const { return static_cast<const T&>(*this); }
+  size_t Size() const { return Upcast().Size(); }
+  size_t Dist() const { return Upcast().Dist(); }
+  auto operator()(size_t i) const { return Upcast()(i); }
+  auto& operator()(size_t i) { return Upcast()(i); }
+};
+
   template <typename TA, typename TB>
   class SumVecExpr : public VecExpr<SumVecExpr<TA,TB>>
   {
@@ -270,6 +267,6 @@ namespace ASC_bla
     }
     return sum;
   }
-}
- 
+  }  // namespace Tombino_bla
+
 #endif
