@@ -20,6 +20,9 @@ target_sources(test_vector PUBLIC src/vector.h src/expression.h)
 add_executable(test_matrix tests_cpp/test_matrix.cc)
 target_sources(test_matrix PUBLIC src/matrix.h src/expression.h)
 
+add_executable(test_operations tests_cpp/test_operations.cc)
+target_sources(test_operations PUBLIC src/expression.h)
+
 # create a subdirectory tests_cpp
 # file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/tests_cpp)
 if(WIN32)

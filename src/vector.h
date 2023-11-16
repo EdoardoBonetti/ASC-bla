@@ -16,7 +16,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
 
  public:
   VectorView(size_t size, T* data) : data_(data), size_(size) {}
-
   VectorView(size_t size, TDIST dist, T* data) : data_(data), size_(size), dist_(dist) {}
 
   template <typename TB>
@@ -37,7 +36,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
   const T& operator()(size_t i) const { return data_[dist_ * i]; }
 
   auto Range(size_t first, size_t next) const { return VectorView(next - first, dist_, data_ + first); }
-
   auto Slice(size_t first, size_t slice) const {
     return VectorView<T, size_t>(size_ / slice, dist_ * slice, data_ + first * dist_);
   }

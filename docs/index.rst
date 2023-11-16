@@ -53,13 +53,38 @@ or even
 You can create vectors and compute with vectors like:
 
 ..  code-block:: cpp
-                 
+   // creates three vectors of size 5
    Vector<double> x(5), y(5), z(5);
+
+   // initialize the vector x with the values 0,1,2,3,4
    for (int i = 0; i < x.Size(); i++)
       x(i) = i;
-   y = 5.0
+   
+   // initialize the vector y with the values 5,5,5,5,5
+   y = 5.0;
+
+   // compute z = x + 3*y using expression templates
    z = x+3*y;
-   cout << "z = " << z << endl;
+
+   // print the result
+   std::cout << "z = " << z << std::endl;
+
+The class Vector is a subclass of VectorView that is a slim class that helps in the visualization of a vector.
+
+.. code-block:: cpp
+   Size() // returns the size of the vector
+   Dist() // returns the distance of the vector
+   View() // returns the VectorView
+   Range(size_t first, size_t next) // returns a VectorView of the range [first,next)
+   Slice(size_t first, size_t slice) // returns a VectorView of the sliced vector every slice elements starting from first
+
+   operator() // access the elements of the vector
+   operator= // assign a vector to another vector
+   operator+ // add two vectors
+   operator- // subtract two vectors
+   operator* // multiply a vector by a scalar
+   operator^ // multiply two vectors element by element, needs <matrix.h>
+
 
 
 For matrices you can choose between row-major (`RowMajor`) or column-major (`ColMajor`) storage,
@@ -79,6 +104,19 @@ You can extract a rows or a columns from a matrix:
 ..  code-block:: cpp
 
    Vector col1 = product.Col(1);
+
+The multiplication by a scalar needs to be on the RHS:
+
+
+.. code-block:: cpp
+
+   I = dcomplex(0.0,1.0);
+
+   Matrix<double,RowMajor> m1(5,3);
+   m1 = 3.7 * m1;
+
+   Matrix<dcomplex, RowMajor> m2(5,3);
+   m2 = I * m2;
 
 
 some changes ...  
