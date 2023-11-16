@@ -1,0 +1,1 @@
+/usr/bin/g++-12 -fPIC -g -shared  -o bla.cpython-310-x86_64-linux-gnu.so CMakeFiles/bla.dir/src/bind_bla.cpp.o  -lm -ldl /usr/lib/x86_64-linux-gnu/libopenblas.so 

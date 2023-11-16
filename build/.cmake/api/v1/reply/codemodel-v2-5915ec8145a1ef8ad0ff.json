@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-0061eb41cb62837e8b85.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "TomBino",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "bla::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bla-Debug-d05307f7700546a3ed58.json",
+					"name" : "bla",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_lapack::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_lapack-Debug-9ce9a1f2435bd14a60cf.json",
+					"name" : "test_lapack",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_matrix::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_matrix-Debug-c411f213b6b5bc373c04.json",
+					"name" : "test_matrix",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_operations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_operations-Debug-9627536928437c2267b3.json",
+					"name" : "test_operations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_vector::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_vector-Debug-7ac1281b232f14035482.json",
+					"name" : "test_vector",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ebonetti/Desktop/ASC-bla/build",
+		"source" : "/home/ebonetti/Desktop/ASC-bla"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

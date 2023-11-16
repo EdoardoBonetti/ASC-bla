@@ -1,0 +1,1 @@
+/usr/bin/g++-12 -g CMakeFiles/test_lapack.dir/tests_cpp/test_lapack.cc.o -o test_lapack  -lm -ldl /usr/lib/x86_64-linux-gnu/libopenblas.so 

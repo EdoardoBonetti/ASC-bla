@@ -1,25 +1,25 @@
-
-# Ignore everything
-*
-
-# ...even if they are in subdirectories
-!*/
-!TomBino/
-!docs/
-!src/
-!test_cpp/
-!test_py/
-
-
-# But not these files...
-!.clang-format
-!/.gitignore
-!readthedocs.yaml
-!build.sh
-!CMakeLists.txt
-!LICENSE
-!pyproject.toml
-!README.md
-!setup.py
+#
+## Ignore everything
+#*
+#
+## ...even if they are in subdirectories
+#!*/
+#!TomBino/
+#!docs/
+#!src/
+#!test_cpp/
+#!test_py/
+#
+#
+## But not these files...
+#!.clang-format
+#!/.gitignore
+#!readthedocs.yaml
+#!build.sh
+#!CMakeLists.txt
+#!LICENSE
+#!pyproject.toml
+#!README.md
+#!setup.py
 
 

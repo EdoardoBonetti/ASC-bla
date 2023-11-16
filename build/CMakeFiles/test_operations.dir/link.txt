@@ -1,0 +1,1 @@
+/usr/bin/g++-12 -g CMakeFiles/test_operations.dir/tests_cpp/test_operations.cc.o -o test_operations 

@@ -1,0 +1,23 @@
+Help on LapackLU in module TomBino.bla object:
+
+class LLaappaacckkLLUU(pybind11_builtins.pybind11_object)
+ |  Method resolution order:
+ |      LapackLU
+ |      pybind11_builtins.pybind11_object
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  ____iinniitt____(...)
+ |      __init__(self: TomBino.bla.LapackLU, A: TomBino.bla.Matrix) -> None
+ |      
+ |      create LU decomposition of given matrix
+ |  
+ |  ____ssttrr____(...)
+ |      __str__(self: TomBino.bla.LapackLU) -> str
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from pybind11_builtins.pybind11_object:
+ |  
+ |  ____nneeww____(*args, **kwargs) from pybind11_builtins.pybind11_type
+ |      Create and return a new object.  See help(type) for accurate signature.
