@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ebonetti/Desktop/ASC-bla/src
+CXX_INCLUDES = -I/home/ebonetti/Desktop/TomBino/src
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17
 

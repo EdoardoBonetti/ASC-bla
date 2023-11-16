@@ -223,8 +223,9 @@ class ProdMatExpr : public MatExpr<ProdMatExpr<TA, TB>> {
     }
   }
   auto operator()(size_t i, size_t j) const {
-    auto sum = 0.0;
-    for (size_t k = 0; k < a_.SizeCols(); k++) {
+    typedef decltype(std::declval<TA>()(0, 0) * std::declval<TB>()(0, 0)) TRES;
+    TRES sum = a_(i, 0) * b_(0, j);
+    for (size_t k = 1; k < a_.SizeCols(); k++) {
       sum += a_(i, k) * b_(k, j);
     }
     return sum;
@@ -256,6 +257,11 @@ auto operator*(double scal, const MatExpr<T>& m) {
   return ScaleMatExpr(scal, m.Upcast());
 }
 
+template <typename T>
+auto operator*(dcomplex scal, const MatExpr<T>& m) {
+  return ScaleMatExpr(scal, m.Upcast());
+}
+
 template <typename TSCAL, typename TM>
 class ScaleMatSumExpr : public MatExpr<ScaleMatSumExpr<TSCAL, TM>> {
   TSCAL scal_;
@@ -274,6 +280,10 @@ auto operator+(double scal, const MatExpr<T>& m) {
   return ScaleMatSumExpr(scal, m.Upcast());
 }
 
+template <typename T>
+auto operator+(dcomplex scal, const MatExpr<T>& m) {
+  return ScaleMatSumExpr(scal, m.Upcast());
+}
 // define a matrix scalar subtraction
 template <typename TSCAL, typename TM>
 class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>> {
@@ -290,6 +300,11 @@ class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>> {
 
 template <typename T>
 auto operator-(double scal, const MatExpr<T>& m) {
+  return ScaleMatSubExpr(scal, m.Upcast());
+}
+
+template <typename T>
+auto operator-(dcomplex scal, const MatExpr<T>& m) {
   return ScaleMatSubExpr(scal, m.Upcast());
 }
 

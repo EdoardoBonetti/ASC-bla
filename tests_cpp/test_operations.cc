@@ -155,23 +155,166 @@ void TestVecVecInnerProd(const Vector<TA>& x, const Vector<TB>& y) {
 }
 
 template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
-void TestMatMatSum(const Matrix<TA, ORD>& X, const Matrix<TB, ORDB>& Y) {
+void TestMatMatSum(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y) {
   typedef decltype(X(0, 0) + Y(0, 0)) TRES;
-  Matrix<TRES, ORDA> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDA> Z_col(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = X + Y;
   Z_col = X + Y;
 
   for (size_t i = 0; i < X.SizeRows(); i++) {
-    for (size_t j = 0; j < X.SizeCols(); j++) TA a = x(i);
-    {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
       TA a = X(i, j);
       TB b = Y(i, j);
       TRES c_row = Z_row(i, j);
       TRES c_col = Z_col(i, j);
       assert(std::abs(a + b - c_row) < 1e-10);
       assert(std::abs(a + b - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 9. X - Y
+template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
+void TestMatMatSub(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y) {
+  typedef decltype(X(0, 0) - Y(0, 0)) TRES;
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), X.SizeCols());
+
+  Z_row = X - Y;
+  Z_col = X - Y;
+
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
+      TA a = X(i, j);
+      TB b = Y(i, j);
+      TRES c_row = Z_row(i, j);
+      TRES c_col = Z_col(i, j);
+      assert(std::abs(a - b - c_row) < 1e-10);
+      assert(std::abs(a - b - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 10. alpha * X
+template <typename SCLR, typename TA, ORDERING ORDA>
+void TestScalMatProd(const SCLR& alpha, const Matrix<TA, ORDA>& X) {
+  typedef decltype(alpha * X(0, 0)) TRES;
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), X.SizeCols());
+
+  Z_row = alpha * X;
+  Z_col = alpha * X;
+
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
+      TA a = X(i, j);
+      TRES c_row = Z_row(i, j);
+      TRES c_col = Z_col(i, j);
+      assert(std::abs(alpha * a - c_row) < 1e-10);
+      assert(std::abs(alpha * a - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 11. alpha + X
+template <typename SCLR, typename TA, ORDERING ORDA>
+void TestScalMatSum(const SCLR& alpha, const Matrix<TA, ORDA>& X) {
+  typedef decltype(alpha + X(0, 0)) TRES;
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), X.SizeCols());
+
+  Z_row = alpha + X;
+  Z_col = alpha + X;
+
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
+      TA a = X(i, j);
+      TRES c_row = Z_row(i, j);
+      TRES c_col = Z_col(i, j);
+      assert(std::abs(alpha + a - c_row) < 1e-10);
+      assert(std::abs(alpha + a - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 12. alpha - X
+template <typename SCLR, typename TA, ORDERING ORDA>
+void TestScalMatSub(const SCLR& alpha, const Matrix<TA, ORDA>& X) {
+  typedef decltype(alpha - X(0, 0)) TRES;
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), X.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), X.SizeCols());
+
+  Z_row = alpha - X;
+  Z_col = alpha - X;
+
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
+      TA a = X(i, j);
+      TRES c_row = Z_row(i, j);
+      TRES c_col = Z_col(i, j);
+      assert(std::abs(alpha - a - c_row) < 1e-10);
+      assert(std::abs(alpha - a - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 13. X * Y
+template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
+void TestMatMatProd(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y) {
+  typedef decltype(X(0, 0) * Y(0, 0)) TRES;
+  Matrix<TRES, ORDERING::ColMajor> Z_row(X.SizeRows(), Y.SizeCols());
+  Matrix<TRES, ORDERING::ColMajor> Z_col(X.SizeRows(), Y.SizeCols());
+
+  Z_row = X * Y;
+  Z_col = X * Y;
+
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < Y.SizeCols(); j++) {
+      TRES sum = 0;
+      for (size_t k = 0; k < X.SizeCols(); k++) {
+        sum = sum + X(i, k) * Y(k, j);
+      }
+      TRES c_row = Z_row(i, j);
+      TRES c_col = Z_col(i, j);
+      assert(std::abs(sum - c_row) < 1e-10);
+      assert(std::abs(sum - c_col) < 1e-10);
+    }
+  }
+  std::cout << "passed" << std::endl;
+}
+
+// 14. X * x
+template <typename TA, typename TV, ORDERING ORDA>
+void TestMatVecProd(const Matrix<TA, ORDA>& X, const Vector<TV>& x) {
+  typedef decltype(X(0, 0) * x(0)) TRES;
+  Vector<TRES> z(X.SizeRows());
+  z = X * x;
+
+  for (size_t i = 0; i < x.Size(); i++) {
+    TRES sum_row_i;
+    sum_row_i = X(i, 0) * x(0);
+    for (size_t j = 1; j < X.SizeCols(); j++) {
+      sum_row_i = sum_row_i + X(i, j) * x(j);
+    }
+    TRES c_i = z(i);
+    assert(std::abs(sum_row_i - c_i) < 1e-10);
+  }
+  std::cout << "passed" << std::endl;
+}
+
+template <typename T, ORDERING ORD>
+void TestMatTran(const Matrix<T, ORD> X) {
+  Matrix<T, !ORD> Y(X);
+  for (size_t i = 0; i < X.SizeRows(); i++) {
+    for (size_t j = 0; j < X.SizeCols(); j++) {
+      assert(X(i, j) == Y(j, i));
     }
   }
   std::cout << "passed" << std::endl;
@@ -264,40 +407,58 @@ int main() {
   TestMatMatSum(XC_row, YC_row);
   TestMatMatSum(XC_col, YC_col);
 
-  /*
-    // 9. X - Y
-    std::cout << "Test 9: X - Y" << std::endl;
-    TestMatMatSub(XR_row, YR_row);
-    TestMatMatSub(XR_col, YR_col);
-    TestMatMatSub(XC_row, YC_row);
-    TestMatMatSub(XC_col, YC_col);
+  // 9. X - Y
+  std::cout << "Test 9: X - Y" << std::endl;
+  TestMatMatSub(XR_row, YR_row);
+  TestMatMatSub(XR_col, YR_col);
+  TestMatMatSub(XC_row, YC_row);
+  TestMatMatSub(XC_col, YC_col);
 
-    // 10. alpha * X
-    std::cout << "Test 10: alpha * X" << std::endl;
-    TestScalMatProd(alphaR, XR_row);
-    TestScalMatProd(alphaR, XR_col);
-    TestScalMatProd(alphaC, XC_row);
-    TestScalMatProd(alphaC, XC_col);
+  // 10. alpha * X
+  std::cout << "Test 10: alpha * X" << std::endl;
+  TestScalMatProd(alphaR, XR_row);
+  TestScalMatProd(alphaR, XR_col);
+  TestScalMatProd(alphaC, XC_row);
+  TestScalMatProd(alphaC, XC_col);
 
-    // 11. alpha + X
-    std::cout << "Test 11: alpha + X" << std::endl;
-    TestScalMatSum(alphaR, XR_row);
-    TestScalMatSum(alphaR, XR_col);
-    TestScalMatSum(alphaC, XC_row);
-    TestScalMatSum(alphaC, XC_col);
+  // 11. alpha + X
+  std::cout << "Test 11: alpha + X" << std::endl;
+  TestScalMatSum(alphaR, XR_row);
+  TestScalMatSum(alphaR, XR_col);
+  TestScalMatSum(alphaC, XC_row);
+  TestScalMatSum(alphaC, XC_col);
 
-    // 12. alpha - X
-    std::cout << "Test 12: alpha - X" << std::endl;
-    TestScalMatSub(alphaR, XR_row);
-    TestScalMatSub(alphaR, XR_col);
-    TestScalMatSub(alphaC, XC_row);
-    TestScalMatSub(alphaC, XC_col);
+  // 12. alpha - X
+  std::cout << "Test 12: alpha - X" << std::endl;
+  TestScalMatSub(alphaR, XR_row);
+  TestScalMatSub(alphaR, XR_col);
+  TestScalMatSub(alphaC, XC_row);
+  TestScalMatSub(alphaC, XC_col);
 
-    // 13. X * Y
-    std::cout << "Test 13: X * Y" << std::endl;
-    TestMatMatProd(XR_row, YR_row);
-    TestMatMatProd(XR_col, YR_col);
-    TestMatMatProd(XC_row, YC_row);
-    TestMatMatProd(XC_col, YC_col);
-  */
+  // 13. X * Y
+  std::cout << "Test 13: X * Y" << std::endl;
+  TestMatMatProd(XR_row, YR_row);
+  TestMatMatProd(XR_col, YR_col);
+  TestMatMatProd(XC_row, YC_row);
+  TestMatMatProd(XC_col, YC_col);
+
+  // 14. X * x
+  std::cout << "Test 14: X * x" << std::endl;
+  TestMatVecProd(XR_row, xR);
+  TestMatVecProd(XR_col, xR);
+  TestMatVecProd(XC_row, xC);
+  TestMatVecProd(XC_col, xC);
+  TestMatVecProd(XR_row, xC);
+  TestMatVecProd(XR_col, xC);
+  TestMatVecProd(XC_row, xR);
+  TestMatVecProd(XC_col, xR);
+
+  // test for vector view and matrix view
+
+  // 15. X.Transpose()
+  std::cout << "Test 15: X.T" << std::endl;
+  TestMatTran(XR_row);
+  TestMatTran(XR_col);
+  TestMatTran(XC_row);
+  TestMatTran(XC_col);
 }

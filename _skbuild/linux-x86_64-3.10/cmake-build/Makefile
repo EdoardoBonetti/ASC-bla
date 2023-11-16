@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake
 
 # The command to remove a file.
-RM = /tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -E rm -f
+RM = /tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ebonetti/Desktop/ASC-bla
+CMAKE_SOURCE_DIR = /home/ebonetti/Desktop/TomBino
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ebonetti/Desktop/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build
+CMAKE_BINARY_DIR = /home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/ebonetti/Desktop/ASC-bla/_skbuild/linux-x86_64-3.10/cma
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,44 +97,44 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/tmp/pip-build-env-7yrykc3v/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/tmp/pip-build-env-ohr93qsy/overlay/local/lib/python3.10/dist-packages/cmake/data/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ebonetti/Desktop/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles /home/ebonetti/Desktop/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles /home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ebonetti/Desktop/ASC-bla/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -186,6 +186,19 @@ test_matrix: cmake_check_build_system
 test_matrix/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/build
 .PHONY : test_matrix/fast
+
+#=============================================================================
+# Target rules for targets named test_operations
+
+# Build rule for target.
+test_operations: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_operations
+.PHONY : test_operations
+
+# fast build rule for target.
+test_operations/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_operations.dir/build.make CMakeFiles/test_operations.dir/build
+.PHONY : test_operations/fast
 
 #=============================================================================
 # Target rules for targets named test_lapack
@@ -285,6 +298,30 @@ tests_cpp/test_matrix.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/tests_cpp/test_matrix.cc.s
 .PHONY : tests_cpp/test_matrix.cc.s
 
+tests_cpp/test_operations.o: tests_cpp/test_operations.cc.o
+.PHONY : tests_cpp/test_operations.o
+
+# target to build an object file
+tests_cpp/test_operations.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_operations.dir/build.make CMakeFiles/test_operations.dir/tests_cpp/test_operations.cc.o
+.PHONY : tests_cpp/test_operations.cc.o
+
+tests_cpp/test_operations.i: tests_cpp/test_operations.cc.i
+.PHONY : tests_cpp/test_operations.i
+
+# target to preprocess a source file
+tests_cpp/test_operations.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_operations.dir/build.make CMakeFiles/test_operations.dir/tests_cpp/test_operations.cc.i
+.PHONY : tests_cpp/test_operations.cc.i
+
+tests_cpp/test_operations.s: tests_cpp/test_operations.cc.s
+.PHONY : tests_cpp/test_operations.s
+
+# target to generate assembly for a file
+tests_cpp/test_operations.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_operations.dir/build.make CMakeFiles/test_operations.dir/tests_cpp/test_operations.cc.s
+.PHONY : tests_cpp/test_operations.cc.s
+
 tests_cpp/test_vector.o: tests_cpp/test_vector.cc.o
 .PHONY : tests_cpp/test_vector.o
 
@@ -324,6 +361,7 @@ help:
 	@echo "... bla"
 	@echo "... test_lapack"
 	@echo "... test_matrix"
+	@echo "... test_operations"
 	@echo "... test_vector"
 	@echo "... src/bind_bla.o"
 	@echo "... src/bind_bla.i"
@@ -334,6 +372,9 @@ help:
 	@echo "... tests_cpp/test_matrix.o"
 	@echo "... tests_cpp/test_matrix.i"
 	@echo "... tests_cpp/test_matrix.s"
+	@echo "... tests_cpp/test_operations.o"
+	@echo "... tests_cpp/test_operations.i"
+	@echo "... tests_cpp/test_operations.s"
 	@echo "... tests_cpp/test_vector.o"
 	@echo "... tests_cpp/test_vector.i"
 	@echo "... tests_cpp/test_vector.s"
