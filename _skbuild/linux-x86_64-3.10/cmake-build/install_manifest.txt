@@ -1,3 +1,0 @@
-/home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-install/TomBino/bla.cpython-310-x86_64-linux-gnu.so
-/home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-install/TomBino/include/vector.h
-/home/ebonetti/Desktop/TomBino/_skbuild/linux-x86_64-3.10/cmake-install/TomBino/include/matrix.h

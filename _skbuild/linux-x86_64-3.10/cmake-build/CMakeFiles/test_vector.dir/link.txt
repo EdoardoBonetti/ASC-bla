@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/test_vector.dir/tests_cpp/test_vector.cc.o -o test_vector 
