@@ -350,7 +350,11 @@ class OuterVecVec : public MatExpr<OuterVecVec<VA, VB>> {
  public:
   OuterVecVec(VA a, VB b) : a_(a), b_(b) {}
   auto Upcast() { return OuterVecVec(a_, b_); }
-  auto operator()(size_t i, size_t j) const { return a_(i) * b_(j); }
+  auto operator()(size_t i, size_t j) const {
+    typedef decltype(std::declval<VA>()(i) * std::declval<VB>()(j)) TRES;
+    TRES sum = a_(i) * b_(j);
+    return sum;
+  }
   size_t SizeCols() const { return b_.Size(); }
   size_t SizeRows() const { return a_.Size(); }
 };
