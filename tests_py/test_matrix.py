@@ -1,6 +1,26 @@
 
-from TomBino.bla import Vector
-from TomBino.bla import Matrix
+from TomBino.bla import Vector, VectorInt , VectorComplex
+from TomBino.bla import Matrix, MatrixComplex
+
+mc = MatrixComplex(3,3)
+mc[0,0] = 1+1j
+print(mc)
+print(mc[0,1])
+
+mc2 = MatrixComplex(10,7)
+for I in range(10):
+    for J in range(7):
+        mc2[I,J] = I+J*1j
+
+print(mc2)
+print(mc2[0,1])
+print(mc2[0,2])
+
+mc2[1:, 0:4]= 99+99j
+print(mc2)
+
+quit()
+
 
 x = Vector(3)
 y = Vector(3)

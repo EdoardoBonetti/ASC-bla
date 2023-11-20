@@ -6,16 +6,24 @@
 /* Date:   13. 10. 2023                                                   */
 /**************************************************************************/
 #include <complex>
+#include <concepts>
 #include <iostream>
+#include <type_traits>
+
+// #include "lapack_interface.h"
 
 namespace Tombino_bla {
+
+typedef std::complex<double> dcomplex;
+
+template <typename T>
+concept ValidSCAL = std::is_same_v<T, int> || std::is_same_v<T, double> || std::is_same_v<T, dcomplex>;
 
 /****************************************************************/
 /*                   Expressions for Vectors                    */
 /****************************************************************/
 
 // create a template function that can be used only with double or complex
-typedef std::complex<double> dcomplex;
 
 template <typename T>
 class VecExpr {
@@ -82,13 +90,8 @@ class ScaleVecExpr : public VecExpr<ScaleVecExpr<TSCAL, TV>> {
   size_t Size() const { return vec_.Size(); }
   size_t Dist() const { return vec_.Dist(); }
 };
-
-template <typename T>
-auto operator*(double scal, const VecExpr<T>& v) {
-  return ScaleVecExpr(scal, v.Upcast());
-}
-template <typename T>
-auto operator*(dcomplex scal, const VecExpr<T>& v) {
+template <ValidSCAL TSCAL, typename T>
+auto operator*(TSCAL scal, const VecExpr<T>& v) {
   return ScaleVecExpr(scal, v.Upcast());
 }
 
@@ -104,13 +107,8 @@ class ScaleVecSumExpr : public VecExpr<ScaleVecSumExpr<TSCAL, TV>> {
   size_t Dist() const { return vec_.Dist(); }
 };
 
-template <typename T>
-auto operator+(double scal, const VecExpr<T>& v) {
-  return ScaleVecSumExpr(scal, v.Upcast());
-}
-
-template <typename T>
-auto operator+(dcomplex scal, const VecExpr<T>& v) {
+template <ValidSCAL TSCAL, typename T>
+auto operator+(TSCAL scal, const VecExpr<T>& v) {
   return ScaleVecSumExpr(scal, v.Upcast());
 }
 
@@ -126,15 +124,11 @@ class ScaleVecSubExpr : public VecExpr<ScaleVecSubExpr<TSCAL, TV>> {
   size_t Dist() const { return vec_.Dist(); }
 };
 
-template <typename T>
-auto operator-(double scal, const VecExpr<T>& v) {
+template <ValidSCAL TSCAL, typename T>
+auto operator-(TSCAL scal, const VecExpr<T>& v) {
   return ScaleVecSubExpr(scal, v.Upcast());
 }
 
-template <typename T>
-auto operator-(dcomplex scal, const VecExpr<T>& v) {
-  return ScaleVecSubExpr(scal, v.Upcast());
-}
 template <typename TA, typename TB>
 auto InnerProduct(const VecExpr<TA>& a, const VecExpr<TB>& b) {
   typedef decltype(std::declval<TA>()(0) * std::declval<TB>()(0)) TRES;
@@ -252,13 +246,8 @@ class ScaleMatExpr : public MatExpr<ScaleMatExpr<TSCAL, TM>> {
   size_t SizeRows() const { return mat_.SizeRows(); }
 };
 
-template <typename T>
-auto operator*(double scal, const MatExpr<T>& m) {
-  return ScaleMatExpr(scal, m.Upcast());
-}
-
-template <typename T>
-auto operator*(dcomplex scal, const MatExpr<T>& m) {
+template <ValidSCAL TSCAL, typename T>
+auto operator*(TSCAL scal, const MatExpr<T>& m) {
   return ScaleMatExpr(scal, m.Upcast());
 }
 
@@ -275,13 +264,8 @@ class ScaleMatSumExpr : public MatExpr<ScaleMatSumExpr<TSCAL, TM>> {
   size_t SizeRows() const { return mat_.SizeRows(); }
 };
 
-template <typename T>
-auto operator+(double scal, const MatExpr<T>& m) {
-  return ScaleMatSumExpr(scal, m.Upcast());
-}
-
-template <typename T>
-auto operator+(dcomplex scal, const MatExpr<T>& m) {
+template <ValidSCAL TSCAL, typename T>
+auto operator+(TSCAL scal, const MatExpr<T>& m) {
   return ScaleMatSumExpr(scal, m.Upcast());
 }
 // define a matrix scalar subtraction
@@ -298,13 +282,8 @@ class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>> {
   size_t SizeRows() const { return mat_.SizeRows(); }
 };
 
-template <typename T>
-auto operator-(double scal, const MatExpr<T>& m) {
-  return ScaleMatSubExpr(scal, m.Upcast());
-}
-
-template <typename T>
-auto operator-(dcomplex scal, const MatExpr<T>& m) {
+template <ValidSCAL TSCAL, typename T>
+auto operator-(TSCAL scal, const MatExpr<T>& m) {
   return ScaleMatSubExpr(scal, m.Upcast());
 }
 
@@ -381,6 +360,12 @@ std::ostream& operator<<(std::ostream& ost, const MatExpr<T>& m) {
   }
   return ost;
 }
+
+/****************************************************************/
+/*                   Expressions for Lapack                     */
+/****************************************************************/
+
+// now we create a syntax for the lapack interface
 
 /****************************************************************/
 /*                   Expressions for Tensors                    */

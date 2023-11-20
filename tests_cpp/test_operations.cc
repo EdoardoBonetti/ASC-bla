@@ -534,23 +534,38 @@ void TestMatCols(const Matrix<T, ORD> X, const size_t& first, const size_t& next
 // 22. Inverse
 void TestMatInv(size_t n, bool print = false) {
   // create the matrix with -2 on the diagonal and 1 on the off-diagonal
-  Matrix<double, ORDERING::RowMajor> X(n, n);
-  Matrix<double, ORDERING::RowMajor> I(n, n);
+  Matrix<dcomplex, ORDERING::ColMajor> X(n, n);
+  Matrix<dcomplex, ORDERING::ColMajor> I(n, n);
+  X = 0;
+  I = 0;
   for (size_t i = 0; i < n; i++) {
     X(i, i) = -2;
     I(i, i) = 1;
     if (i < n - 1) {
-      X(i, i + 1) = 1;
-      X(i + 1, i) = 1;
+      X(i, i + 1) = dcomplex(0, 1);
+      X(i + 1, i) = dcomplex(0, 1);
     }
   }
+  std::cout << "\nX = " << std::endl;
+  std::cout << X << std::endl;
+
+  std::cout << "\nI = " << std::endl;
+  std::cout << I << std::endl;
+
   // create the identity matrix
-  Matrix<double, ORDERING::RowMajor> Xinv(n, n);
+  Matrix<dcomplex, ORDERING::ColMajor> Xinv(n, n);
   Xinv = Inverse(X);
-  Matrix<double, ORDERING::RowMajor> Icheck(n, n);
+
+  std::cout << "\nXinv = " << std::endl;
+  std::cout << Xinv << std::endl;
+
+  Matrix<dcomplex, ORDERING::ColMajor> Icheck(n, n);
   Icheck = X * Xinv;
   for (size_t i = 0; i < n; i++) {
-    for (size_t j = 0; j < n; j++) assert(std::abs(I(i, j) - Icheck(i, j)) < 1e-10);
+    for (size_t j = 0; j < n; j++) {
+      std::cout << (std::abs(I(i, j) - Icheck(i, j))) << std::endl;
+      assert(std::abs(I(i, j) - Icheck(i, j)) < 1e-10);
+    }
   }
   std::cout << "passed" << std::endl;
 }
@@ -559,7 +574,7 @@ void TestMatInv(size_t n, bool print = false) {
 void TestMatOp(size_t m, size_t n, bool print = false) {
   // here I need to create a matrix of which I know the entries and I need to check
   // if the entries change in the way that I desired to build the previous tests
-  Matrix<double, ORDERING::RowMajor> X(m, n);
+  Matrix<double, ORDERING::ColMajor> X(m, n);
   // I fill up the matrix with the following rule:
   // X(i,j) = i*n+j
   // I check that the entries are correct
@@ -581,15 +596,36 @@ void TestMatOp(size_t m, size_t n, bool print = false) {
   std::cout << X << std::endl;
 
   // To check that the above is the same of Rows(n-1,n) I change the entries to -20
-  X.Rows(n - 1, n) = -20;
+  X.Rows(n - 3, n - 1) = -20;
   std::cout << "\nX.Rows(n-1,n) = -20 " << std::endl;
   std::cout << X << std::endl;
 
   // now do the same for the columns
   // the last column -1 of the matrix is filled with -30
-  for (size_t i = 0; i < m; i++) X(i, m - 1) = -30;
+  std::cout << "\n  m = " << m << std::endl;
+  for (size_t i = 0; i < m; i++) X(i, m - 2) = -30;
   std::cout << "\nX(:, n-1) = -30 " << std::endl;
+  std::cout << X << std::endl;
   // I check that the entries are correct
+
+  //// test RowSlice()
+  // std::cout << "\nX.RowSlice(1, 0 , 3) " << std::endl;
+  // std::cout << X.RowSlice(1, 0, 2) << std::endl;
+  //
+  //// test ColSlice()
+  // std::cout << "\nX.ColSlice(2, 1 , 2) " << std::endl;
+  // std::cout << X.ColSlice(2, 1, 2) << std::endl;
+
+  // test RowsSlice()
+  std::cout << "\nX.RowsSlice(1, 2) " << std::endl;
+  std::cout << X.RSlice(1, 2) << std::endl;
+
+  // test ColsSlice()
+  std::cout << "\nX.ColsSlice(2, 3) " << std::endl;
+  std::cout << X.CSlice(2, 3) << std::endl;
+
+  std::cout << "\nX.RowsSlice(1, 2).CSlice(2, 3) " << std::endl;
+  std::cout << X.RSlice(1, 2).CSlice(2, 3) << std::endl;
 }
 
 int main() {
@@ -790,9 +826,9 @@ int main() {
 
   // 22. Inverse
   std::cout << "Test 22: Inverse" << std::endl;
-  TestMatInv(n);
+  TestMatInv(2);
   print = true;
   // 23. Operator()
   std::cout << "Test 23: Operator()" << std::endl;
-  TestMatOp(m, n);
+  TestMatOp(10, 9);
 }

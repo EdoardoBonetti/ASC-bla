@@ -7,5 +7,5 @@ setup(
     author="J. Schoeberl, E. Bonetti",
     license="MIT",
     packages=["TomBino"],
-    cmake_args=["-Wall"], 
+    cmake_args=[],
 )
