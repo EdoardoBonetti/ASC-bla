@@ -20,8 +20,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   // Constructor
   MatrixView(size_t rows, size_t cols, T* data)
       : data_(data), rows_(rows), cols_(cols) {
-    if (ORD == ColMajor) {
-      dist_ = cols;
+    if constexpr (ORD == ColMajor) {
+      dist_ = cols;  // rows;
     } else {
       dist_ = rows;
     }
@@ -30,6 +30,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   MatrixView(size_t rows, size_t cols, size_t dist, T* data)
       : data_(data), rows_(rows), cols_(cols), dist_(dist) {}
 
+  // Copy constructor from MatrixView
   MatrixView& operator=(const MatrixView& m2) {
     *this = static_cast<const MatExpr<MatrixView<T, ORD>>&>(m2);
     return *this;
@@ -37,8 +38,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   // Copy assignment operator, needs to be modified for row maj
   template <typename TB>
   MatrixView& operator=(const MatExpr<TB>& m2) {
-    for (size_t i = 0; i < rows_; i++) {
-      for (size_t j = 0; j < cols_; j++) {
+    for (size_t i = 0; i < this->SizeRows(); i++) {
+      for (size_t j = 0; j < this->SizeCols(); j++) {
         (*this)(i, j) = m2(i, j);
       }
     }
@@ -46,8 +47,9 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   }
 
   MatrixView& operator=(T scal) {
-    for (size_t i = 0; i < rows_; i++) {
-      for (size_t j = 0; j < cols_; j++) {
+    for (size_t i = 0; i < this->SizeRows(); i++) {
+      for (size_t j = 0; j < this->SizeCols(); j++) {
+        std::cout << "i = " << i << " j = " << j << std::endl;
         (*this)(i, j) = scal;
       }
     }
@@ -83,7 +85,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   }
 
   auto Col(size_t i) const {
-    if constexpr (ORD == ColMajor) {
+    if constexpr (ORD == RowMajor) {
       return VectorView<T>(rows_, data_ + i * dist_);
     } else {
       return VectorView<T, size_t>(rows_, dist_, data_ + i);
@@ -91,9 +93,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   }
 
   auto Rows(size_t first, size_t next) const {
-    if constexpr (ORD == ColMajor) {
-      return MatrixView<T, ORD>(next - first, cols_, dist_,
-                                data_ + first * dist_);
+    if constexpr (ORD == RowMajor) {
+      return MatrixView<T, ORD>(next - first, cols_, dist_, data_ + first * dist_);
     } else {
       return MatrixView<T, ORD>(next - first, cols_, dist_, data_ + first);
     }
@@ -123,8 +124,13 @@ class Matrix : public MatrixView<T, ORD> {
     ;
   }
 
+  // Copy constructor from Matrix
   Matrix(const Matrix& m) : Matrix(m.SizeRows(), m.SizeCols()) { *this = m; }
 
+  // Copy constructor from MatrixView: New feature
+  // Matrix(const MatrixView<T, ORD>& m) : Matrix(m.SizeRows(), m.SizeCols()) { *this = m; }
+
+  // Move constructor from Matrix
   Matrix(Matrix&& m) : MatrixView<T, ORD>(0, 0, nullptr) {
     std::swap(cols_, m.cols_);
     std::swap(rows_, m.rows_);
@@ -133,30 +139,44 @@ class Matrix : public MatrixView<T, ORD> {
   }
 
   template <typename TB>
-  Matrix(const MatExpr<TB>& m) : Matrix(m.SizeCols(), m.SizeRows()) {
+  Matrix(const MatExpr<TB>& m) : Matrix(m.SizeRows(), m.SizeCols()) {
     *this = m;
   }
 
   ~Matrix() { delete[] data_; }
 
+  // Copy assignment operator from Matrix
   using BASE::operator=;
   Matrix& operator=(const Matrix& m2) {
-    for (size_t i = 0; i < cols_; i++) {
-      for (size_t j = 0; j < rows_; j++) {
-        {
+    for (size_t i = 0; i < this->SizeRows(); i++) {
+      for (size_t j = 0; j < this->SizeCols(); j++) {
+        std::cout << "i = " << i << " j = " << j << std::endl;
+
+        if constexpr (ORD == RowMajor) {
           data_[i + cols_ * j] = m2(i, j);
+        } else {
+          data_[i * rows_ + j] = m2(i, j);
         }
+        // data_[i + cols_ * j] = m2(i, j);
       }
     }
 
     return *this;
   }
 
+  // Copy move assignment operator from Matrix
   Matrix& operator=(Matrix&& m2) {
-    for (size_t i = 0; i < cols_; i++) {
-      for (size_t j = 0; j < rows_; j++) {
+    for (size_t i = 0; i < this->SizeRows(); i++) {
+      for (size_t j = 0; j < this->SizeCols(); j++) {
         {
-          data_[i + cols_ * j] = m2(i, j);
+          // print(i, j)
+          std::cout << "i = " << i << " j = " << j << std::endl;
+          if constexpr (ORD == RowMajor) {
+            data_[cols_ * i + j] = m2(i, j);
+          } else {
+            data_[i + rows_ * j] = m2(i, j);
+          }
+          // data_[i + cols_ * j] = m2(i, j);
         }
       }
     }
@@ -186,7 +206,6 @@ auto Transpose(const Matrix<T, ORD>& m) {
   return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.Data());
 }
 
-// transpose of a MatrixView
 template <typename T, ORDERING ORD>
 auto Transpose(const MatrixView<T, ORD>& m) {
   return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.Dist(), m.Data());
