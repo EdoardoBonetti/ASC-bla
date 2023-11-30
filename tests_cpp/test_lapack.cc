@@ -4,13 +4,15 @@
 
 #include <iostream>
 
-using namespace Tombino_bla;
-using namespace std;
+using std::cout;
+using std::endl;
+using Tombino_bla::Matrix;
+using Tombino_bla::Vector;
+using Tombino_bla::ORDERING::ColMajor;
 
 int main() {
   Vector<double> x(5);
   Vector<double> y(5);
-
   Matrix<double, ColMajor> A(5, 5);
   Matrix<double, ColMajor> B(5, 5);
   Matrix<double, ColMajor> C(5, 5);
@@ -31,6 +33,6 @@ int main() {
   MultMatMatLapack(A, B, C);
   cout << "A*B = " << C << endl;
 
-  C = A * B | Lapack;
-  // cout << 2*x+y  Lapack << endl;
+  // C = A * B | Lapack;
+  //  cout << 2*x+y  Lapack << endl;
 }

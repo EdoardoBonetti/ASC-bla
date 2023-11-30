@@ -7,18 +7,23 @@
 #include <sstream>
 #include <string>
 
+// include the directory when naming header files "matrix.h" and "vector.h"
 #include "lapack_interface.h"
 #include "matrix.h"
 #include "vector.h"
 
-using namespace Tombino_bla;
-namespace py = pybind11;
-
-extern "C" {
+extern "C"
+{
 #include <clapack.h>
 
 #include "clapack.h"
 }
+
+using Tombino_bla::dcomplex;
+using Tombino_bla::Matrix;
+using Tombino_bla::Vector;
+
+namespace py = pybind11;
 
 ////////////////////////////
 // template <class T>
@@ -52,7 +57,8 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
       .def("__setitem__",
            [](Vector<T>& self, int i, T v) {
              if (i < 0) i += self.Size();
-             if (i < 0 || static_cast<size_t>(i) >= self.Size()) throw py::index_error("vector index out of range");
+             if (i < 0 || static_cast<size_t>(i) >= self.Size())
+               throw py::index_error("vector index out of range");
              self(i) = v;
            })
       .def("__getitem__", [](Vector<T>& self, int i) { return self(i); })

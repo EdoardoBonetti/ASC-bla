@@ -94,19 +94,24 @@ class LapackMultExpr {
 // operator| acting on :
 // - MultExpr<MatrixView,MatrixView>
 // - Lapack (T_Lapack)
-// The operator| returns an object of type LapackMultExpr which contains the factors A and B
-
-template <ORDERING OA, ORDERING OB>
-auto operator|(const ProdMatExpr<MatrixView<double, OA>, MatrixView<double, OB>>& expr, T_Lapack) {
-  return LapackMultExpr<MatrixView<double, OA>, MatrixView<double, OB>>(expr.A(), expr.B());
-}
-// define an assignment operator for the class MatrixView taking such an LapackMultExpr type,
-//     and calling the MultMatMatLapack function
-template <ORDERING OA, ORDERING OB>
-MatrixView<double, ColMajor>& operator=(MatrixView<double, ColMajor>& C,
-                                        const LapackMultExpr<MatrixView<double, OA>, MatrixView<double, OB>>& expr) {
-  MultMatMatLapack(expr.A(), expr.B(), C);
-  return A;
-
+// The operator| returns an object of type LapackMultExpr which contains the
+// factors A and B
+//
+////template <ORDERING OA, ORDERING OB>
+// auto operator|(const ProdMatExpr<MatrixView<double, OA>, MatrixView<double,
+// OB>>& expr, T_Lapack) {
+//   return LapackMultExpr<MatrixView<double, OA>, MatrixView<double,
+//   OB>>(expr.A(), expr.B());
+// }
+//// define an assignment operator for the class MatrixView taking such an
+/// LapackMultExpr type, /     and calling the MultMatMatLapack function
+// template <ORDERING OA, ORDERING OB>
+// MatrixView<double, ColMajor>& operator=(MatrixView<double, ColMajor>& C,
+//                                         const
+//                                         LapackMultExpr<MatrixView<double,
+//                                         OA>, MatrixView<double, OB>>& expr) {
+//   MultMatMatLapack(expr.A(), expr.B(), C);
+//   return A;
+//
 }  // namespace Tombino_bla
 #endif
