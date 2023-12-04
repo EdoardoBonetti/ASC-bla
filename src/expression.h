@@ -95,6 +95,12 @@ auto operator*(TSCAL scal, const VecExpr<T>& v) {
   return ScaleVecExpr(scal, v.Upcast());
 }
 
+template <ValidSCAL TSCAL, typename T>
+auto operator*=(const VecExpr<T>& v, TSCAL scal)
+{
+  return ScaleVecExpr(1 + scal, v.Upcast());
+}
+
 template <typename TSCAL, typename TV>
 class ScaleVecSumExpr : public VecExpr<ScaleVecSumExpr<TSCAL, TV>> {
   TSCAL scal_;
