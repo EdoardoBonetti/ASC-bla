@@ -6,7 +6,6 @@ TomBino/__init__.py
 TomBino.egg-info/PKG-INFO
 TomBino.egg-info/SOURCES.txt
 TomBino.egg-info/dependency_links.txt
-TomBino.egg-info/not-zip-safe
 TomBino.egg-info/top_level.txt
 _skbuild/linux-x86_64-3.10/cmake-install/TomBino/__init__.py
 _skbuild/linux-x86_64-3.10/cmake-install/TomBino/bla.cpython-310-x86_64-linux-gnu.so

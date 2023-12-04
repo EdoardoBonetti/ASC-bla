@@ -41,56 +41,40 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
   }
 };
 
-  template <typename T>
-  class Vector : public VectorView<T>
-  {
-    typedef VectorView<T> BASE;
-    using BASE::size_;
-    using BASE::data_;
-  public:
-    Vector (size_t size) 
-      : VectorView<T> (size, new T[size]) { ; }
-    
-    Vector (const Vector & v)
-      : Vector(v.Size())
-    {
-      *this = v;
-    }
+template <typename T>
+class Vector : public VectorView<T> {
+  typedef VectorView<T> BASE;
+  using BASE::data_;
+  using BASE::size_;
 
-    Vector (Vector && v)
-      : VectorView<T> (0, nullptr)
-    {
-      std::swap(size_, v.size_);
-      std::swap(data_, v.data_);
-    }
+ public:
+  Vector(size_t size) : VectorView<T>(size, new T[size]) { ; }
 
-    template <typename TB>
-    Vector (const VecExpr<TB> & v)
-      : Vector(v.Size())
-    {
-      *this = v;
-    }
-    
-    
-    ~Vector () { delete [] data_; }
+  Vector(const Vector& v) : Vector(v.Size()) { *this = v; }
 
-    using BASE::operator=;
-    Vector & operator=(const Vector & v2)
-    {
-      for (size_t i = 0; i < size_; i++)
-        data_[i] = v2(i);
-      return *this;
-    }
+  Vector(Vector&& v) : VectorView<T>(0, nullptr) {
+    std::swap(size_, v.size_);
+    std::swap(data_, v.data_);
+  }
 
-    Vector & operator= (Vector && v2)
-    {
-      for (size_t i = 0; i < size_; i++)
-        data_[i] = v2(i);
-      return *this;
-    }
-    
-  };
+  template <typename TB>
+  Vector(const VecExpr<TB>& v) : Vector(v.Size()) {
+    *this = v;
+  }
 
+  ~Vector() { delete[] data_; }
+
+  using BASE::operator=;
+  Vector& operator=(const Vector& v2) {
+    for (size_t i = 0; i < size_; i++) data_[i] = v2(i);
+    return *this;
+  }
+
+  Vector& operator=(Vector&& v2) {
+    for (size_t i = 0; i < size_; i++) data_[i] = v2(i);
+    return *this;
+  }
+};
 
   template <typename ...Args>
   std::ostream & operator<< (std::ostream & ost, const VectorView<Args...> & v)

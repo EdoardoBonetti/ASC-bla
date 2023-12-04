@@ -1,3 +1,5 @@
+// cop
+
 // #include <lapack_interface.h>
 // #include <matrix.h>
 #include <matrix.h>
@@ -6,7 +8,8 @@
 #include <complex>
 #include <iostream>
 
-using namespace Tombino_bla;
+using Tombino_bla::Vector;
+// using Tombino_bla::ORDERING::ColMajor;
 // using namespace std;
 
 int main() {
