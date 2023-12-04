@@ -85,6 +85,12 @@ auto operator-(const VecExpr<TA>& a, const VecExpr<TB>& b) {
   return SubVecExpr(a.Upcast(), b.Upcast());
 }
 
+template <typename TA, typename TB>
+auto operator-=(const VecExpr<TA>& a, const VecExpr<TB>& b)
+{
+  return SubVecExpr(a.Upcast(), b.Upcast());
+}
+
 template <typename TSCAL, typename TV>
 class ScaleVecExpr : public VecExpr<ScaleVecExpr<TSCAL, TV>> {
   TSCAL scal_;
@@ -158,6 +164,13 @@ auto operator*(const VecExpr<TA>& a, const VecExpr<TB>& b) {
   return InnerProduct(a.Upcast(), b.Upcast());
 }
 
+// L2 norm of a vector
+template <typename T>
+auto L2Norm(const VecExpr<T>& v)
+{
+  return std::sqrt(InnerProduct(v, v));
+}
+
 /****************************************************************/
 /*                   Expressions for Matrices                    */
 /****************************************************************/
@@ -194,6 +207,13 @@ auto operator+(const MatExpr<TA>& a, const MatExpr<TB>& b) {
   return SumMatExpr(a.Upcast(), b.Upcast());
 }
 
+// operator += for matrices
+template <typename TA, typename TB>
+auto operator+=(const MatExpr<TA>& a, const MatExpr<TB>& b)
+{
+  return SumMatExpr(a.Upcast(), b.Upcast());
+}
+
 template <typename TA, typename TB>
 class SubMatExpr : public MatExpr<SubMatExpr<TA, TB>> {
   TA a_;
@@ -213,6 +233,11 @@ class SubMatExpr : public MatExpr<SubMatExpr<TA, TB>> {
 
 template <typename TA, typename TB>
 auto operator-(const MatExpr<TA>& a, const MatExpr<TB>& b) {
+  return SubMatExpr(a.Upcast(), b.Upcast());
+}
+template <typename TA, typename TB>
+auto operator-=(const MatExpr<TA>& a, const MatExpr<TB>& b)
+{
   return SubMatExpr(a.Upcast(), b.Upcast());
 }
 
@@ -246,7 +271,8 @@ auto operator*(const MatExpr<TA>& a, const MatExpr<TB>& b) {
 }
 
 template <typename TSCAL, typename TM>
-class ScaleMatExpr : public MatExpr<ScaleMatExpr<TSCAL, TM>> {
+class ScaleMatExpr : public MatExpr<ScaleMatExpr<TSCAL, TM>>
+{
   TSCAL scal_;
   TM mat_;
 
@@ -259,12 +285,20 @@ class ScaleMatExpr : public MatExpr<ScaleMatExpr<TSCAL, TM>> {
 };
 
 template <ValidSCAL TSCAL, typename T>
-auto operator*(TSCAL scal, const MatExpr<T>& m) {
+auto operator*(TSCAL scal, const MatExpr<T>& m)
+{
   return ScaleMatExpr(scal, m.Upcast());
 }
 
+template <ValidSCAL TSCAL, typename T>
+auto operator*=(const MatExpr<T>& m, TSCAL scal)
+{
+  return ScaleMatExpr(1 + scal, m.Upcast());
+}
+
 template <typename TSCAL, typename TM>
-class ScaleMatSumExpr : public MatExpr<ScaleMatSumExpr<TSCAL, TM>> {
+class ScaleMatSumExpr : public MatExpr<ScaleMatSumExpr<TSCAL, TM>>
+{
   TSCAL scal_;
   TM mat_;
 
@@ -277,12 +311,20 @@ class ScaleMatSumExpr : public MatExpr<ScaleMatSumExpr<TSCAL, TM>> {
 };
 
 template <ValidSCAL TSCAL, typename T>
-auto operator+(TSCAL scal, const MatExpr<T>& m) {
+auto operator+(TSCAL scal, const MatExpr<T>& m)
+{
   return ScaleMatSumExpr(scal, m.Upcast());
+}
+
+template <ValidSCAL TSCAL, typename T>
+auto operator+=(const MatExpr<T>& m, TSCAL scal)
+{
+  return ScaleMatSumExpr(1 + scal, m.Upcast());
 }
 // define a matrix scalar subtraction
 template <typename TSCAL, typename TM>
-class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>> {
+class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>>
+{
   TSCAL scal_;
   TM mat_;
 
@@ -295,8 +337,15 @@ class ScaleMatSubExpr : public MatExpr<ScaleMatSubExpr<TSCAL, TM>> {
 };
 
 template <ValidSCAL TSCAL, typename T>
-auto operator-(TSCAL scal, const MatExpr<T>& m) {
+auto operator-(TSCAL scal, const MatExpr<T>& m)
+{
   return ScaleMatSubExpr(scal, m.Upcast());
+}
+
+template <ValidSCAL TSCAL, typename T>
+auto operator-=(const MatExpr<T>& m, TSCAL scal)
+{
+  return ScaleMatSubExpr(1 + scal, m.Upcast());
 }
 
 /****************************************************************/
@@ -304,22 +353,28 @@ auto operator-(TSCAL scal, const MatExpr<T>& m) {
 /****************************************************************/
 
 template <typename TM, typename TV>
-class MatVecExpr : public VecExpr<MatVecExpr<TM, TV>> {
+class MatVecExpr : public VecExpr<MatVecExpr<TM, TV>>
+{
   TM mat_;
   TV vec_;
 
  public:
-  MatVecExpr(TM mat, TV vec) : mat_(mat), vec_(vec) {
-    if (mat_.SizeCols() != vec_.Size()) {
-      std::cout << "Error: the matrix and the vector cannot be multiplied" << std::endl;
+  MatVecExpr(TM mat, TV vec) : mat_(mat), vec_(vec)
+  {
+    if (mat_.SizeCols() != vec_.Size())
+    {
+      std::cout << "Error: the matrix and the vector cannot be multiplied"
+                << std::endl;
       exit(1);
     }
   }
   auto Upcast() { return MatVecExpr(mat_, vec_); }
-  auto operator()(size_t i) const {
+  auto operator()(size_t i) const
+  {
     typedef decltype(std::declval<TM>()(0, 0) * std::declval<TV>()(0)) TRES;
     TRES sum = mat_(i, 0) * vec_(0);
-    for (size_t j = 1; j < mat_.SizeCols(); j++) {
+    for (size_t j = 1; j < mat_.SizeCols(); j++)
+    {
       sum += mat_(i, j) * vec_(j);
     }
     return sum;
@@ -329,8 +384,15 @@ class MatVecExpr : public VecExpr<MatVecExpr<TM, TV>> {
 };
 
 template <typename TM, typename TV>
-auto operator*(const MatExpr<TM>& m, const VecExpr<TV>& v) {
+auto operator*(const MatExpr<TM>& m, const VecExpr<TV>& v)
+{
   return MatVecExpr(m.Upcast(), v.Upcast());
+}
+
+template <typename TM, typename TV>
+auto operator*=(const VecExpr<TV>& v, const MatExpr<TM>& m)
+{
+  return MatVecExpr(1 + m.Upcast(), v.Upcast());
 }
 
 template <typename VA, typename VB>

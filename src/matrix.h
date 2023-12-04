@@ -8,8 +8,9 @@
 
 namespace Tombino_bla {
 enum ORDERING { RowMajor, ColMajor };
-template <typename T, ORDERING ORD>
-class MatrixView : public MatExpr<MatrixView<T, ORD>> {
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class MatrixView : public MatExpr<MatrixView<T, ORD>>
+{
  protected:
   T* data_;
   size_t rows_;
@@ -66,6 +67,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   size_t DistCols() const { return d_c_; }
   T& operator()(size_t i, size_t j) { return data_[i * d_r_ + j * d_c_]; }
   const T& operator()(size_t i, size_t j) const { return data_[i * d_r_ + j * d_c_]; }
+  T& operator()(size_t i) { return data_[i]; }  // to be fixed
+  const T& operator()(size_t i) const { return data_[i]; }
 
   auto Row(size_t i) const {
     if constexpr (ORD == RowMajor) {
@@ -159,8 +162,9 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   };
 };
 
-template <typename T, ORDERING ORD>
-class Matrix : public MatrixView<T, ORD> {
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class Matrix : public MatrixView<T, ORD>
+{
   typedef MatrixView<T, ORD> BASE;
   using BASE::cols_;
   using BASE::d_c_;
