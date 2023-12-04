@@ -7,8 +7,10 @@
 
 namespace Tombino_bla {
 
-template <typename T, typename TDIST = std::integral_constant<size_t, 1>>
-class VectorView : public VecExpr<VectorView<T, TDIST>> {
+template <typename T = double,
+          typename TDIST = std::integral_constant<size_t, 1>>
+class VectorView : public VecExpr<VectorView<T, TDIST>>
+{
  protected:
   T* data_;
   size_t size_;
@@ -41,8 +43,9 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
   }
 };
 
-template <typename T>
-class Vector : public VectorView<T> {
+template <typename T = double>
+class Vector : public VectorView<T>
+{
   typedef VectorView<T> BASE;
   using BASE::data_;
   using BASE::size_;
