@@ -144,6 +144,19 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
       return MatrixView<T, ORD>(rows_, cols_ / slice, d_r_, d_c_ * slice, data_ + first * d_c_);
     }
   };
+
+  // now create a getter and setter for diagonal elements
+  auto Diag() const
+  {
+    if constexpr (ORD == RowMajor)
+    {
+      return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
+    }
+    else
+    {
+      return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
+    }
+  };
 };
 
 template <typename T, ORDERING ORD>

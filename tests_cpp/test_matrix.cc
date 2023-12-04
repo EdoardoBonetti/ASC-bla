@@ -41,4 +41,11 @@ int main() {
   //
   //  // test Transpose
   //  std::cout << "x^T = " << bla::Transpose(x) << std::endl;
+
+  // test Diag
+  std::cout << "x.Diag() = " << x.Diag() << std::endl;
+
+  // set the diagonal to -1
+  x.Diag() = -1;
+  std::cout << "x = " << x << std::endl;
 }
