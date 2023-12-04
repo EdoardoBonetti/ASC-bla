@@ -29,23 +29,15 @@ int main() {
   std::cout << "x(4,:) = " << x.Rows(4, 5) << std::endl;
   std::cout << "x(5,:) = " << x.Rows(5, 9) << std::endl;
 
-  //
-  //  // test Rows
-  // std::cout << "x(1:3,:) = " << x.Rows(4, 7) << std::endl;
-  //
-  //  //// test Col
-  //  std::cout << "x(:,1) = " << x.Col(1) << std::endl;
-  //  //
-  //  //// test Cols
-  //  std::cout << "x(:,1:3) = " << x.Cols(3, 6) << std::endl;
-  //
-  //  // test Transpose
-  //  std::cout << "x^T = " << bla::Transpose(x) << std::endl;
+  // 24. increment
 
-  // test Diag
-  std::cout << "x.Diag() = " << x.Diag() << std::endl;
-
-  // set the diagonal to -1
   x.Diag() = -1;
-  std::cout << "x = " << x << std::endl;
+
+  std::cout << "X = " << std::endl;
+  std::cout << x << std::endl;
+
+  x += x;
+
+  std::cout << "X += X " << std::endl;
+  std::cout << x << std::endl;
 }
