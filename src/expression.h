@@ -58,6 +58,12 @@ auto operator+(const VecExpr<TA>& a, const VecExpr<TB>& b) {
 }
 
 template <typename TA, typename TB>
+auto operator+=(const VecExpr<TA>& a, const VecExpr<TB>& b)
+{
+  return SumVecExpr(a.Upcast(), b.Upcast());
+}
+
+template <typename TA, typename TB>
 class SubVecExpr : public VecExpr<SubVecExpr<TA, TB>> {
   TA a_;
   TB b_;
