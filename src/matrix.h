@@ -160,6 +160,62 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
       return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
     }
   };
+
+  // operator+= mat
+  template <typename TB>
+  MatrixView& operator+=(const MatExpr<TB>& m2)
+  {
+    for (size_t i = 0; i < this->SizeRows(); i++)
+    {
+      for (size_t j = 0; j < this->SizeCols(); j++)
+      {
+        (*this)(i, j) += m2(i, j);
+      }
+    }
+    return *this;
+  }
+
+  // operator-= mat
+  template <typename TB>
+  MatrixView& operator-=(const MatExpr<TB>& m2)
+  {
+    for (size_t i = 0; i < this->SizeRows(); i++)
+    {
+      for (size_t j = 0; j < this->SizeCols(); j++)
+      {
+        (*this)(i, j) -= m2(i, j);
+      }
+    }
+    return *this;
+  }
+
+  // operator*= scal
+  template <ValidSCAL TSCAL>
+  MatrixView& operator*=(const TSCAL& scal)
+  {
+    for (size_t i = 0; i < this->SizeRows(); i++)
+    {
+      for (size_t j = 0; j < this->SizeCols(); j++)
+      {
+        (*this)(i, j) *= scal;
+      }
+    }
+    return *this;
+  }
+
+  // operator/= scal
+  template <ValidSCAL TSCAL>
+  MatrixView& operator/=(const TSCAL& scal)
+  {
+    for (size_t i = 0; i < this->SizeRows(); i++)
+    {
+      for (size_t j = 0; j < this->SizeCols(); j++)
+      {
+        (*this)(i, j) /= scal;
+      }
+    }
+    return *this;
+  }
 };
 
 template <typename T = double, ORDERING ORD = ORDERING::RowMajor>

@@ -47,6 +47,38 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   auto Slice(size_t first, size_t slice) const {
     return VectorView<T, size_t>(size_ / slice, dist_ * slice, data_ + first * dist_);
   }
+
+  // operator+= vec
+  template <typename TB>
+  VectorView& operator+=(const VecExpr<TB>& v2)
+  {
+    for (size_t i = 0; i < size_; i++) this->operator()(i) += v2(i);
+    return *this;
+  }
+
+  // operator-= vec
+  template <typename TB>
+  VectorView& operator-=(const VecExpr<TB>& v2)
+  {
+    for (size_t i = 0; i < size_; i++) this->operator()(i) -= v2(i);
+    return *this;
+  }
+
+  // operator*= scal
+  template <ValidSCAL TSCAL>
+  VectorView& operator*=(const TSCAL& scal)
+  {
+    for (size_t i = 0; i < size_; i++) this->operator()(i) *= scal;
+    return *this;
+  }
+
+  // operator/= scal
+  template <ValidSCAL TSCAL>
+  VectorView& operator/=(const TSCAL& scal)
+  {
+    for (size_t i = 0; i < size_; i++) this->operator()(i) /= scal;
+    return *this;
+  }
 };
 
 template <typename T = double>

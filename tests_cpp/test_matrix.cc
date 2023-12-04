@@ -1,4 +1,5 @@
 #include <matrix.h>
+#include <vector.h>
 
 #include <iostream>
 
@@ -36,8 +37,36 @@ int main() {
   std::cout << "X = " << std::endl;
   std::cout << x << std::endl;
 
-  x += x;
+  // Test increment for vectors
+  bla::Vector<double> v(10), w(10);
+  v = 1.0;
+  w = 2.0;
+  v.Range(0, 5) = -10.0;
+  std::cout << "v = " << v << std::endl;
+  v += w;
+  std::cout << "v+= v" << std::endl;
+  std::cout << v << std::endl;
 
-  std::cout << "X += X " << std::endl;
-  std::cout << x << std::endl;
+  // increment by scalar
+  std::cout << "v+= 1.1" << std::endl;
+  v *= 1.1;
+  std::cout << v << std::endl;
+
+  // Test increment for matrices
+  bla::Matrix<double> A(5, 5), B(5, 5);
+  A = 1.0;
+  B = 2.0;
+  A.Rows(2, 4) = -10.0;
+  std::cout << "A = " << A << std::endl;
+  A += B;
+  std::cout << "A+= A" << std::endl;
+  std::cout << A << std::endl;
+
+  // increment by scalar
+  std::cout << "A+= 1.1" << std::endl;
+
+  A.Cols(1, 4) *= 1.1;
+  std::cout << A << std::endl;
+
+  // Test increment for matrices
 }
