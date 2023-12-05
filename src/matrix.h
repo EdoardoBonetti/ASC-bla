@@ -8,7 +8,7 @@
 
 namespace Tombino_bla {
 enum ORDERING { RowMajor, ColMajor };
-template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+template <typename T, ORDERING ORD>
 class MatrixView : public MatExpr<MatrixView<T, ORD>>
 {
  protected:
@@ -67,23 +67,32 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   size_t DistCols() const { return d_c_; }
   T& operator()(size_t i, size_t j) { return data_[i * d_r_ + j * d_c_]; }
   const T& operator()(size_t i, size_t j) const { return data_[i * d_r_ + j * d_c_]; }
-  T& operator()(size_t i) { return data_[i]; }  // to be fixed
-  const T& operator()(size_t i) const { return data_[i]; }
+  // T& operator()(size_t i) { return this->operator()(i); }
+  // const T& operator()(size_t i) const { return this->operator()(i); }
 
-  auto Row(size_t i) const {
-    if constexpr (ORD == RowMajor) {
-      // extract the i-th row: in particular the i-th row is a vector of size cols_
+  auto Row(size_t i) const
+  {
+    if constexpr (ORD == RowMajor)
+    {
+      // extract the i-th row: in particular the i-th row is a vector of size
+      // cols_
 
       return VectorView<T>(cols_, data_ + i * d_r_);
-    } else {
+    }
+    else
+    {
       return VectorView<T, size_t>(cols_, d_c_, data_ + i * d_r_);
     }
   }
 
-  auto Col(size_t i) const {
-    if constexpr (ORD == RowMajor) {
+  auto Col(size_t i) const
+  {
+    if constexpr (ORD == RowMajor)
+    {
       return VectorView<T, size_t>(rows_, d_r_, data_ + i * d_c_);
-    } else {
+    }
+    else
+    {
       return VectorView<T>(rows_, data_ + i * d_c_);
     }
   }
@@ -219,6 +228,12 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
 };
 
 template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class MatrixView;
+
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class MatrixView;
+
+template <typename T, ORDERING ORD>
 class Matrix : public MatrixView<T, ORD>
 {
   typedef MatrixView<T, ORD> BASE;

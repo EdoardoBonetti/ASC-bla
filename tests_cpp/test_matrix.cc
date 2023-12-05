@@ -68,5 +68,6 @@ int main() {
   A.Cols(1, 4) *= 1.1;
   std::cout << A << std::endl;
 
-  // Test increment for matrices
+  // test matrix view  Rows Cols
+  std::cout << "A(0:2,0:2) = " << A.Rows(0, 2).Cols(0, 2) << std::endl;
 }
