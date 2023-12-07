@@ -200,7 +200,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
 
   // operator*= scal
   template <ValidSCAL TSCAL>
-  MatrixView& operator*=(const TSCAL& scal)
+  MatrixView& operator*=(TSCAL scal)
   {
     for (size_t i = 0; i < this->SizeRows(); i++)
     {
@@ -214,7 +214,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
 
   // operator/= scal
   template <ValidSCAL TSCAL>
-  MatrixView& operator/=(const TSCAL& scal)
+  MatrixView& operator/=(TSCAL& scal)
   {
     for (size_t i = 0; i < this->SizeRows(); i++)
     {
@@ -231,7 +231,7 @@ template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
 class MatrixView;
 
 template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
-class MatrixView;
+class Matrix;
 
 template <typename T, ORDERING ORD>
 class Matrix : public MatrixView<T, ORD>
