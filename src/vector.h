@@ -19,7 +19,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
  public:
   VectorView(size_t size, T* data) : data_(data), size_(size) {}
   VectorView(size_t size, TDIST dist, T* data) : data_(data), size_(size), dist_(dist) {}
-  // brace-enclosed initializer list
   VectorView(std::initializer_list<T> list)
       : data_(new T[list.size()]), size_(list.size())
   {
@@ -54,7 +53,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return VectorView<T, size_t>(size_ / slice, dist_ * slice, data_ + first * dist_);
   }
 
-  // operator+= vec
   template <typename TB>
   VectorView& operator+=(const VecExpr<TB>& v2)
   {
@@ -62,7 +60,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
-  // operator-= vec
   template <typename TB>
   VectorView& operator-=(const VecExpr<TB>& v2)
   {
@@ -70,7 +67,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
-  // operator*= scal
   template <ValidSCAL TSCAL>
   VectorView& operator*=(const TSCAL& scal)
   {
@@ -78,7 +74,6 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
-  // operator/= scal
   template <ValidSCAL TSCAL>
   VectorView& operator/=(const TSCAL& scal)
   {
@@ -96,12 +91,8 @@ class Vector : public VectorView<T>
 
  public:
   Vector(size_t size) : VectorView<T>(size, new T[size]) { ; }
-
   Vector(const Vector& v) : Vector(v.Size()) { *this = v; }
-
-  // list initialization
   Vector(std::initializer_list<T> list) : VectorView<T>(list) {}
-
   Vector(Vector&& v) : VectorView<T>(0, nullptr) {
     std::swap(size_, v.size_);
     std::swap(data_, v.data_);
