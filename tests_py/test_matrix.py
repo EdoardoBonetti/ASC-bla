@@ -18,7 +18,7 @@ print(mc2[0, 2])
 mc2[1:, 0:4] = 99 + 99j
 print(mc2)
 
-quit()
+
 
 
 x = Vector(3)
