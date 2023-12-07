@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "expression.h"
+#include "matrix.h"
 
 namespace Tombino_bla {
 
@@ -80,6 +81,8 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     for (size_t i = 0; i < size_; i++) this->operator()(i) /= scal;
     return *this;
   }
+
+  auto AsMatrix(size_t rows, size_t cols) const;
 };
 
 template <typename T = double>
@@ -126,6 +129,83 @@ class Vector : public VectorView<T>
       ost << ", " << v(i);
     return ost;
   }
+
+  // Vec template for small vectors
+  template <int SIZE, typename T = double>
+  class Vec : public VecExpr<Vec<SIZE, T>>
+  {
+    // protected:
+    T data_[SIZE];
+
+   public:
+    Vec() {}
+
+    Vec(const Vec& v2)
+    {
+      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+    }
+
+    Vec(T* data) : data_(data) {}
+
+    Vec(std::initializer_list<T> list)
+        : data_(new T[list.size()])  // new T[SIZE])
+    {
+      std::copy(list.begin(), list.end(), data_);
+    }
+
+    template <typename TB>
+    Vec& operator=(const VecExpr<TB>& v2)
+    {
+      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+      return *this;
+    }
+
+    Vec& operator=(const Vec& v2)
+    {
+      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+      return *this;
+    }
+
+    Vec& operator=(const T& scal)
+    {
+      for (size_t i = 0; i < SIZE; i++) data_[i] = scal;
+      return *this;
+    }
+
+    auto View() const { return Vec(data_); }
+    size_t Size() const { return SIZE; }
+    size_t Dist() const { return 1; }
+    T& operator()(size_t i) { return data_[i]; }
+    const T& operator()(size_t i) const { return data_[i]; }
+
+    template <typename TB>
+    Vec& operator+=(const VecExpr<TB>& v2)
+    {
+      for (size_t i = 0; i < SIZE; i++) this->operator()(i) += v2(i);
+      return *this;
+    }
+
+    template <typename TB>
+    Vec& operator-=(const VecExpr<TB>& v2)
+    {
+      for (size_t i = 0; i < SIZE; i++) this->operator()(i) -= v2(i);
+      return *this;
+    }
+
+    template <ValidSCAL TSCAL>
+    Vec& operator*=(const TSCAL& scal)
+    {
+      for (size_t i = 0; i < SIZE; i++) this->operator()(i) *= scal;
+      return *this;
+    }
+
+    template <ValidSCAL TSCAL>
+    Vec& operator/=(const TSCAL& scal)
+    {
+      for (size_t i = 0; i < SIZE; i++) this->operator()(i) /= scal;
+      return *this;
+    }
+  };
 
   }  // namespace Tombino_bla
 
