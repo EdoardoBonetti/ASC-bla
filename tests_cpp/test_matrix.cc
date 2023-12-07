@@ -1,4 +1,5 @@
 #include <matrix.h>
+#include <vector.h>
 
 #include <iostream>
 
@@ -29,23 +30,44 @@ int main() {
   std::cout << "x(4,:) = " << x.Rows(4, 5) << std::endl;
   std::cout << "x(5,:) = " << x.Rows(5, 9) << std::endl;
 
-  //
-  //  // test Rows
-  // std::cout << "x(1:3,:) = " << x.Rows(4, 7) << std::endl;
-  //
-  //  //// test Col
-  //  std::cout << "x(:,1) = " << x.Col(1) << std::endl;
-  //  //
-  //  //// test Cols
-  //  std::cout << "x(:,1:3) = " << x.Cols(3, 6) << std::endl;
-  //
-  //  // test Transpose
-  //  std::cout << "x^T = " << bla::Transpose(x) << std::endl;
+  // 24. increment
 
-  // test Diag
-  std::cout << "x.Diag() = " << x.Diag() << std::endl;
-
-  // set the diagonal to -1
   x.Diag() = -1;
-  std::cout << "x = " << x << std::endl;
+
+  std::cout << "X = " << std::endl;
+  std::cout << x << std::endl;
+
+  // Test increment for vectors
+  bla::Vector<double> v(10), w(10);
+  v = 1.0;
+  w = 2.0;
+  v.Range(0, 5) = -10.0;
+  std::cout << "v = " << v << std::endl;
+  v += w;
+  std::cout << "v+= v" << std::endl;
+  std::cout << v << std::endl;
+
+  // increment by scalar
+  std::cout << "v+= 1.1" << std::endl;
+  v *= 1.1;
+  std::cout << v << std::endl;
+
+  // Test increment for matrices
+  bla::Matrix<double> A(5, 5), B(5, 5);
+  A = 1.0;
+  B = 2.0;
+  A.Rows(2, 4) = -10.0;
+  std::cout << "A = " << A << std::endl;
+  A += B;
+  std::cout << "A+= A" << std::endl;
+  std::cout << A << std::endl;
+
+  // increment by scalar
+  std::cout << "A+= 1.1" << std::endl;
+
+  A.Cols(1, 4) *= 1.1;
+  std::cout << A << std::endl;
+
+  // test matrix view  Rows Cols
+  std::cout << "A(0:2,0:2) = " << A.Rows(0, 2).Cols(0, 2) << std::endl;
 }
