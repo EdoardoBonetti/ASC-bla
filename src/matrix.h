@@ -137,11 +137,11 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   {
     if constexpr (ORD == RowMajor)
     {
-      return VectorView<T>(std::min(rows_, cols_), 1 + d_r_, data_);
+      return VectorView(std::min(rows_, cols_), d_r_ + d_c_, data_);
     }
     else
     {
-      return VectorView<T, size_t>(std::min(rows_, cols_), 1 + d_c_, data_);
+      return VectorView(std::min(rows_, cols_), d_r_ + d_c_, data_);
     }
   }
 
