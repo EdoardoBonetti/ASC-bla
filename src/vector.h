@@ -8,8 +8,8 @@
 
 namespace Tombino_bla {
 
-template <typename T = double,
-          typename TDIST = std::integral_constant<size_t, 1>>
+template <typename T, typename TDIST = std::integral_constant<
+                          size_t, 1>>  //= std::integral_constant<size_t, 1>>
 class VectorView : public VecExpr<VectorView<T, TDIST>>
 {
  protected:
@@ -84,6 +84,9 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
 
   auto AsMatrix(size_t rows, size_t cols) const;
 };
+
+template <typename T = double, typename TDIST>
+class VectorView;
 
 template <typename T = double>
 class Vector : public VectorView<T>

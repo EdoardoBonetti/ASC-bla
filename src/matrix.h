@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "expression.h"
+// #include "expression.h"
 #include "vector.h"
 
 namespace Tombino_bla {
@@ -133,17 +133,18 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
 
   // now create a getter and setter for diagonal elements
 
+  // function Diag to return the diagonal of a matrix
   auto Diag() const
   {
     if constexpr (ORD == RowMajor)
     {
-      return VectorView(std::min(rows_, cols_), d_r_ + d_c_, data_);
+      return VectorView<T, size_t>(rows_, d_r_ + d_c_, data_);
     }
     else
     {
-      return VectorView(std::min(rows_, cols_), d_r_ + d_c_, data_);
+      return VectorView<T, size_t>(rows_, d_r_ + d_c_, data_);
     }
-  }
+  };
 
   // operator+= mat
   template <typename TB>
