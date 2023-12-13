@@ -8,8 +8,14 @@
 
 namespace Tombino_bla {
 
-template <typename T, typename TDIST = std::integral_constant<
-                          size_t, 1>>  //= std::integral_constant<size_t, 1>>
+template <typename T = double,
+          typename TDIST = std::integral_constant<size_t, 1>>
+class VectorView;
+
+template <typename T = double>
+class Vector;
+
+template <typename T, typename TDIST>
 class VectorView : public VecExpr<VectorView<T, TDIST>>
 {
  protected:
@@ -18,8 +24,12 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   TDIST dist_;
 
  public:
+  // default constructor
+  VectorView() = default;
+
   VectorView(size_t size, T* data) : data_(data), size_(size) {}
   VectorView(size_t size, TDIST dist, T* data) : data_(data), size_(size), dist_(dist) {}
+
   VectorView(std::initializer_list<T> list)
       : data_(new T[list.size()]), size_(list.size())
   {
@@ -85,10 +95,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   auto AsMatrix(size_t rows, size_t cols) const;
 };
 
-template <typename T = double, typename TDIST>
-class VectorView;
-
-template <typename T = double>
+template <typename T>
 class Vector : public VectorView<T>
 {
   typedef VectorView<T> BASE;
@@ -133,8 +140,10 @@ class Vector : public VectorView<T>
     return ost;
   }
 
-  // Vec template for small vectors
-  template <int SIZE, typename T = double>
+  // Vec template for small vector
+  template <int SIZE = 3, typename T = double>
+  class Vec;
+  template <int SIZE, typename T>
   class Vec : public VecExpr<Vec<SIZE, T>>
   {
     // protected:
