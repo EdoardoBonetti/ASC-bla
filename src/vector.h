@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "expression.h"
+// #include "matrix.h"
 
 namespace Tombino_bla
 {
@@ -104,6 +105,9 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     for (size_t i = 0; i < size_; i++) this->operator()(i) /= scal;
     return *this;
   }
+
+  // AsMatrix
+  auto AsMatrix(size_t rows, size_t cols) const;
 };
 
 template <typename T = double>
@@ -147,6 +151,93 @@ class Vector : public VectorView<T>
     for (size_t i = 0; i < size_; i++) data_[i] = v2(i);
     return *this;
   }
+};
+
+template <int SIZE = 3, typename T = double>
+class Vec : public VecExpr<Vec<SIZE, T>>
+{
+ private:
+  T data_[SIZE];
+
+ public:
+  Vec() = default;
+  // Vec(T scal) { *this = scal; }
+  // Vec(std::initializer_list<T> list) { *this = list; }
+
+  // copy constructor
+  // Vec(const Vec& v) { *this = v; }
+  // copy constructor from VectorView
+  // template <typename... Args>
+  // Vec(const VectorView<Args...>& v) : Vec()
+  //{
+  //  for (size_t i = 0; i < SIZE; i++) data[i] = v(i);
+  //}
+  // copy constructor from VecExpr
+  // template <typename TB>
+  // Vec(const VecExpr<TB>& v) : Vec()
+  //{
+  //  for (size_t i = 0; i < SIZE; i++) data[i] = v(i);
+  //}
+
+  // move constructor
+  // Vec(Vec&& v) { *this = std::move(v); }
+
+  // assignment operator
+  // Vec& operator=(const Vec& v)
+  //{
+  //  for (int i = 0; i < SIZE; i++) data[i] = v(i);
+  //  return *this;
+  //}
+
+  // move assignment operator
+  // Vec& operator=(Vec&& v)
+  //{
+  //  for (int i = 0; i < SIZE; i++) data[i] = v(i);
+  //  return *this;
+  //}
+
+  // access operator
+  // T& operator()(size_t i) { return data[i]; }
+  // const T& operator()(size_t i) const { return data[i]; }
+  //
+  //// operator+= vec
+  // template <typename TB>
+  // Vec& operator+=(const VecExpr<TB>& v2)
+  //{
+  //   for (size_t i = 0; i < SIZE; i++) this->operator()(i) += v2(i);
+  //   return *this;
+  // }
+
+  Vec(const Vec& v2)
+  {
+    for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+  }
+
+  template <typename TB>
+  Vec(const VectorView<TB>& v2)
+  {
+    for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+  }
+  template <typename TB>
+  Vec(const VecExpr<TB>& v2)
+  {
+    for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
+  }
+
+  Vec(std::initializer_list<T> list)
+  {
+    for (size_t i = 0; i < list.size(); i++) data_[i] = list.begin()[i];
+  }
+
+  Vec(T scal)
+  {
+    for (size_t i = 0; i < SIZE; i++) data_[i] = scal;
+  }
+
+  auto Upcast() const { return *this; }
+  size_t Size() const { return SIZE; }
+  T& operator()(size_t i) { return data_[i]; }
+  const T& operator()(size_t i) const { return data_[i]; }
 };
 
 template <typename... Args>

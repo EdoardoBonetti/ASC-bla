@@ -13,7 +13,8 @@ enum ORDERING
   RowMajor,
   ColMajor
 };
-template <typename T, ORDERING ORD>
+
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
 class MatrixView : public MatExpr<MatrixView<T, ORD>>
 {
  protected:
@@ -268,8 +269,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   }
 };
 
-template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
-class MatrixView;
+// template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+// class MatrixView;
 
 template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
 class Matrix;
@@ -433,6 +434,15 @@ auto Inverse(const Matrix<T, ORD>& m)
   }
   return eye;
 }
+
+// in the class VectorView<T, TDIST> we have a AsMatrix(size_t rows, size_t
+// cols) const method declared, we need to implement it
+template <typename T, typename TDIST>
+auto VectorView<T, TDIST>::AsMatrix(size_t rows, size_t cols) const
+{
+  return MatrixView<T>(rows, cols, dist_, 1, data_);
+
+}  // namespace Tombino_bla
 
 }  // namespace Tombino_bla
 #endif
