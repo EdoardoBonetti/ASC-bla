@@ -4,18 +4,12 @@
 #include <iostream>
 
 #include "expression.h"
-#include "matrix.h"
 
-namespace Tombino_bla {
+namespace Tombino_bla
+{
 
 template <typename T = double,
           typename TDIST = std::integral_constant<size_t, 1>>
-class VectorView;
-
-template <typename T = double>
-class Vector;
-
-template <typename T, typename TDIST>
 class VectorView : public VecExpr<VectorView<T, TDIST>>
 {
  protected:
@@ -24,12 +18,12 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   TDIST dist_;
 
  public:
-  // default constructor
-  VectorView() = default;
-
   VectorView(size_t size, T* data) : data_(data), size_(size) {}
-  VectorView(size_t size, TDIST dist, T* data) : data_(data), size_(size), dist_(dist) {}
-
+  VectorView(size_t size, TDIST dist, T* data)
+      : data_(data), size_(size), dist_(dist)
+  {
+  }
+  // brace-enclosed initializer list
   VectorView(std::initializer_list<T> list)
       : data_(new T[list.size()]), size_(list.size())
   {
@@ -37,7 +31,8 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   }
 
   template <typename TB>
-  VectorView& operator=(const VecExpr<TB>& v2) {
+  VectorView& operator=(const VecExpr<TB>& v2)
+  {
     for (size_t i = 0; i < size_; i++) data_[dist_ * i] = v2(i);
     return *this;
   }
@@ -48,7 +43,8 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
-  VectorView& operator=(T scal) {
+  VectorView& operator=(T scal)
+  {
     for (size_t i = 0; i < size_; i++) data_[dist_ * i] = scal;
     return *this;
   }
@@ -59,11 +55,17 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   T& operator()(size_t i) { return data_[dist_ * i]; }
   const T& operator()(size_t i) const { return data_[dist_ * i]; }
 
-  auto Range(size_t first, size_t next) const { return VectorView(next - first, dist_, data_ + first); }
-  auto Slice(size_t first, size_t slice) const {
-    return VectorView<T, size_t>(size_ / slice, dist_ * slice, data_ + first * dist_);
+  auto Range(size_t first, size_t next) const
+  {
+    return VectorView(next - first, dist_, data_ + first);
+  }
+  auto Slice(size_t first, size_t slice) const
+  {
+    return VectorView<T, size_t>(size_ / slice, dist_ * slice,
+                                 data_ + first * dist_);
   }
 
+  // operator+= vec
   template <typename TB>
   VectorView& operator+=(const VecExpr<TB>& v2)
   {
@@ -71,6 +73,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
+  // operator-= vec
   template <typename TB>
   VectorView& operator-=(const VecExpr<TB>& v2)
   {
@@ -78,6 +81,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
+  // operator*= scal
   template <ValidSCAL TSCAL>
   VectorView& operator*=(const TSCAL& scal)
   {
@@ -85,17 +89,16 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
     return *this;
   }
 
+  // operator/= scal
   template <ValidSCAL TSCAL>
   VectorView& operator/=(const TSCAL& scal)
   {
     for (size_t i = 0; i < size_; i++) this->operator()(i) /= scal;
     return *this;
   }
-
-  auto AsMatrix(size_t rows, size_t cols) const;
 };
 
-template <typename T>
+template <typename T = double>
 class Vector : public VectorView<T>
 {
   typedef VectorView<T> BASE;
@@ -104,121 +107,48 @@ class Vector : public VectorView<T>
 
  public:
   Vector(size_t size) : VectorView<T>(size, new T[size]) { ; }
+
   Vector(const Vector& v) : Vector(v.Size()) { *this = v; }
+
+  // list initialization
   Vector(std::initializer_list<T> list) : VectorView<T>(list) {}
-  Vector(Vector&& v) : VectorView<T>(0, nullptr) {
+
+  Vector(Vector&& v) : VectorView<T>(0, nullptr)
+  {
     std::swap(size_, v.size_);
     std::swap(data_, v.data_);
   }
 
   template <typename TB>
-  Vector(const VecExpr<TB>& v) : Vector(v.Size()) {
+  Vector(const VecExpr<TB>& v) : Vector(v.Size())
+  {
     *this = v;
   }
 
   ~Vector() { delete[] data_; }
 
   using BASE::operator=;
-  Vector& operator=(const Vector& v2) {
+  Vector& operator=(const Vector& v2)
+  {
     for (size_t i = 0; i < size_; i++) data_[i] = v2(i);
     return *this;
   }
 
-  Vector& operator=(Vector&& v2) {
+  Vector& operator=(Vector&& v2)
+  {
     for (size_t i = 0; i < size_; i++) data_[i] = v2(i);
     return *this;
   }
 };
 
-  template <typename ...Args>
-  std::ostream & operator<< (std::ostream & ost, const VectorView<Args...> & v)
-  {
-    if (v.Size() > 0)
-      ost << v(0);
-    for (size_t i = 1; i < v.Size(); i++)
-      ost << ", " << v(i);
-    return ost;
-  }
+template <typename... Args>
+std::ostream& operator<<(std::ostream& ost, const VectorView<Args...>& v)
+{
+  if (v.Size() > 0) ost << v(0);
+  for (size_t i = 1; i < v.Size(); i++) ost << ", " << v(i);
+  return ost;
+}
 
-  // Vec template for small vector
-  template <int SIZE = 3, typename T = double>
-  class Vec;
-  template <int SIZE, typename T>
-  class Vec : public VecExpr<Vec<SIZE, T>>
-  {
-    // protected:
-    T data_[SIZE];
-
-   public:
-    Vec() {}
-
-    Vec(const Vec& v2)
-    {
-      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
-    }
-
-    Vec(T* data) : data_(data) {}
-
-    Vec(std::initializer_list<T> list)
-        : data_(new T[list.size()])  // new T[SIZE])
-    {
-      std::copy(list.begin(), list.end(), data_);
-    }
-
-    template <typename TB>
-    Vec& operator=(const VecExpr<TB>& v2)
-    {
-      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
-      return *this;
-    }
-
-    Vec& operator=(const Vec& v2)
-    {
-      for (size_t i = 0; i < SIZE; i++) data_[i] = v2(i);
-      return *this;
-    }
-
-    Vec& operator=(const T& scal)
-    {
-      for (size_t i = 0; i < SIZE; i++) data_[i] = scal;
-      return *this;
-    }
-
-    auto View() const { return Vec(data_); }
-    size_t Size() const { return SIZE; }
-    size_t Dist() const { return 1; }
-    T& operator()(size_t i) { return data_[i]; }
-    const T& operator()(size_t i) const { return data_[i]; }
-
-    template <typename TB>
-    Vec& operator+=(const VecExpr<TB>& v2)
-    {
-      for (size_t i = 0; i < SIZE; i++) this->operator()(i) += v2(i);
-      return *this;
-    }
-
-    template <typename TB>
-    Vec& operator-=(const VecExpr<TB>& v2)
-    {
-      for (size_t i = 0; i < SIZE; i++) this->operator()(i) -= v2(i);
-      return *this;
-    }
-
-    template <ValidSCAL TSCAL>
-    Vec& operator*=(const TSCAL& scal)
-    {
-      for (size_t i = 0; i < SIZE; i++) this->operator()(i) *= scal;
-      return *this;
-    }
-
-    template <ValidSCAL TSCAL>
-    Vec& operator/=(const TSCAL& scal)
-    {
-      for (size_t i = 0; i < SIZE; i++) this->operator()(i) /= scal;
-      return *this;
-    }
-  };
-
-  }  // namespace Tombino_bla
+}  // namespace Tombino_bla
 
 #endif

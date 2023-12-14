@@ -3,18 +3,16 @@
 
 #include <iostream>
 
-// #include "expression.h"
+#include "expression.h"
 #include "vector.h"
 
-namespace Tombino_bla {
-enum ORDERING { RowMajor, ColMajor };
-
-template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
-class MatrixView;
-
-template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
-class Matrix;
-
+namespace Tombino_bla
+{
+enum ORDERING
+{
+  RowMajor,
+  ColMajor
+};
 template <typename T, ORDERING ORD>
 class MatrixView : public MatExpr<MatrixView<T, ORD>>
 {
@@ -142,6 +140,36 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
     // }
   }
 
+  // Ranges
+
+  // Slices
+
+  /*
+  auto RowSlice(size_t i, size_t first, size_t slice) const {
+    if constexpr (ORD == RowMajor) {
+      std::cout << "i = " << i << " first = " << first << " slice = " << slice
+  << std::endl;
+
+      std::cout << "VectorView<T, size_t>(cols_ / slice, d_c_ * slice, data_ + i
+  * d_r_ + first * d_c_);" << std::endl; std::cout << "numbs Elements " << cols_
+  / slice << std::endl; std::cout << "jump " << d_c_ * slice << std::endl;
+      std::cout << "position first element " << i * d_r_ + first * d_c_ <<
+  std::endl;
+
+      return VectorView<T, size_t>(cols_ / slice, d_c_ * slice, data_ + i * d_r_
+  + first * d_c_); } else { return VectorView<T, size_t>(cols_ / slice, d_c_ *
+  slice, data_ + i * d_r_ + first * d_c_);
+    }
+  };
+
+  auto ColSlice(size_t j, size_t first, size_t slice) const {
+    if constexpr (ORD == RowMajor) {
+      return VectorView<T, size_t>(rows_ / slice, d_r_ * slice, data_ + j * d_c_
+  + first * d_r_); } else { return VectorView<T, size_t>(rows_ / slice, d_r_ *
+  slice, data_ + j * d_c_ + first * d_r_);
+    }
+  };
+  */
   auto RSlice(size_t first, size_t slice) const
   {
     if constexpr (ORD == RowMajor)
@@ -154,7 +182,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
       return MatrixView<T, ORD>(rows_ / slice, cols_, d_r_ * slice, d_c_,
                                 data_ + first * d_r_);
     }
-  }
+  };
 
   auto CSlice(size_t first, size_t slice) const
   {
@@ -168,16 +196,20 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
       return MatrixView<T, ORD>(rows_, cols_ / slice, d_r_, d_c_ * slice,
                                 data_ + first * d_c_);
     }
-  }
+  };
 
   // now create a getter and setter for diagonal elements
-
-  // use with const override
-
   auto Diag() const
   {
-    return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
-  }
+    if constexpr (ORD == RowMajor)
+    {
+      return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
+    }
+    else
+    {
+      return VectorView<T, size_t>(std::min(rows_, cols_), d_r_ + d_c_, data_);
+    }
+  };
 
   // operator+= mat
   template <typename TB>
@@ -236,6 +268,12 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   }
 };
 
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class MatrixView;
+
+template <typename T = double, ORDERING ORD = ORDERING::RowMajor>
+class Matrix;
+
 template <typename T, ORDERING ORD>
 class Matrix : public MatrixView<T, ORD>
 {
@@ -253,7 +291,14 @@ class Matrix : public MatrixView<T, ORD>
     ;
   }
 
+  // Copy constructor from Matrix
   Matrix(const Matrix& m) : Matrix(m.SizeRows(), m.SizeCols()) { *this = m; }
+
+  // Copy constructor from MatrixView: New feature
+  // Matrix(const MatrixView<T, ORD>& m) : Matrix(m.SizeRows(), m.SizeCols()) {
+  // *this = m; }
+
+  // Move constructor from Matrix
   Matrix(Matrix&& m) : MatrixView<T, ORD>(0, 0, nullptr)
   {
     std::swap(cols_, m.cols_);
@@ -262,6 +307,7 @@ class Matrix : public MatrixView<T, ORD>
     std::swap(d_r_, m.d_r_);
     std::swap(d_c_, m.d_c_);
   }
+
   template <typename TB>
   Matrix(const MatExpr<TB>& m) : Matrix(m.SizeRows(), m.SizeCols())
   {
@@ -270,6 +316,7 @@ class Matrix : public MatrixView<T, ORD>
 
   ~Matrix() { delete[] data_; }
 
+  // Copy assignment operator from Matrix
   using BASE::operator=;
   Matrix& operator=(const Matrix& m2)
   {
@@ -319,10 +366,13 @@ class Matrix : public MatrixView<T, ORD>
 };
 
 template <typename... Args>
-std::ostream& operator<<(std::ostream& ost, const MatrixView<Args...>& m) {
+std::ostream& operator<<(std::ostream& ost, const MatrixView<Args...>& m)
+{
   ost << std::endl;
-  for (size_t i = 0; i < m.SizeRows(); i++) {
-    for (size_t j = 0; j < m.SizeCols(); j++) {
+  for (size_t i = 0; i < m.SizeRows(); i++)
+  {
+    for (size_t j = 0; j < m.SizeCols(); j++)
+    {
       ost << m(i, j) << " ";
     }
     ost << std::endl;
@@ -330,22 +380,27 @@ std::ostream& operator<<(std::ostream& ost, const MatrixView<Args...>& m) {
   return ost;
 }
 
-constexpr ORDERING operator!(ORDERING ordering) {
+constexpr ORDERING operator!(ORDERING ordering)
+{
   return ordering == ColMajor ? RowMajor : ColMajor;
 }
 
 template <typename T, ORDERING ORD>
-auto Transpose(const Matrix<T, ORD>& m) {
+auto Transpose(const Matrix<T, ORD>& m)
+{
   return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.Data());
 }
 
 template <typename T, ORDERING ORD>
-auto Transpose(const MatrixView<T, ORD>& m) {
-  return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.DistRows(), m.DistCols(), m.Data());
+auto Transpose(const MatrixView<T, ORD>& m)
+{
+  return MatrixView<T, !ORD>(m.SizeCols(), m.SizeRows(), m.DistRows(),
+                             m.DistCols(), m.Data());
 }
 
 template <typename T, ORDERING ORD>
-auto Inverse(const Matrix<T, ORD>& m) {
+auto Inverse(const Matrix<T, ORD>& m)
+{
   size_t L = m.SizeCols();
   Matrix<T, ORD> eye(L, L);
   Matrix<T, ORD> A(m);
@@ -353,18 +408,23 @@ auto Inverse(const Matrix<T, ORD>& m) {
   eye = 0;
   for (size_t i = 0; i < m.SizeRows(); i++) eye(i, i) = 1;
 
-  for (size_t i = 0; i < eye.SizeRows(); i++) {
+  for (size_t i = 0; i < eye.SizeRows(); i++)
+  {
     T pivot = A(i, i);
 
-    for (size_t j = 0; j < L; j++) {
+    for (size_t j = 0; j < L; j++)
+    {
       eye(i, j) = eye(i, j) / pivot;
       A(i, j) = A(i, j) / pivot;
     }
 
-    for (size_t k = 0; k < L; k++) {
-      if (k != i) {
+    for (size_t k = 0; k < L; k++)
+    {
+      if (k != i)
+      {
         T factor = A(k, i);
-        for (size_t j = 0; j < L; j++) {
+        for (size_t j = 0; j < L; j++)
+        {
           eye(k, j) = eye(k, j) - factor * eye(i, j);
           A(k, j) = A(k, j) - factor * A(i, j);
         }
@@ -372,7 +432,7 @@ auto Inverse(const Matrix<T, ORD>& m) {
     }
   }
   return eye;
-};
+}
 
 }  // namespace Tombino_bla
 #endif
