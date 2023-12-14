@@ -626,6 +626,35 @@ void TestMatOp(size_t m, size_t n, bool print = false) {
 
   std::cout << "\nX.RowsSlice(1, 2).CSlice(2, 3) " << std::endl;
   std::cout << X.RSlice(1, 2).CSlice(2, 3) << std::endl;
+
+  // set the matrix to zero
+
+  std::cout << "\nX.RowsSlice(1,2).CSlice(2,3).Diag() " << std::endl;
+  std::cout << X.RSlice(1, 2).CSlice(2, 3).Diag() << std::endl;
+}
+
+void TestDiag(int m, int n)
+{
+  // create a matrix m x n and initialize with the usual indexing
+  Matrix<double, ORDERING::ColMajor> X(m, n);
+  for (int i = 0; i < m; i++)
+  {
+    for (int j = 0; j < n; j++) X(i, j) = i * n + j;
+  }
+  // print the matrix and diag
+  std::cout << "\nX = " << std::endl;
+  std::cout << X << std::endl;
+  std::cout << "\nX.Diag() = " << std::endl;
+  std::cout << X.Diag() << std::endl;
+
+  // extract the diagonal and change it with -2
+  X.Diag() = -2;
+  std::cout << "\nX.Diag() = -2 " << std::endl;
+  std::cout << X << std::endl;
+
+  X.Diag().Range(1, 3) = -3;
+  std::cout << "\nX.Diag().Range(1, 3) = -3 " << std::endl;
+  std::cout << X << std::endl;
 }
 
 int main() {
@@ -831,4 +860,12 @@ int main() {
   // 23. Operator()
   std::cout << "Test 23: Operator()" << std::endl;
   TestMatOp(10, 9);
+
+  // 24. Diag()
+
+  std::cout << "Test 24: Diag()" << std::endl;
+  TestDiag(5, 5);
+  TestDiag(5, 10);
+  TestDiag(10, 5);
+  return 0;
 }
