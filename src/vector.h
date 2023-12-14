@@ -23,6 +23,14 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
       : data_(data), size_(size), dist_(dist)
   {
   }
+  // copy constructor for const size and dist etc
+
+  // VectorView(const size_t size, const T* data) : data_(data), size_(size) {}
+  // VectorView(const size_t size, const TDIST dist, const T* data)
+  //     : data_(data), size_(size), dist_(dist)
+  //{
+  // }
+
   // brace-enclosed initializer list
   VectorView(std::initializer_list<T> list)
       : data_(new T[list.size()]), size_(list.size())
@@ -57,7 +65,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
 
   auto Range(size_t first, size_t next) const
   {
-    return VectorView(next - first, dist_, data_ + first);
+    return VectorView(next - first, dist_, data_ + first * dist_);
   }
   auto Slice(size_t first, size_t slice) const
   {

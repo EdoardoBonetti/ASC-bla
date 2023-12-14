@@ -203,14 +203,13 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   {
     if constexpr (ORD == RowMajor)
     {
-      return VectorView<T>(rows_, d_r_ + d_c_, data_);
+      return VectorView<T, size_t>(rows_, d_r_ + d_c_, data_);
     }
     else
     {
-      return VectorView<T>(rows_, d_r_ + d_c_, data_);
+      return VectorView<T, size_t>(rows_, d_r_ + d_c_, data_);
     }
   };
-};
 
   // operator+= mat
   template <typename TB>

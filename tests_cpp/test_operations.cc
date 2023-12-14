@@ -629,8 +629,8 @@ void TestMatOp(size_t m, size_t n, bool print = false) {
 
   // set the matrix to zero
 
-  std::cout << "\nX.RowsSlice(1,2).CSlice(2,3).Diag() " << std::endl;
-  std::cout << X.RSlice(1, 2).CSlice(2, 3).Diag() << std::endl;
+  // std::cout << "\nX.RowsSlice(1,2).CSlice(2,3).Diag() " << std::endl;
+  // std::cout << X.RSlice(1, 2).CSlice(2, 3).Diag() << std::endl;
 }
 
 void TestDiag(int m, int n)
@@ -648,6 +648,8 @@ void TestDiag(int m, int n)
   std::cout << X.Diag() << std::endl;
 
   // extract the diagonal and change it with -2
+  X = 0;
+
   X.Diag() = -2;
   std::cout << "\nX.Diag() = -2 " << std::endl;
   std::cout << X << std::endl;
