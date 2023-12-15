@@ -12,7 +12,7 @@ set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O3 -Wall -Wunused-variable -Wunused-fu
 
 # add march=native flag only if we are on x86_64
 if(CMAKE_SYSTEM_PROCESSOR MATCHES " x86_64 ")
-  set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -march=native ")
+  set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -march=native -O3")
 endif()
 
 include_directories(src)
@@ -54,3 +54,10 @@ install(TARGETS bla DESTINATION TomBino)
 install(FILES src/vector.h DESTINATION TomBino/include)
 install(FILES src/matrix.h DESTINATION TomBino/include)
 target_link_libraries(bla PUBLIC LAPACK::LAPACK)
+
+# enable testing
+enable_testing()
+
+# add test: the following command will run the executable test_vector during the build process
+add_test(NAME test_vector COMMAND test_vector)
+

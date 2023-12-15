@@ -21,6 +21,7 @@ extern "C"
 
 using Tombino_bla::dcomplex;
 using Tombino_bla::Matrix;
+using Tombino_bla::Vec;
 using Tombino_bla::Vector;
 
 namespace py = pybind11;
@@ -54,9 +55,24 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
   std::string pyclass_name = std::string("Vector") + typestr;
   py::class_<Class>(m, pyclass_name.c_str())
       .def(py::init<size_t>(), py::arg("size"), "create vector of given size")
+      .def(py::init(
+          [](py::buffer b)
+          {
+            py::buffer_info info = b.request();
+            if (info.format != py::format_descriptor<T>::format())
+              throw std::runtime_error(
+                  "Incompatible format: expected a " +
+                  std::string(py::format_descriptor<T>::format()) + " buffer");
+            if (info.ndim != 1)
+              throw std::runtime_error("Incompatible buffer dimension!");
+            Vector<T> v(info.shape[0]);
+            std::memcpy(&v(0), info.ptr, info.shape[0] * sizeof(T));
+            return v;
+          }))
       .def("__len__", &Vector<T>::Size, "return size of vector")
       .def("__setitem__",
-           [](Vector<T>& self, int i, T v) {
+           [](Vector<T>& self, int i, T v)
+           {
              if (i < 0) i += self.Size();
              if (i < 0 || static_cast<size_t>(i) >= self.Size())
                throw py::index_error("vector index out of range");
@@ -64,44 +80,61 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
            })
       .def("__getitem__", [](Vector<T>& self, int i) { return self(i); })
       .def("__setitem__",
-           [](Vector<T>& self, py::slice inds, T val) {
+           [](Vector<T>& self, py::slice inds, T val)
+           {
              size_t start, stop, step, n;
-             if (!inds.compute(self.Size(), &start, &stop, &step, &n)) throw py::error_already_set();
+             if (!inds.compute(self.Size(), &start, &stop, &step, &n))
+               throw py::error_already_set();
              self.Range(start, stop).Slice(0, step) = val;
            })
       .def("__getitem__",
-           [](Vector<T>& self, py::slice inds) {
+           [](Vector<T>& self, py::slice inds)
+           {
              size_t start, stop, step, n;
-             if (!inds.compute(self.Size(), &start, &stop, &step, &n)) throw py::error_already_set();
+             if (!inds.compute(self.Size(), &start, &stop, &step, &n))
+               throw py::error_already_set();
              return self.Range(start, stop).Slice(0, step);
            })
 
-      .def("__add__", [](Vector<T>& self, Vector<T>& other) { return Vector<T>(self + other); })
+      .def("__add__", [](Vector<T>& self, Vector<T>& other)
+           { return Vector<T>(self + other); })
 
-      .def("__rmul__", [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
+      .def("__rmul__",
+           [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
 
-      .def("__mul__", [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
-      .def("__mul__", [](Vector<T>& self, Vector<T>& other) { return self * other; })
-      .def("__rmul__", [](Vector<T>& self, Vector<T>& other) { return self * other; })
+      .def("__mul__",
+           [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
+      .def("__mul__",
+           [](Vector<T>& self, Vector<T>& other) { return self * other; })
+      .def("__rmul__",
+           [](Vector<T>& self, Vector<T>& other) { return self * other; })
 
       .def("__str__",
-           [](const Vector<T>& self) {
+           [](const Vector<T>& self)
+           {
              std::stringstream str;
              str << self;
              return str.str();
            })
 
-      .def(py::pickle(
-          [](Vector<T>& self) {  
-            return py::make_tuple(self.Size(), py::bytes((char*)(void*)&self(0), self.Size() * sizeof(T)));
-          },
-          [](py::tuple t) { 
-            if (t.size() != 2) throw std::runtime_error("should be a 2-tuple!");
-            Vector<T> v(t[0].cast<size_t>());
-            py::bytes mem = t[1].cast<py::bytes>();
-            std::memcpy(&v(0), PYBIND11_BYTES_AS_STRING(mem.ptr()), v.Size() * sizeof(T));
-            return v;
-          }));
+        .def(py::pickle(
+               [](Vector<T>& self) {  // __getstate__
+                 /* return a tuple that fully encodes the state of the object */
+                 return py::make_tuple(self.Size(),
+                                       py::bytes((char*)(void*)&self(0),
+                                                 self.Size() * sizeof(T)));
+               },
+               [](py::tuple t) {  // __setstate__
+                 if (t.size() != 2)
+                   throw std::runtime_error("should be a 2-tuple!");
+
+                 Vector<double> v(t[0].cast<size_t>());
+                 py::bytes mem = t[1].cast<py::bytes>();
+                 std::memcpy(&v(0), PYBIND11_BYTES_AS_STRING(mem.ptr()),
+                             v.Size() * sizeof(T));
+                 return v;
+               }),
+           "Pickle bytestream");
 }
 
 template <typename T, Tombino_bla::ORDERING ORD>
@@ -203,7 +236,83 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
       });
 }
 
-PYBIND11_MODULE(bla, m) {
+template <int SIZE, typename T>
+void declare_vec_class(py::module& m, const std::string& typestr)
+{
+  using Class = Vec<SIZE, T>;
+  std::string pyclass_name = std::string("Vec") + typestr;
+  py::class_<Class>(m, pyclass_name.c_str())
+      .def(py::init<>(), "create Vec")
+      .def("__len__", &Vec<SIZE, T>::Size, "return size of vector")
+      .def("__setitem__",
+           [](Vec<SIZE, T>& self, int i, T v)
+           {
+             if (i < 0) i += self.Size();
+             if (i < 0 || static_cast<size_t>(i) >= self.Size())
+               throw py::index_error("vector index out of range");
+             self(i) = v;
+           })
+      .def("__getitem__",
+           [](Vec<SIZE, T>& self, int i)
+           {
+             if (i < 0) i += self.Size();
+             if (i < 0 || static_cast<size_t>(i) >= self.Size())
+               throw py::index_error("vector index out of range");
+             return self(i);
+           })
+      .def("__str__",
+           [](const Vec<SIZE, T>& self)
+           {
+             std::stringstream str;
+             str << self;
+             return str.str();
+           })
+
+      //      .def("__add__", [](Vector<T>& self, Vector<T>& other)
+      //           { return Vector<T>(self + other); })
+      //
+      //      .def("__rmul__",
+      //           [](Vector<T>& self, T scal) { return Vector<T>(scal * self);
+      //           })
+      //
+      //      .def("__mul__",
+      //           [](Vector<T>& self, T scal) { return Vector<T>(scal * self);
+      //           })
+      //      .def("__mul__",
+      //           [](Vector<T>& self, Vector<T>& other) { return self * other;
+      //           })
+      //      .def("__rmul__",
+      //           [](Vector<T>& self, Vector<T>& other) { return self * other;
+      //           })
+
+      .def("__str__",
+           [](const Vector<T>& self)
+           {
+             std::stringstream str;
+             str << self;
+             return str.str();
+           })
+
+      .def(py::pickle(
+          [](Vec<SIZE, T>& self)
+          {
+            return py::make_tuple(
+                self.Size(),
+                py::bytes((char*)(void*)&self(0), self.Size() * sizeof(T)));
+          },
+          [](py::tuple t)
+          {
+            if (t.size() != 2) throw std::runtime_error("should be a 2-tuple!");
+            Vec<SIZE, T> v(t[0].cast<size_t>());
+            py::bytes mem = t[1].cast<py::bytes>();
+            std::memcpy(&v(0), PYBIND11_BYTES_AS_STRING(mem.ptr()),
+                        v.Size() * sizeof(T));
+            return v;
+          }));
+}
+
+PYBIND11_MODULE(bla, m)
+{
   m.doc() = "Basic linear algebra module";  // optional module docstring
   declare_vector_class<int>(m, "Int");
   declare_vector_class<double>(m, "");
@@ -211,6 +320,9 @@ PYBIND11_MODULE(bla, m) {
 
   declare_matrix_class<double, Tombino_bla::ORDERING::RowMajor>(m, "");
   declare_matrix_class<dcomplex, Tombino_bla::ORDERING::RowMajor>(m, "Complex");
+
+  declare_vec_class<2, double>(m, "2");
+  declare_vec_class<3, double>(m, "3");
   // declare_matrix_class<double, ColMajor>(m, "ColMajor");
   // declare_matrix_class<dcomplex, ColMajor>(m, "ComplexColMajor");
 

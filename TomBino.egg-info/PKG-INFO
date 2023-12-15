@@ -1,11 +1,17 @@
 Metadata-Version: 2.1
 Name: TomBino
 Version: 0.0.1
-Summary: UNKNOWN
+Summary: A simple basic linear algebra library
 Home-page: UNKNOWN
 Author: J. Schoeberl, E. Bonetti
+Author-email: bonettiedo@gmail.com
 License: MIT
 Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Provides-Extra: all
+Provides-Extra: benchmark
+Provides-Extra: docs
+Provides-Extra: test
 License-File: LICENSE
 
 UNKNOWN

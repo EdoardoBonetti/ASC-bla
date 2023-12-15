@@ -1,58 +1,56 @@
-import TomBino as tb
-from TomBino.bla import Vector, VectorInt , VectorComplex
+"""
+Test bla module of TomBino: Vector
+The test is done with pytest and we compare the results with numpy.
+"""
 
-print(dir(tb.bla))
+import pickle
 
+import pytest
+import numpy as np
 
-
-from TomBino.bla import *
-
-n = 100
-x = Vector(n)
-y = Vector(n)
-
-for i in range(n):
-    x[i] = i
-    y[i] = i
-
-#print ("x =", x[0:15], "...")
-#print ("y =", y[0:15], "...")
+from TomBino.bla import Vector
 
 
-z = x * y
-print ("z =", z)
+def test_vector_add():
+    n = 10
+    x_tb = Vector(n)
+    y_tb = Vector(n)
 
-sum = 0
-for i in range(n):
-    sum += i*i
-print ("sum =", sum)
+    y_np = np.zeros(n)
+    x_np = np.zeros(n)
 
-## do the same for int and complex
-x_Int = VectorInt(n)
-y_Int = VectorInt(n)
+    for i in range(n):
+        r = np.random.rand()
+        x_tb[i] = r
+        x_np[i] = r
 
-x_Complex = VectorComplex(n)
-y_Complex = VectorComplex(n)
+        r = np.random.rand()
+        y_tb[i] = r
+        y_np[i] = r
 
-for i in range(n):
-    x_Int[i] = i
-    y_Int[i] = i
+    z_tb = x_tb + y_tb
+    z_np = x_np + y_np
 
-    x_Complex[i] = i
-    y_Complex[i] = i
-#print ("x =", x[0:15], "...")
-#print ("y =", y[0:15], "...")
-#print ("x_Int =", x_Int[0:15], "...")
-#print ("y_Int =", y_Int[0:15], "...")
-
-z_Int = x_Int * y_Int
-print ("z_Int =", z_Int)
-
-z_Complex = x_Complex * y_Complex
-print ("z_Complex =", z_Complex)
+    for i in range(n):
+        assert z_tb[i] == z_np[i]
 
 
+def test_vector_slicing():
+    n = 10
+    x_tb = Vector(n)
+    x_np = np.zeros(n)
 
+    for i in range(n):
+        r = np.random.rand()
+        x_tb[i] = r
+        x_np[i] = r
 
+    # slice the vector
 
+    x_tb_slice = Vector(4)
+    x_np_slice = Vector(4)
 
+    x_tb_slice = x_tb[2:6]
+
+    for i in range(4):
+        assert x_tb_slice[i] == x_np_slice[i]
