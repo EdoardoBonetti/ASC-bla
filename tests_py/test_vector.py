@@ -10,6 +10,26 @@ import numpy as np
 
 from TomBino.bla import Vector
 
+def test_vector_init():
+    n = 10
+    x = Vector(n)
+    assert len(x) == n
+
+def test_vector_set():
+    n = 10
+    x_tb = Vector(n)
+    print("len(x_tb) = ", len(x_tb))
+    print(x_tb)
+    x_np = np.zeros(n)
+    for i in range(n):
+        x_tb[i] = i
+        x_np[i] = i
+    for i in range(n):
+        print(i, x_tb[i], x_np[i])
+        assert x_tb[i] == x_np[i]
+        print(-i, x_tb[-i], x_np[-i])
+        assert x_tb[-i] == x_np[-i]
+
 
 def test_vector_add():
     n = 10
@@ -36,21 +56,30 @@ def test_vector_add():
 
 
 def test_vector_slicing():
-    n = 10
-    x_tb = Vector(n)
-    x_np = np.zeros(n)
+    x = Vector(5)
+    x[:] = 1
+    assert np.array_equal(np.asarray(x), np.ones(5))
+    x[1::2] = 2
+    assert x[0] == 1
+    assert x[3] == 2
 
-    for i in range(n):
-        r = np.random.rand()
-        x_tb[i] = r
-        x_np[i] = r
 
-    # slice the vector
+def test_vector_add():
+    x = Vector(5)
+    y = Vector(5)
 
-    x_tb_slice = Vector(4)
-    x_np_slice = Vector(4)
+    for i in range(len(x)):
+        x[i] = i
+    y[:] = 2
 
-    x_tb_slice = x_tb[2:6]
+    z = x + y
+    assert np.array_equal(np.asarray(z), np.array([2, 3, 4, 5, 6]))
 
-    for i in range(4):
-        assert x_tb_slice[i] == x_np_slice[i]
+
+def test_vector_scal_mult():
+    x = Vector(5)
+
+    for i in range(len(x)):
+        x[i] = i
+    z = 2 * x
+    assert np.array_equal(np.asarray(z), np.array([0, 2, 4, 6, 8]))
