@@ -8,6 +8,7 @@
 #include <string>
 
 // include the directory when naming header files "matrix.h" and "vector.h"
+#include "expression.h"
 #include "lapack_interface.h"
 #include "matrix.h"
 #include "vector.h"
@@ -55,7 +56,7 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
   std::string pyclass_name = std::string("Vector") + typestr;
   py::class_<Class>(m, pyclass_name.c_str())
       .def(py::init<size_t>(), py::arg("size"), "create vector of given size")
-      .def(py::init(
+      /*.def(py::init(
           [](py::buffer b)
           {
             py::buffer_info info = b.request();
@@ -68,17 +69,26 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
             Vector<T> v(info.shape[0]);
             std::memcpy(&v(0), info.ptr, info.shape[0] * sizeof(T));
             return v;
-          }))
+          })) */
       .def("__len__", &Vector<T>::Size, "return size of vector")
       .def("__setitem__",
            [](Vector<T>& self, int i, T v)
            {
              if (i < 0) i += self.Size();
-             if (i < 0 || static_cast<size_t>(i) >= self.Size())
+             if (i < 0 ||
+                 static_cast<size_t>(i) >=
+                     self.Size())  // static_cast<size_t>(i) >= self.Size())
                throw py::index_error("vector index out of range");
              self(i) = v;
            })
-      .def("__getitem__", [](Vector<T>& self, int i) { return self(i); })
+      .def("__getitem__",
+           [](Vector<T>& self, int i)
+           {
+             if (i < 0) i += self.Size();
+             if (i < 0 || static_cast<size_t>(i) >= self.Size())
+               throw py::index_error("vector index out of range");
+             return self(i);
+           })
       .def("__setitem__",
            [](Vector<T>& self, py::slice inds, T val)
            {
@@ -117,7 +127,7 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
              return str.str();
            })
 
-        .def(py::pickle(
+      .def(py::pickle(
                [](Vector<T>& self) {  // __getstate__
                  /* return a tuple that fully encodes the state of the object */
                  return py::make_tuple(self.Size(),
@@ -128,7 +138,7 @@ void declare_vector_class(py::module& m, const std::string& typestr) {
                  if (t.size() != 2)
                    throw std::runtime_error("should be a 2-tuple!");
 
-                 Vector<double> v(t[0].cast<size_t>());
+                 Vector<T> v(t[0].cast<size_t>());
                  py::bytes mem = t[1].cast<py::bytes>();
                  std::memcpy(&v(0), PYBIND11_BYTES_AS_STRING(mem.ptr()),
                              v.Size() * sizeof(T));
@@ -323,6 +333,15 @@ PYBIND11_MODULE(bla, m)
 
   declare_vec_class<2, double>(m, "2");
   declare_vec_class<3, double>(m, "3");
+
+  // define the inner product
+  m.def("InnerProduct",
+        [](Matrix<double, Tombino_bla::ORDERING::RowMajor>& self,
+           Matrix<double, Tombino_bla::ORDERING::RowMajor>& other)
+        { return InnerProduct(self, other); });
+
+  m.def("InnerProduct", [](Vector<double>& self, Vector<double>& other)
+        { return InnerProduct(self, other); });
   // declare_matrix_class<double, ColMajor>(m, "ColMajor");
   // declare_matrix_class<dcomplex, ColMajor>(m, "ComplexColMajor");
 
