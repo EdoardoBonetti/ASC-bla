@@ -5,7 +5,7 @@ project(TomBino)
 set(CMAKE_CXX_STANDARD 20)
 
 # set cpplint nd disable legal copyright
-set(CMAKE_CXX_CPPLINT "cpplint;--filter=-legal/copyright, -build/include_subdir")
+# set(CMAKE_CXX_CPPLINT "cpplint;--filter=-legal/copyright, -build/include_subdir")
 
 # add flag for march=native
 set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O3 -Wall -Wunused-variable -Wunused-function -Wno-unused-but-set-variable -Wno-unused-but-set-parameter -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-label -Wno-unused-value -Wno-unused-local-typedefs -Wno-unused-local-typedef -fpermissive ")
@@ -57,7 +57,6 @@ target_link_libraries(bla PUBLIC LAPACK::LAPACK)
 
 # enable testing
 enable_testing()
-
 # add test: the following command will run the executable test_vector during the build process
 add_test(NAME test_vector COMMAND test_vector)
 
