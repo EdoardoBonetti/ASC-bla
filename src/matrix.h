@@ -444,5 +444,36 @@ auto VectorView<T, TDIST>::AsMatrix(size_t rows, size_t cols) const
 
 }  // namespace Tombino_bla
 
+// for matrix
+template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
+auto InnerProduct(const Matrix<TA, ORDA>& a, const Matrix<TB, ORDB>& b)
+{
+  typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
+  TRES sum = a(0, 0) * b(0, 0);
+  for (size_t i = 0; i < a.SizeRows(); i++)
+  {
+    for (size_t j = 0; j < a.SizeCols(); j++)
+    {
+      sum = sum + (a(i, j) * b(i, j));
+    }
+  }
+  return sum;
+}
+// matrix view
+template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
+auto InnerProduct(const MatrixView<TA, ORDA>& a, const MatrixView<TB, ORDB>& b)
+{
+  typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
+  TRES sum = a(0, 0) * b(0, 0);
+  for (size_t i = 0; i < a.SizeRows(); i++)
+  {
+    for (size_t j = 0; j < a.SizeCols(); j++)
+    {
+      sum = sum + (a(i, j) * b(i, j));
+    }
+  }
+  return sum;
+}
+
 }  // namespace Tombino_bla
 #endif

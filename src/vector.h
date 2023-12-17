@@ -248,6 +248,34 @@ std::ostream& operator<<(std::ostream& ost, const VectorView<Args...>& v)
   return ost;
 }
 
+// define the InnerProduct for Vector and VectorView
+template <typename T>
+auto InnerProduct(const VectorView<T>& v1, const VectorView<T>& v2)
+{
+  T sum = 0;
+  for (size_t i = 0; i < v1.Size(); i++) sum += v1(i) * v2(i);
+  return sum;
+}
+
+// inner product for VectorView
+template <typename TA, typename TB>
+auto InnerProduct(const VectorView<TA>& a, const VectorView<TB>& b)
+{
+  typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
+  TRES sum = a(0) * b(0);
+  for (size_t i = 0; i < a.Size(); i++) sum = sum + (a(i) * b(i));
+  return sum;
+}
+// for Vector
+template <typename TA, typename TB>
+auto InnerProduct(const Vector<TA>& a, const Vector<TB>& b)
+{
+  typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
+  TRES sum = a(0) * b(0);
+  for (size_t i = 0; i < a.Size(); i++) sum = sum + (a(i) * b(i));
+  return sum;
+}
+
 }  // namespace Tombino_bla
 
 #endif
