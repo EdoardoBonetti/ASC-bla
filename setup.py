@@ -51,8 +51,8 @@ setup(
     author="J. Schoeberl, E. Bonetti",
     author_email="bonettiedo@gmail.com",
     license="MIT",
-    package_dir={"": "TomBino"},
-    packages=find_packages(where="TomBino"),
+    #package_dir={"TomBino": "TomBino"},
+    packages=["TomBino"],
     long_description_content_type="text/markdown",
     # url="https://github.com/",
     # classifiers=[
