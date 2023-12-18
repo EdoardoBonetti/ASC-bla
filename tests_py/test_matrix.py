@@ -3,7 +3,7 @@ import pickle
 import pytest
 import numpy as np
 
-from TomBino.bla import Matrix, Vector, InnerProduct
+from TomBino.bla import Matrix, Vector, InnerProduct, Inverse, Transpose
 
 
 def test_matrix_init():
@@ -144,8 +144,70 @@ def test_matrix_vector_mul():
     print(x_np, "\n", y_np, "\n", x_np @ y_np)
 
 
+def test_matrix_pickle():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Vector(n)
+
+    y_np = np.zeros(n)
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            x_np[i, j] = i * m + j
+
+    for i in range(n):
+        y_tb[i] = i
+        y_np[i] = i
+
+    with open("test_matrix.pickle", "wb") as f:
+        pickle.dump(x_tb, f)
+
+    with open("test_matrix.pickle", "rb") as f:
+        x_tb = pickle.load(f)
+
+    assert np.all(x_tb * y_tb == x_np @ y_np)
+    print(x_tb, "\n", y_tb, "\n", x_tb * y_tb)
+    print(x_np, "\n", y_np, "\n", x_np @ y_np)
+
+
+def test_matrix_transpose():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            r = np.random.rand()
+            x_tb[i, j] = r
+            x_np[i, j] = r
+
+    print(x_tb)
+    print(x_np)
+    print(x_tb.T)
+    print(x_np.T)
+    assert np.all(Transpose(x_tb) == x_np.T)
+
+
+def test_matrix_inverse():
+    for n in [3]:
+        x_tb = Matrix(n, n)
+        x_np = np.zeros((n, n))
+
+        for i in range(n):
+            for j in range(n):
+                r = np.random.rand()
+                x_tb[i, j] = r
+                x_np[i, j] = r
+
+        # print(Inverse(x_tb))
+        print(np.linalg.inv(x_np))
+        print(np.asarray(Inverse(x_tb)))
+
+
 def main():
-    test_matrix_inner_product()
+    test_matrix_inverse()
 
 
 if __name__ == "__main__":

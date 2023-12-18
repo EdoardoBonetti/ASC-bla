@@ -30,6 +30,9 @@ execute_process(
 list(APPEND CMAKE_PREFIX_PATH " ${PYBIND11_DIR} ")
 find_package(pybind11 CONFIG REQUIRED)
 
+add_executable(test_vec tests_cpp/test_vec.cc)
+target_sources(test_vec PUBLIC src/vector.h src/expression.h)
+
 add_executable(test_vector tests_cpp/test_vector.cc)
 target_sources(test_vector PUBLIC src/vector.h src/expression.h)
 
@@ -65,4 +68,6 @@ enable_testing() # add test: the following command will run the executable test_
 add_test(NAME test_vector COMMAND test_vector)
 add_test(NAME test_matrix COMMAND test_matrix)
 add_test(NAME test_lapack COMMAND test_lapack)
+add_test(NAME test_vec COMMAND test_vec)
+
 

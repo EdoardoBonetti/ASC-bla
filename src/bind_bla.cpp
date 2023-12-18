@@ -446,6 +446,9 @@ PYBIND11_MODULE(bla, m)
 
   m.def("InnerProduct", [](Vector<double>& self, Vector<double>& other)
         { return InnerProduct(self, other); });
+  m.def("Inverse", [](Matrix<double, Tombino_bla::ORDERING::RowMajor>& self)
+        { return Inverse(self); });
+
   // declare_matrix_class<double, ColMajor>(m, "ColMajor");
   // declare_matrix_class<dcomplex, ColMajor>(m, "ComplexColMajor");
 
