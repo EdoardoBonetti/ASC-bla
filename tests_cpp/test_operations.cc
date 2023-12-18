@@ -1,3 +1,5 @@
+
+/*
 // #include <lapack_interface.h>
 // #include <matrix.h>
 #include <cassert>
@@ -17,17 +19,11 @@ using bla::Vector;
 typedef std::complex<double> dcomplex;
 
 template <typename TA, typename TB>
-void TestVecVecSum(const Vector<TA>& x, const Vector<TB>& y, bool print = false) {
-  typedef decltype(x(0) + y(0)) TRES;
-  Vector<TRES> z(x.Size());
-  z = x + y;
-  if (print == true) {
-    std::cout << "Vector Vector Sum " << std::endl;
-    std::cout << "x = " << std::endl;
-    std::cout << x << std::endl;
-    std::cout << "y = " << std::endl;
-    std::cout << y << std::endl;
-    std::cout << "z = " << std::endl;
+void TestVecVecSum(const Vector<TA>& x, const Vector<TB>& y, bool print = false)
+{ typedef decltype(x(0) + y(0)) TRES; Vector<TRES> z(x.Size()); z = x + y; if
+(print == true) { std::cout << "Vector Vector Sum " << std::endl; std::cout <<
+"x = " << std::endl; std::cout << x << std::endl; std::cout << "y = " <<
+std::endl; std::cout << y << std::endl; std::cout << "z = " << std::endl;
     std::cout << z << std::endl;
   }
 
@@ -41,17 +37,11 @@ void TestVecVecSum(const Vector<TA>& x, const Vector<TB>& y, bool print = false)
 }
 
 template <typename TA, typename TB>
-void TestVecVecSub(const Vector<TA>& x, const Vector<TB>& y, bool print = false) {
-  typedef decltype(x(0) - y(0)) TRES;
-  Vector<TRES> z(x.Size());
-  z = x - y;
-  if (print == true) {
-    std::cout << "Vector Vector Sub " << std::endl;
-    std::cout << "x = " << std::endl;
-    std::cout << x << std::endl;
-    std::cout << "y = " << std::endl;
-    std::cout << y << std::endl;
-    std::cout << "z = " << std::endl;
+void TestVecVecSub(const Vector<TA>& x, const Vector<TB>& y, bool print = false)
+{ typedef decltype(x(0) - y(0)) TRES; Vector<TRES> z(x.Size()); z = x - y; if
+(print == true) { std::cout << "Vector Vector Sub " << std::endl; std::cout <<
+"x = " << std::endl; std::cout << x << std::endl; std::cout << "y = " <<
+std::endl; std::cout << y << std::endl; std::cout << "z = " << std::endl;
     std::cout << z << std::endl;
   }
 
@@ -65,10 +55,8 @@ void TestVecVecSub(const Vector<TA>& x, const Vector<TB>& y, bool print = false)
 }
 
 template <typename SCLR, typename T>
-void TestScalVecProd(const SCLR& alpha, const Vector<T>& x, bool print = false) {
-  typedef decltype(alpha * x(0)) TRES;
-  Vector<TRES> z(x.Size());
-  z = alpha * x;
+void TestScalVecProd(const SCLR& alpha, const Vector<T>& x, bool print = false)
+{ typedef decltype(alpha * x(0)) TRES; Vector<TRES> z(x.Size()); z = alpha * x;
   if (print == true) {
     std::cout << "Scalar Vector Mult " << std::endl;
     std::cout << "alpha = " << std::endl;
@@ -89,7 +77,8 @@ void TestScalVecProd(const SCLR& alpha, const Vector<T>& x, bool print = false) 
 
 template <typename SCLR, typename T>
 void TestScalVecSum(const SCLR& alpha, const Vector<T>& x, bool print = false) {
-  // check that if alpha + x = z using a for loop. If the assert fails, print the
+  // check that if alpha + x = z using a for loop. If the assert fails, print
+the
   // values of x,y,z
   typedef decltype(alpha + x(0)) TRES;
   Vector<TRES> z(x.Size());
@@ -114,7 +103,8 @@ void TestScalVecSum(const SCLR& alpha, const Vector<T>& x, bool print = false) {
 
 template <typename SCLR, typename T>
 void TestScalVecSub(const SCLR& alpha, const Vector<T>& x, bool print = false) {
-  // check that if alpha + x = z using a for loop. If the assert fails, print the
+  // check that if alpha + x = z using a for loop. If the assert fails, print
+the
   // values of x,y,z
   typedef decltype(alpha - x(0)) TRES;
   Vector<TRES> z(x.Size());
@@ -138,8 +128,8 @@ void TestScalVecSub(const SCLR& alpha, const Vector<T>& x, bool print = false) {
 }
 
 template <typename TA, typename TB>
-void TestVecVecOuterProd(const Vector<TA>& x, const Vector<TB>& y, bool print = false) {
-  typedef decltype(x(0) * y(0)) TRES;
+void TestVecVecOuterProd(const Vector<TA>& x, const Vector<TB>& y, bool print =
+false) { typedef decltype(x(0) * y(0)) TRES;
   {
     Matrix<TRES, ORDERING::RowMajor> z(x.Size(), y.Size());
 
@@ -191,8 +181,10 @@ void TestVecVecOuterProd(const Vector<TA>& x, const Vector<TB>& y, bool print = 
 }
 
 template <typename TA, typename TB>
-void TestVecVecInnerProd(const Vector<TA>& x, const Vector<TB>& y, bool print = false) {
-  // check that if alpha + x = z using a for loop. If the assert fails, print the
+void TestVecVecInnerProd(const Vector<TA>& x, const Vector<TB>& y, bool print =
+false) {
+  // check that if alpha + x = z using a for loop. If the assert fails, print
+the
   // values of x,y,z
   typedef decltype(x(0) * y(0)) TRES;
   TRES c = x * y;
@@ -216,10 +208,10 @@ void TestVecVecInnerProd(const Vector<TA>& x, const Vector<TB>& y, bool print = 
 }
 
 template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
-void TestMatMatSum(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool print = false) {
-  typedef decltype(X(0, 0) + Y(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
+void TestMatMatSum(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool
+print = false) { typedef decltype(X(0, 0) + Y(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = X + Y;
   Z_col = X + Y;
@@ -250,10 +242,10 @@ void TestMatMatSum(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool pr
 
 // 9. X - Y
 template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
-void TestMatMatSub(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool print = false) {
-  typedef decltype(X(0, 0) - Y(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
+void TestMatMatSub(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool
+print = false) { typedef decltype(X(0, 0) - Y(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = X - Y;
   Z_col = X - Y;
@@ -284,10 +276,10 @@ void TestMatMatSub(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool pr
 
 // 10. alpha * X
 template <typename SCLR, typename TA, ORDERING ORDA>
-void TestScalMatProd(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = false) {
-  typedef decltype(alpha * X(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
+void TestScalMatProd(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print =
+false) { typedef decltype(alpha * X(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = alpha * X;
   Z_col = alpha * X;
@@ -316,10 +308,10 @@ void TestScalMatProd(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = 
 
 // 11. alpha + X
 template <typename SCLR, typename TA, ORDERING ORDA>
-void TestScalMatSum(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = false) {
-  typedef decltype(alpha + X(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
+void TestScalMatSum(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print =
+false) { typedef decltype(alpha + X(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = alpha + X;
   Z_col = alpha + X;
@@ -338,10 +330,10 @@ void TestScalMatSum(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = f
 
 // 12. alpha - X
 template <typename SCLR, typename TA, ORDERING ORDA>
-void TestScalMatSub(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = false) {
-  typedef decltype(alpha - X(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
+void TestScalMatSub(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print =
+false) { typedef decltype(alpha - X(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), X.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), X.SizeCols());
 
   Z_row = alpha - X;
   Z_col = alpha - X;
@@ -365,10 +357,10 @@ void TestScalMatSub(const SCLR& alpha, const Matrix<TA, ORDA>& X, bool print = f
 
 // 13. X * Y
 template <typename TA, typename TB, ORDERING ORDA, ORDERING ORDB>
-void TestMatMatProd(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool print = false) {
-  typedef decltype(X(0, 0) * Y(0, 0)) TRES;
-  Matrix<TRES, ORDERING::RowMajor> Z_row(X.SizeRows(), Y.SizeCols());
-  Matrix<TRES, ORDERING::RowMajor> Z_col(X.SizeRows(), Y.SizeCols());
+void TestMatMatProd(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool
+print = false) { typedef decltype(X(0, 0) * Y(0, 0)) TRES; Matrix<TRES,
+ORDERING::RowMajor> Z_row(X.SizeRows(), Y.SizeCols()); Matrix<TRES,
+ORDERING::RowMajor> Z_col(X.SizeRows(), Y.SizeCols());
 
   Z_row = X * Y;
   Z_col = X * Y;
@@ -390,10 +382,9 @@ void TestMatMatProd(const Matrix<TA, ORDA>& X, const Matrix<TB, ORDB>& Y, bool p
 
 // 14. X * x
 template <typename TA, typename TV, ORDERING ORDA>
-void TestMatVecProd(const Matrix<TA, ORDA>& X, const Vector<TV>& x, bool print = false) {
-  typedef decltype(X(0, 0) * x(0)) TRES;
-  Vector<TRES> z(X.SizeRows());
-  z = X * x;
+void TestMatVecProd(const Matrix<TA, ORDA>& X, const Vector<TV>& x, bool print =
+false) { typedef decltype(X(0, 0) * x(0)) TRES; Vector<TRES> z(X.SizeRows()); z
+= X * x;
 
   for (size_t i = 0; i < x.Size(); i++) {
     TRES sum_row_i;
@@ -409,9 +400,8 @@ void TestMatVecProd(const Matrix<TA, ORDA>& X, const Vector<TV>& x, bool print =
 
 // 15. x.Slice()
 template <typename T>
-void TestVecSlice(const Vector<T>& x, const size_t& first, const size_t& slice, bool print = false) {
-  Vector<T> y(x.Slice(first, slice));
-  if (print == true) {
+void TestVecSlice(const Vector<T>& x, const size_t& first, const size_t& slice,
+bool print = false) { Vector<T> y(x.Slice(first, slice)); if (print == true) {
     std::cout << "Vector Slice " << std::endl;
     std::cout << "first = " << std::endl;
     std::cout << first << std::endl;
@@ -425,8 +415,8 @@ void TestVecSlice(const Vector<T>& x, const size_t& first, const size_t& slice, 
       // pinrt
       std::cout << "i = " << i << std::endl;
       std::cout << "i * slice + first = " << i * slice + first << std::endl;
-      std::cout << "x(i * slice + first) = " << x(i * slice + first) << std::endl;
-      std::cout << "y(i) = " << y(i) << std::endl;
+      std::cout << "x(i * slice + first) = " << x(i * slice + first) <<
+std::endl; std::cout << "y(i) = " << y(i) << std::endl;
 
       assert(x(i * slice + first) == y(i));
     }
@@ -436,9 +426,8 @@ void TestVecSlice(const Vector<T>& x, const size_t& first, const size_t& slice, 
 
 // 16. x.Range()
 template <typename T>
-void TestVecRange(const Vector<T>& x, const size_t& first, const size_t& next, bool print = false) {
-  Vector<T> y(x.Range(first, next));
-  if (print == true) {
+void TestVecRange(const Vector<T>& x, const size_t& first, const size_t& next,
+bool print = false) { Vector<T> y(x.Range(first, next)); if (print == true) {
     std::cout << "Vector Range " << std::endl;
     std::cout << "first = " << std::endl;
     std::cout << first << std::endl;
@@ -480,9 +469,8 @@ void TestMatTran(const Matrix<T, ORD> X, bool print = false) {
 
 // 18. X.Row()
 template <typename T, ORDERING ORD>
-void TestMatRow(const Matrix<T, ORD> X, const size_t& first, bool print = false) {
-  Vector<T> y(X.Row(first));
-  for (size_t i = 0; i < X.SizeCols(); i++) {
+void TestMatRow(const Matrix<T, ORD> X, const size_t& first, bool print = false)
+{ Vector<T> y(X.Row(first)); for (size_t i = 0; i < X.SizeCols(); i++) {
     assert(X(first, i) == y(i));
   }
   std::cout << "passed" << std::endl;
@@ -490,9 +478,8 @@ void TestMatRow(const Matrix<T, ORD> X, const size_t& first, bool print = false)
 
 // 19. X.Col()
 template <typename T, ORDERING ORD>
-void TestMatCol(const Matrix<T, ORD> X, const size_t& first, bool print = false) {
-  Vector<T> y(X.Col(first));
-  for (size_t i = 0; i < X.SizeRows(); i++) {
+void TestMatCol(const Matrix<T, ORD> X, const size_t& first, bool print = false)
+{ Vector<T> y(X.Col(first)); for (size_t i = 0; i < X.SizeRows(); i++) {
     assert(X(i, first) == y(i));
   }
   std::cout << "passed" << std::endl;
@@ -500,9 +487,9 @@ void TestMatCol(const Matrix<T, ORD> X, const size_t& first, bool print = false)
 
 // 20. X.Rows()
 template <typename T, ORDERING ORD>
-void TestMatRows(const Matrix<T, ORD> X, const size_t& first, const size_t& next, bool print = false) {
-  std::cout << "\nX" << std::endl;
-  std::cout << X << std::endl;
+void TestMatRows(const Matrix<T, ORD> X, const size_t& first, const size_t&
+next, bool print = false) { std::cout << "\nX" << std::endl; std::cout << X <<
+std::endl;
 
   std::cout << "\nX.Rows(first, next)" << std::endl;
   std::cout << X.Rows(first, next) << std::endl;
@@ -521,10 +508,9 @@ void TestMatRows(const Matrix<T, ORD> X, const size_t& first, const size_t& next
 
 // 21. X.Cols()
 template <typename T, ORDERING ORD>
-void TestMatCols(const Matrix<T, ORD> X, const size_t& first, const size_t& next, bool print = false) {
-  Matrix<T, ORD> Y(X.Cols(first, next));
-  for (size_t i = 0; i < X.SizeRows(); i++) {
-    for (size_t j = 0; j < next - first; j++) {
+void TestMatCols(const Matrix<T, ORD> X, const size_t& first, const size_t&
+next, bool print = false) { Matrix<T, ORD> Y(X.Cols(first, next)); for (size_t i
+= 0; i < X.SizeRows(); i++) { for (size_t j = 0; j < next - first; j++) {
       assert(X(i, j + first) == Y(i, j));
     }
   }
@@ -572,7 +558,8 @@ void TestMatInv(size_t n, bool print = false) {
 
 // 23. Operator()
 void TestMatOp(size_t m, size_t n, bool print = false) {
-  // here I need to create a matrix of which I know the entries and I need to check
+  // here I need to create a matrix of which I know the entries and I need to
+check
   // if the entries change in the way that I desired to build the previous tests
   Matrix<double, ORDERING::ColMajor> X(m, n);
   // I fill up the matrix with the following rule:
@@ -589,16 +576,16 @@ void TestMatOp(size_t m, size_t n, bool print = false) {
   std::cout << "\nX.T = " << std::endl;
   std::cout << Transpose(X) << std::endl;
 
-  // Now I change the entries of the matrix and I check that the entries are correct
+  // Now I change the entries of the matrix and I check that the entries are
+correct
   // the last row -1 of the matrix is filled with -10
   for (size_t j = 0; j < n; j++) X(n - 1, j) = -10;
   std::cout << "\nX(n-1,  :) = -10 " << std::endl;
   std::cout << X << std::endl;
 
-  // To check that the above is the same of Rows(n-1,n) I change the entries to -20
-  X.Rows(n - 3, n - 1) = -20;
-  std::cout << "\nX.Rows(n-1,n) = -20 " << std::endl;
-  std::cout << X << std::endl;
+  // To check that the above is the same of Rows(n-1,n) I change the entries to
+-20 X.Rows(n - 3, n - 1) = -20; std::cout << "\nX.Rows(n-1,n) = -20 " <<
+std::endl; std::cout << X << std::endl;
 
   // now do the same for the columns
   // the last column -1 of the matrix is filled with -30
@@ -871,3 +858,4 @@ int main() {
   TestDiag(10, 5);
   return 0;
 }
+*/

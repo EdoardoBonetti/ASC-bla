@@ -1,37 +1,35 @@
-// cop
-
-// #include <lapack_interface.h>
-// #include <matrix.h>
-#include <matrix.h>
 #include <vector.h>
 
-#include <complex>
+#include <cassert>
 #include <iostream>
+#include <vector>
 
-using Tombino_bla::Vector;
-// using Tombino_bla::ORDERING::ColMajor;
-// using namespace std;
+using namespace Tombino_bla;
+using namespace std;
 
-int main() {
-  // creates three vectors of size 5
-  Vector<double> x(5), y(5), z(5);
-  // initialize the vector x with the values 0,1,2,3,4
-  for (size_t i = 0; i < 5; i++) {
-    x(i) = i;
-    y(i) = 1;
-  }
-  std::cout << "x = " << x << std::endl;
-  std::cout << "y = " << y << std::endl;
-  std::cout << "z = 3 * x + 3 * y" << std::endl;
-  z = 3 * x + 3 * y;
-  std::cout << z << std::endl << std::endl;
+// create a test for the sum of two vectors
+auto test_vector_sum()
+{
+  // Your Vector class operations and assertions here
+  Vector<double> v1(3);
+  Vector<double> v2(3);
+  v1(0) = 1;
+  v1(1) = 2;
+  v1(2) = 3;
+  v2(0) = 4;
+  v2(1) = 5;
+  v2(2) = 6;
+  Vector result = v1 + v2;
+  if (result(0) == 5 && result(1) == 7 && result(2) == 9)
+    return 0;
+  else
+    return 1;
+}
 
-  typedef std::complex<double> dcomplex;
-  dcomplex w;
-
-  dcomplex i1(0, 1);
-  w = x * (z + i1 * y);
-  std ::cout << w << std::endl;
-  std::cout << (x * (z + i1 * y)) << std::endl;
-  // initialize the vector x with the values 0,1,2,3,4
+// write some test to check if the matrix is correctly initialized
+int main()
+{
+  // run the test
+  assert(test_vector_sum() == 0);
+  return 0;
 }

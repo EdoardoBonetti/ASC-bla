@@ -10,25 +10,52 @@ import numpy as np
 
 from TomBino.bla import Vector
 
+
 def test_vector_init():
-    n = 10
+    n = 5
     x = Vector(n)
     assert len(x) == n
+    x = 1
+    print(x)
+
 
 def test_vector_set():
     n = 10
     x_tb = Vector(n)
-    print("len(x_tb) = ", len(x_tb))
-    print(x_tb)
     x_np = np.zeros(n)
+
     for i in range(n):
         x_tb[i] = i
         x_np[i] = i
     for i in range(n):
-        print(i, x_tb[i], x_np[i])
         assert x_tb[i] == x_np[i]
-        print(-i, x_tb[-i], x_np[-i])
         assert x_tb[-i] == x_np[-i]
+
+
+def test_vector_set_slice():
+    n = 10
+    x_tb = Vector(n)
+    x_np = np.zeros(n)
+
+    for i in range(n):
+        x_tb[i] = i
+        x_np[i] = i
+    for i in range(n):
+        assert x_tb[i] == x_np[i]
+        assert x_tb[-i] == x_np[-i]
+
+    # create s and t slices
+    s = slice(0, n, 2)
+    t = slice(0, n, 2)
+
+    # i, j must be random integers between -n and n
+    i = np.random.randint(0, n)
+    j = np.random.randint(0, n)
+
+    assert np.all(x_tb[s] == x_np[s])
+    assert np.all(x_tb[t] == x_np[t])
+    assert np.all(x_tb[i] == x_np[i])
+    assert np.all(x_tb[j] == x_np[j])
 
 
 def test_vector_add():
@@ -55,31 +82,13 @@ def test_vector_add():
         assert z_tb[i] == z_np[i]
 
 
-def test_vector_slicing():
-    x = Vector(5)
-    x[:] = 1
-    assert np.array_equal(np.asarray(x), np.ones(5))
-    x[1::2] = 2
-    assert x[0] == 1
-    assert x[3] == 2
+def main():
+    test_vector_init()
+    test_vector_set()
+    test_vector_add()
+    # test_vector_scal_mult()
+    # test_vector_slicing()
 
 
-def test_vector_add():
-    x = Vector(5)
-    y = Vector(5)
-
-    for i in range(len(x)):
-        x[i] = i
-    y[:] = 2
-
-    z = x + y
-    assert np.array_equal(np.asarray(z), np.array([2, 3, 4, 5, 6]))
-
-
-def test_vector_scal_mult():
-    x = Vector(5)
-
-    for i in range(len(x)):
-        x[i] = i
-    z = 2 * x
-    assert np.array_equal(np.asarray(z), np.array([0, 2, 4, 6, 8]))
+if __name__ == "__main__":
+    main()

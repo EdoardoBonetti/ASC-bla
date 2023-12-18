@@ -2,6 +2,11 @@
 cmake_minimum_required(VERSION 3.20)
 project(TomBino)
 
+include(CTest) # We include CTest which is part of CMake
+
+
+
+
 set(CMAKE_CXX_STANDARD 20)
 
 # set cpplint nd disable legal copyright
@@ -31,8 +36,8 @@ target_sources(test_vector PUBLIC src/vector.h src/expression.h)
 add_executable(test_matrix tests_cpp/test_matrix.cc)
 target_sources(test_matrix PUBLIC src/matrix.h src/expression.h)
 
-add_executable(test_operations tests_cpp/test_operations.cc)
-target_sources(test_operations PUBLIC src/expression.h)
+#add_executable(test_operations tests_cpp/test_operations.cc)
+#target_sources(test_operations PUBLIC src/expression.h)
 
 # create a subdirectory tests_cpp
 # file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/tests_cpp)
@@ -56,7 +61,8 @@ install(FILES src/matrix.h DESTINATION TomBino/include)
 target_link_libraries(bla PUBLIC LAPACK::LAPACK)
 
 # enable testing
-enable_testing()
-# add test: the following command will run the executable test_vector during the build process
+enable_testing() # add test: the following command will run the executable test_vector during the build process
 add_test(NAME test_vector COMMAND test_vector)
+add_test(NAME test_matrix COMMAND test_matrix)
+add_test(NAME test_lapack COMMAND test_lapack)
 

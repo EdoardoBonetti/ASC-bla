@@ -64,6 +64,10 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   T& operator()(size_t i) { return data_[dist_ * i]; }
   const T& operator()(size_t i) const { return data_[dist_ * i]; }
 
+  // Data()
+  T* Data() { return data_; }
+  const T* Data() const { return data_; }
+
   auto Range(size_t first, size_t next) const
   {
     return VectorView(next - first, dist_, data_ + first * dist_);
@@ -119,6 +123,7 @@ class Vector : public VectorView<T>
 
  public:
   Vector(size_t size) : VectorView<T>(size, new T[size]) { ; }
+  Vector(size_t size, T* data) : VectorView<T>(size, data) { ; }
 
   Vector(const Vector& v) : Vector(v.Size()) { *this = v; }
 
@@ -161,52 +166,6 @@ class Vec : public VecExpr<Vec<SIZE, T>>
 
  public:
   Vec() = default;
-  // Vec(T scal) { *this = scal; }
-  // Vec(std::initializer_list<T> list) { *this = list; }
-
-  // copy constructor
-  // Vec(const Vec& v) { *this = v; }
-  // copy constructor from VectorView
-  // template <typename... Args>
-  // Vec(const VectorView<Args...>& v) : Vec()
-  //{
-  //  for (size_t i = 0; i < SIZE; i++) data[i] = v(i);
-  //}
-  // copy constructor from VecExpr
-  // template <typename TB>
-  // Vec(const VecExpr<TB>& v) : Vec()
-  //{
-  //  for (size_t i = 0; i < SIZE; i++) data[i] = v(i);
-  //}
-
-  // move constructor
-  // Vec(Vec&& v) { *this = std::move(v); }
-
-  // assignment operator
-  // Vec& operator=(const Vec& v)
-  //{
-  //  for (int i = 0; i < SIZE; i++) data[i] = v(i);
-  //  return *this;
-  //}
-
-  // move assignment operator
-  // Vec& operator=(Vec&& v)
-  //{
-  //  for (int i = 0; i < SIZE; i++) data[i] = v(i);
-  //  return *this;
-  //}
-
-  // access operator
-  // T& operator()(size_t i) { return data[i]; }
-  // const T& operator()(size_t i) const { return data[i]; }
-  //
-  //// operator+= vec
-  // template <typename TB>
-  // Vec& operator+=(const VecExpr<TB>& v2)
-  //{
-  //   for (size_t i = 0; i < SIZE; i++) this->operator()(i) += v2(i);
-  //   return *this;
-  // }
 
   Vec(const Vec& v2)
   {
