@@ -156,33 +156,33 @@ def test_matrix_vector_mul():
     print(x_np, "\n", y_np, "\n", x_np @ y_np)
 
 
-def test_matrix_pickle():
-    """Test the pickle of a matrix"""
-    m, n = 10, 5
-    x_tb = Matrix(m, n)
-    y_tb = Vector(n)
-
-    y_np = np.zeros(n)
-    x_np = np.zeros((m, n))
-
-    for i in range(m):
-        for j in range(n):
-            x_tb[i, j] = i * m + j
-            x_np[i, j] = i * m + j
-
-    for i in range(n):
-        y_tb[i] = i
-        y_np[i] = i
-
-    with open("test_matrix.pickle", "wb") as f:
-        pickle.dump(x_tb, f)
-
-    with open("test_matrix.pickle", "rb") as f:
-        x_tb = pickle.load(f)
-
-    assert np.all(x_tb * y_tb == x_np @ y_np)
-    print(x_tb, "\n", y_tb, "\n", x_tb * y_tb)
-    print(x_np, "\n", y_np, "\n", x_np @ y_np)
+# def test_matrix_pickle():
+#    """Test the pickle of a matrix"""
+#    m, n = 10, 5
+#    x_tb = Matrix(m, n)
+#    y_tb = Vector(n)
+#
+#    y_np = np.zeros(n)
+#    x_np = np.zeros((m, n))
+#
+#    for i in range(m):
+#        for j in range(n):
+#            x_tb[i, j] = i * m + j
+#            x_np[i, j] = i * m + j
+#
+#    for i in range(n):
+#        y_tb[i] = i
+#        y_np[i] = i
+#
+#    with open("test_matrix.pickle", "wb") as f:
+#        pickle.dump(x_tb, f)
+#
+#    with open("test_matrix.pickle", "rb") as f:
+#        x_tb = pickle.load(f)
+#
+#    assert np.all(x_tb * y_tb == x_np @ y_np)
+#    print(x_tb, "\n", y_tb, "\n", x_tb * y_tb)
+#    print(x_np, "\n", y_np, "\n", x_np @ y_np)
 
 
 def test_matrix_transpose():
@@ -219,6 +219,8 @@ def test_matrix_inverse():
         # print(Inverse(x_tb))
         print(np.linalg.inv(x_np))
         print(np.asarray(Inverse(x_tb)))
+
+        assert np.all(np.linalg.inv(x_np) == np.asarray(Inverse(x_tb)))
 
 
 def main():

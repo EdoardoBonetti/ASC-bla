@@ -328,12 +328,13 @@ auto Transpose(const MatrixView<T, ORD>& m) {
 }
 
 template <typename T, ORDERING ORD>
-auto Inverse(const Matrix<T, ORD>& m) {
+auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
   size_t L = m.SizeCols();
   Matrix<T, ORD> eye(L, L);
   Matrix<T, ORD> A(m);
 
   eye = 0;
+
   for (size_t i = 0; i < m.SizeRows(); i++) eye(i, i) = 1;
 
   for (size_t i = 0; i < eye.SizeRows(); i++) {
@@ -347,6 +348,7 @@ auto Inverse(const Matrix<T, ORD>& m) {
     for (size_t k = 0; k < L; k++) {
       if (k != i) {
         T factor = A(k, i);
+
         for (size_t j = 0; j < L; j++) {
           eye(k, j) = eye(k, j) - factor * eye(i, j);
           A(k, j) = A(k, j) - factor * A(i, j);

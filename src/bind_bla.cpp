@@ -430,6 +430,9 @@ PYBIND11_MODULE(bla, m) {
   m.def("Inverse", [](Matrix<double, Tombino_bla::ORDERING::RowMajor>& self) {
     return Inverse(self);
   });
+  m.def("Transpose", [](Matrix<double, Tombino_bla::ORDERING::RowMajor>& self) {
+    return Matrix<double, Tombino_bla::ORDERING::RowMajor>(Transpose(self));
+  });
 
   // declare_matrix_class<double, ColMajor>(m, "ColMajor");
   // declare_matrix_class<dcomplex, ColMajor>(m, "ComplexColMajor");
