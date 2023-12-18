@@ -97,7 +97,7 @@ void declare_vector_class(py::module& m, const std::string& typestr)
              if (!inds.compute(self.Size(), &start, &stop, &step, &n))
                throw py::error_already_set();
              // return Vector<T>(self.Range(start, stop).Slice(0, step));
-             return self.Range(start, stop).Slice(0, step);
+             return Vector(self.Range(start, stop).Slice(0, step));
            })
 
       .def("__add__", [](Vector<T>& self, Vector<T>& other)
@@ -427,7 +427,7 @@ PYBIND11_MODULE(bla, m)
   m.doc() = "Basic linear algebra module";  // optional module docstring
   declare_vector_class<int>(m, "Int");
   declare_vector_class<double>(m, "");
-  declare_vector_class<dcomplex>(m, "Complex");
+  // declare_vector_class<dcomplex>(m, "Complex");
 
   declare_matrix_class<double, Tombino_bla::ORDERING::RowMajor>(m, "");
   declare_matrix_class<dcomplex, Tombino_bla::ORDERING::RowMajor>(m, "Complex");

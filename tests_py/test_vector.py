@@ -81,6 +81,9 @@ def test_vector_add():
     for i in range(n):
         assert z_tb[i] == z_np[i]
 
+    assert np.all(x_tb + y_tb == x_np + y_np)
+    assert np.all(x_tb - y_tb == x_np - y_np)
+
 
 def main():
     test_vector_init()
