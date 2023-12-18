@@ -3,9 +3,8 @@ Test bla module of TomBino: Vec
 The test is done with pytest and we compare the results with numpy.
 """
 
-import pickle
-
-import pytest
+# import pickle
+# import pytest
 import numpy as np
 
 from TomBino.bla import InnerProduct
@@ -13,13 +12,16 @@ from TomBino.bla import Vec3
 
 
 def test_vec_init():
+    """Test the initialization of a vec"""
     x = Vec3(1)
-    assert len(x) == n
+    assert len(x) == 3
     x = 1
     print(x)
 
 
 def test_vec_set():
+    """Test the setting of a vec"""
+
     n = 10
     x_tb = Vec3(n)
     x_np = np.zeros(n)
@@ -32,7 +34,8 @@ def test_vec_set():
         assert x_tb[-i] == x_np[-i]
 
 
-def test_vector_set_slice():
+def test_vec_set_slice():
+    """Test the setting of a vec slice"""
     n = 10
     x_tb = Vec3(n)
     x_np = np.zeros(n)
@@ -58,7 +61,8 @@ def test_vector_set_slice():
     assert np.all(x_tb[j] == x_np[j])
 
 
-def test_vector_add():
+def test_vec_add():
+    """Test the addition of two vecs"""
     n = 10
     x_tb = Vec3(n)
     y_tb = Vec3(n)
@@ -85,7 +89,8 @@ def test_vector_add():
     assert np.all(x_tb - y_tb == x_np - y_np)
 
 
-def test_vector_scal_mult():
+def test_vec_scal_mult():
+    """Test the scalar multiplication of a vec"""
     n = 10
     x_tb = Vec3(n)
     x_np = np.zeros(n)
@@ -103,7 +108,8 @@ def test_vector_scal_mult():
         assert x_tb[i] == x_np[i]
 
 
-def test_vector_inner_product():
+def test_vec_inner_product():
+    """Test the inner product of two vecs"""
     n = 10
     x_tb = Vec3(n)
     y_tb = Vec3(n)
@@ -125,11 +131,12 @@ def test_vector_inner_product():
 
 
 def main():
-    test_vector_init()
-    test_vector_set()
-    test_vector_add()
-    # test_vector_scal_mult()
-    # test_vector_slicing()
+    """Main function"""
+    test_vec_init()
+    test_vec_set()
+    test_vec_add()
+    # test_vec_scal_mult()
+    # test_vec_slicing()
 
 
 if __name__ == "__main__":

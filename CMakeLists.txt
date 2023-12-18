@@ -2,15 +2,13 @@
 cmake_minimum_required(VERSION 3.20)
 project(TomBino)
 
-include(CTest) # We include CTest which is part of CMake
-
-
-
+# We include CTest which is part of CMake
+include(CTest)
 
 set(CMAKE_CXX_STANDARD 20)
 
 # set cpplint nd disable legal copyright
-# set(CMAKE_CXX_CPPLINT "cpplint;--filter=-legal/copyright, -build/include_subdir")
+set(CMAKE_CXX_CPPLINT "cpplint;--filter=-legal/copyright, -build/include_subdir")
 
 # add flag for march=native
 set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O3 -Wall -Wunused-variable -Wunused-function -Wno-unused-but-set-variable -Wno-unused-but-set-parameter -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-label -Wno-unused-value -Wno-unused-local-typedefs -Wno-unused-local-typedef -fpermissive ")
@@ -39,8 +37,8 @@ target_sources(test_vector PUBLIC src/vector.h src/expression.h)
 add_executable(test_matrix tests_cpp/test_matrix.cc)
 target_sources(test_matrix PUBLIC src/matrix.h src/expression.h)
 
-#add_executable(test_operations tests_cpp/test_operations.cc)
-#target_sources(test_operations PUBLIC src/expression.h)
+# add_executable(test_operations tests_cpp/test_operations.cc)
+# target_sources(test_operations PUBLIC src/expression.h)
 
 # create a subdirectory tests_cpp
 # file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/tests_cpp)
@@ -69,5 +67,3 @@ add_test(NAME test_vector COMMAND test_vector)
 add_test(NAME test_matrix COMMAND test_matrix)
 add_test(NAME test_lapack COMMAND test_lapack)
 add_test(NAME test_vec COMMAND test_vec)
-
-

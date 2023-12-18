@@ -1,18 +1,25 @@
+"""
+Test bla module of TomBino: Matrix
+The test is done with pytest and we compare the results with numpy.
+"""
+
 import pickle
 
-import pytest
+# import pytest
 import numpy as np
 
 from TomBino.bla import Matrix, Vector, InnerProduct, Inverse, Transpose
 
 
 def test_matrix_init():
+    """Test the initialization of a matrix"""
     m, n = 10, 5
     x = Matrix(m, n)
     assert len(x) == m
 
 
 def test_matrix_set():
+    """Test the setting of a matrix"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     x_np = np.zeros((m, n))
@@ -31,6 +38,7 @@ def test_matrix_set():
 
 
 def test_matrix_set_slice():
+    """Test the setting of a matrix slice"""
     m, n = 5, 3
     x_tb = Matrix(m, n)
     x_np = np.zeros((m, n))
@@ -64,6 +72,7 @@ def test_matrix_set_slice():
 
 
 def test_matrix_add():
+    """Test the addition of two matrices"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     y_tb = Matrix(m, n)
@@ -82,6 +91,7 @@ def test_matrix_add():
 
 
 def test_matrix_mul():
+    """Test the multiplication of two matrices"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     y_tb = Matrix(n, m)
@@ -100,6 +110,7 @@ def test_matrix_mul():
 
 
 def test_matrix_inner_product():
+    """Test the inner product of two matrices"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     y_tb = Matrix(m, n)
@@ -115,14 +126,15 @@ def test_matrix_inner_product():
             y_np[j, i] = i * m + j
 
     print(InnerProduct(x_tb, y_tb))
-    sum = 0
+    total = 0
     for i in range(m):
         for j in range(n):
-            sum += x_tb[i, j] * y_tb[i, j]
-    assert InnerProduct(x_tb, y_tb) == sum
+            total += x_tb[i, j] * y_tb[i, j]
+    assert InnerProduct(x_tb, y_tb) == total
 
 
 def test_matrix_vector_mul():
+    """Test the multiplication of a matrix and a vector"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     y_tb = Vector(n)
@@ -145,6 +157,7 @@ def test_matrix_vector_mul():
 
 
 def test_matrix_pickle():
+    """Test the pickle of a matrix"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     y_tb = Vector(n)
@@ -173,6 +186,7 @@ def test_matrix_pickle():
 
 
 def test_matrix_transpose():
+    """Test the transpose of a matrix"""
     m, n = 10, 5
     x_tb = Matrix(m, n)
     x_np = np.zeros((m, n))
@@ -191,6 +205,7 @@ def test_matrix_transpose():
 
 
 def test_matrix_inverse():
+    """Test the inverse of a matrix"""
     for n in [3]:
         x_tb = Matrix(n, n)
         x_np = np.zeros((n, n))
@@ -207,6 +222,7 @@ def test_matrix_inverse():
 
 
 def main():
+    """Run all tests"""
     test_matrix_inverse()
 
 

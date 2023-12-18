@@ -1,3 +1,3 @@
-from .bla import *
+"""Package for tom_bino."""
 
-#
+from .bla import *

@@ -3,7 +3,7 @@
 BasedOnStyle: Google
 #IndentWidth: 4
 ## Must be 80 characters or less!
-ColumnLimit: 80
+#ColumnLimit: 80
 ## does (int) x instead of (int)x
 #SpaceAfterCStyleCast: false
 ## spaces, not tabs!
@@ -27,6 +27,6 @@ ColumnLimit: 80
 #AlignAfterOpenBracket: BAS_BlockIndent
 
 # new line after class, struct, enum, etc
-BreakBeforeBraces: Allman
-EmptyLineBeforeAccessModifier: Always
+#BreakBeforeBraces: Allman
+#EmptyLineBeforeAccessModifier: Always
 
