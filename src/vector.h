@@ -74,7 +74,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>>
   }
   auto Slice(size_t first, size_t slice) const
   {
-    return VectorView<T, size_t>(size_ / slice, dist_ * slice,
+    return VectorView<T, size_t>((size_ + 1) / slice, dist_ * slice,
                                  data_ + first * dist_);
   }
 
@@ -222,7 +222,7 @@ auto InnerProduct(const VectorView<TA>& a, const VectorView<TB>& b)
 {
   typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
   TRES sum = a(0) * b(0);
-  for (size_t i = 0; i < a.Size(); i++) sum = sum + (a(i) * b(i));
+  for (size_t i = 1; i < a.Size(); i++) sum = sum + (a(i) * b(i));
   return sum;
 }
 // for Vector
@@ -231,7 +231,7 @@ auto InnerProduct(const Vector<TA>& a, const Vector<TB>& b)
 {
   typedef decltype(std::declval<TA>() * std::declval<TB>()) TRES;
   TRES sum = a(0) * b(0);
-  for (size_t i = 0; i < a.Size(); i++) sum = sum + (a(i) * b(i));
+  for (size_t i = 1; i < a.Size(); i++) sum = sum + (a(i) * b(i));
   return sum;
 }
 

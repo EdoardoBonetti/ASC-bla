@@ -175,7 +175,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
   {
     if constexpr (ORD == RowMajor)
     {
-      return MatrixView<T, ORD>(rows_, cols_ / slice, d_r_, d_c_ * slice,
+      return MatrixView<T, ORD>(rows_, (cols_ + 1) / slice, d_r_, d_c_ * slice,
                                 data_ + first * d_c_);
     }
     else
@@ -194,7 +194,7 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>>
 
       std::cout << "rows_ / slice = " << rows_ / slice << std::endl;
 
-      return MatrixView<T, ORD>(rows_ / slice, cols_, d_r_ * slice, d_c_,
+      return MatrixView<T, ORD>((rows_ + 1) / slice, cols_, d_r_ * slice, d_c_,
                                 data_ + first * d_r_);
     }
     else

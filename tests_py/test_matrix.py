@@ -63,10 +63,89 @@ def test_matrix_set_slice():
     print(x_np[s, :])
 
 
+def test_matrix_add():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Matrix(m, n)
+
+    y_np = np.zeros((m, n))
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            y_tb[i, j] = i * m + j
+            x_np[i, j] = i * m + j
+            y_np[i, j] = i * m + j
+
+    assert np.all(x_tb + y_tb == x_np + y_np)
+
+
+def test_matrix_mul():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Matrix(n, m)
+
+    y_np = np.zeros((n, m))
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            y_tb[j, i] = i * m + j
+            x_np[i, j] = i * m + j
+            y_np[j, i] = i * m + j
+
+    assert np.all(x_tb * y_tb == x_np @ y_np)
+
+
+def test_matrix_inner_product():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Matrix(m, n)
+
+    y_np = np.zeros((n, m))
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            y_tb[j, i] = i * m + j
+            x_np[i, j] = i * m + j
+            y_np[j, i] = i * m + j
+
+    print(InnerProduct(x_tb, y_tb))
+    sum = 0
+    for i in range(m):
+        for j in range(n):
+            sum += x_tb[i, j] * y_tb[i, j]
+    assert InnerProduct(x_tb, y_tb) == sum
+
+
+def test_matrix_vector_mul():
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Vector(n)
+
+    y_np = np.zeros(n)
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            x_np[i, j] = i * m + j
+
+    for i in range(n):
+        y_tb[i] = i
+        y_np[i] = i
+
+    assert np.all(x_tb * y_tb == x_np @ y_np)
+    print(x_tb, "\n", y_tb, "\n", x_tb * y_tb)
+    print(x_np, "\n", y_np, "\n", x_np @ y_np)
+
+
 def main():
-    test_matrix_init()
-    test_matrix_set()
-    test_matrix_set_slice()
+    test_matrix_inner_product()
 
 
 if __name__ == "__main__":

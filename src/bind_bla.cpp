@@ -105,7 +105,10 @@ void declare_vector_class(py::module& m, const std::string& typestr)
 
       .def("__rmul__",
            [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
-
+      .def("__sub__", [](Vector<T>& self, Vector<T>& other)
+           { return Vector<T>(self - other); })
+      .def("__rsub__", [](Vector<T>& self, Vector<T>& other)
+           { return Vector<T>(other - self); })
       .def("__mul__",
            [](Vector<T>& self, T scal) { return Vector<T>(scal * self); })
       .def("__mul__",

@@ -8,7 +8,7 @@ import pickle
 import pytest
 import numpy as np
 
-from TomBino.bla import Vector
+from TomBino.bla import Vector, InnerProduct
 
 
 def test_vector_init():
@@ -83,6 +83,45 @@ def test_vector_add():
 
     assert np.all(x_tb + y_tb == x_np + y_np)
     assert np.all(x_tb - y_tb == x_np - y_np)
+
+
+def test_vector_scal_mult():
+    n = 10
+    x_tb = Vector(n)
+    x_np = np.zeros(n)
+
+    for i in range(n):
+        r = np.random.rand()
+        x_tb[i] = r
+        x_np[i] = r
+
+    r = np.random.rand()
+    x_tb *= r
+    x_np *= r
+
+    for i in range(n):
+        assert x_tb[i] == x_np[i]
+
+
+def test_vector_inner_product():
+    n = 10
+    x_tb = Vector(n)
+    y_tb = Vector(n)
+
+    y_np = np.zeros(n)
+    x_np = np.zeros(n)
+
+    for i in range(n):
+        r = np.random.rand()
+        x_tb[i] = r
+        x_np[i] = r
+
+        r = np.random.rand()
+        y_tb[i] = r
+        y_np[i] = r
+
+    assert x_tb * y_tb == x_np.dot(y_np)
+    assert InnerProduct(x_tb, y_tb) == x_np.dot(y_np)
 
 
 def main():

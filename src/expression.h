@@ -159,7 +159,7 @@ auto InnerProduct(const VecExpr<TA>& a, const VecExpr<TB>& b)
 {
   typedef decltype(std::declval<TA>()(0) * std::declval<TB>()(0)) TRES;
   TRES sum = a(0) * b(0);
-  for (size_t i = 0; i < a.Size(); i++) sum = sum + (a(i) * b(i));
+  for (size_t i = 1; i < a.Size(); i++) sum = sum + (a(i) * b(i));
   return sum;
 }
 
