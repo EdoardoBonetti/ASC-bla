@@ -356,7 +356,7 @@ auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
       }
     }
   }
-  return eye;
+  return Transpose(eye);
 }
 
 // in the class VectorView<T, TDIST> we have a AsMatrix(size_t rows, size_t

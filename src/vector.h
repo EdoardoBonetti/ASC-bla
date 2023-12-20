@@ -17,18 +17,12 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
   TDIST dist_;
 
  public:
+  VectorView(size_t size) : data_(new T[size]), size_(size) {}  // new
   VectorView(size_t size, T* data) : data_(data), size_(size) {}
+  VectorView(size_t size, TDIST dist)
+      : data_(new T[size * dist]), size_(size), dist_(dist) {}  // new
   VectorView(size_t size, TDIST dist, T* data)
       : data_(data), size_(size), dist_(dist) {}
-  // copy constructor for const size and dist etc
-
-  // VectorView(const size_t size, const T* data) : data_(data), size_(size) {}
-  // VectorView(const size_t size, const TDIST dist, const T* data)
-  //     : data_(data), size_(size), dist_(dist)
-  //{
-  // }
-
-  // brace-enclosed initializer list
   VectorView(std::initializer_list<T> list)
       : data_(new T[list.size()]), size_(list.size()) {
     std::copy(list.begin(), list.end(), data_);
@@ -94,6 +88,35 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
   VectorView& operator/=(const TSCAL& scal) {
     for (size_t i = 0; i < size_; i++) this->operator()(i) /= scal;
     return *this;
+  }
+
+  // operator==
+  template <typename TB, typename TDIST2>
+  bool operator==(const VectorView<TB, TDIST2>& v2) const {
+    for (size_t i = 0; i < size_; i++)
+      if (this->operator()(i) != v2(i)) {
+        // get rid of next 3 lines
+        std::cout << "operator== failed" << std::endl;
+        std::cout << v2(i) << std::endl;
+        std::cout << this->operator()(i) << std::endl;
+        return false;
+      }
+    return true;
+  }
+
+  // operator!=
+  template <typename TB, typename TDIST2>
+  bool operator!=(const VectorView<TB, TDIST2>& v2) const {
+    for (size_t i = 0; i < size_; i++)
+      if (this->operator()(i) != v2(i)) {
+        // get rid of next 3 lines
+        std::cout << "operator!= failed" << std::endl;
+        std::cout << v2(i) << std::endl;
+        std::cout << this->operator()(i) << std::endl;
+        return true;
+      }
+
+    return false;
   }
 
   // AsMatrix
