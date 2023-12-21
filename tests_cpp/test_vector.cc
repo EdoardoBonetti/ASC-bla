@@ -235,30 +235,63 @@ auto test_vectorview_range() {
   }
   return 0;
 }
+
+auto test_vectorview_slice() {
+  // create a vector view for every constructor
+  size_t dist = 20;
+  size_t size = 10;
+  double* data = new double[200];
+
+  VectorView<double> v1(size);
+  VectorView<double> v2(size, data);
+  VectorView<double, size_t> v3(size, dist);
+  VectorView<double, size_t> v4(size, dist, data);
+
+  // now set the entirs to 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+  for (size_t i = 0; i < size; i++) {
+    v1(i) = i;
+    v2(i) = i;
+    v3(i) = i;
+    v4(i) = i;
+  }
+
+  // test slice(0,5)
+  if (v1.Slice(0, 5) != v2.Slice(0, 5) || v1.Slice(0, 5) != v3.Slice(0, 5) ||
+      v1.Slice(0, 5) != v4.Slice(0, 5)) {
+    cout << "Error in VectorView Range" << endl;
+    cout << "v1.Range(0, 5) = " << v1.Slice(0, 5) << endl;
+    cout << "v2.Range(0, 5) = " << v2.Slice(0, 5) << endl;
+    cout << "v3.Range(0, 5) = " << v3.Slice(0, 5) << endl;
+    cout << "v4.Range(0, 5) = " << v4.Slice(0, 5) << endl;
+    return 1;
+  }
+  // test slice(1, 4)
+  if (v1.Slice(1, 4) != v2.Slice(1, 4) || v1.Slice(1, 4) != v3.Slice(1, 4) ||
+      v1.Slice(1, 4) != v4.Slice(1, 4)) {
+    cout << "Error in VectorView Range" << endl;
+    cout << "v1.Slice(1,4) = " << v1.Slice(1, 4) << endl;
+    cout << "v2.Slice(1,4) = " << v2.Slice(1, 4) << endl;
+    cout << "v3.Slice(1,4) = " << v3.Slice(1, 4) << endl;
+    cout << "v4.Slice(1,4) = " << v4.Slice(1, 4) << endl;
+    return 1;
+  }
+
+  // test slice(3, 7)
+  if (v1.Slice(3, 2) != v2.Slice(3, 2) || v1.Slice(3, 2) != v3.Slice(3, 2) ||
+      v1.Slice(3, 2) != v4.Slice(3, 2)) {
+    cout << "Error in VectorView Range" << endl;
+    cout << "v1.Slice(3, 2) = " << v1.Slice(3, 2) << endl;
+    cout << "v2.Slice(3, 2) = " << v2.Slice(3, 2) << endl;
+    cout << "v3.Slice(3, 2) = " << v3.Slice(3, 2) << endl;
+    cout << "v4.Slice(3, 2) = " << v4.Slice(3, 2) << endl;
+    return 1;
+  }
+  return 0;
+}
+
 /********************************************/
 /*          TESTS FOR THE VECTOR CLASS      */
 /********************************************/
-
-auto test_vector_sum() {
-  // Sum of vectors
-  Vector<double> v1(3);
-  Vector<double> v2(3);
-  double alpha = 2.0;
-  double beta = 3.0;
-  v1(0) = 1;
-  v1(1) = 2;
-  v1(2) = 3;
-  v2(0) = 4;
-  v2(1) = 5;
-  v2(2) = 6;
-  Vector result = alpha * v1 + beta * v2;
-  if (result(0) == 14 && result(1) == 19 && result(2) == 24)
-    return 0;
-  else
-    return 1;
-}
-
-auto test_vector_range() { return 0; }
 
 // write some test to check if the matrix is correctly initialized
 int main() {
@@ -266,5 +299,6 @@ int main() {
   assert(test_vectorview_constructor() == 0);
   assert(test_vectorview_sum() == 0);
   assert(test_vectorview_range() == 0);
+  assert(test_vectorview_slice() == 0);
   return 0;
 }

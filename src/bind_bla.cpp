@@ -154,7 +154,11 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
   py::class_<Class>(m, pyclass_name.c_str(), py::buffer_protocol())
       .def(py::init([](size_t rows, size_t cols) {
         Matrix<T, ORD> m(rows, cols);
-        m = 0;
+        if constexpr (std::is_same<T, dcomplex>::value) {
+          m = dcomplex(0, 0);
+        } else {
+          m = 0;
+        };
         return m;
       }))
       .def("__len__", &Matrix<T, ORD>::SizeRows, "return size of matrix")

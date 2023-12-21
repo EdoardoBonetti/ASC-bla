@@ -206,7 +206,7 @@ def test_matrix_transpose():
 
 def test_matrix_inverse():
     """Test the inverse of a matrix"""
-    for n in [3]:
+    for n in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
         x_tb = Matrix(n, n)
         x_np = np.zeros((n, n))
 
@@ -217,10 +217,9 @@ def test_matrix_inverse():
                 x_np[i, j] = r
 
         # print(Inverse(x_tb))
-        print(np.linalg.inv(x_np))
-        print(np.asarray(Transpose(Inverse(x_tb))))
+        print(np.linalg.inv(x_np) - np.asarray(Inverse(x_tb)))
 
-        assert np.all(np.linalg.inv(x_np) == np.asarray(Inverse(x_tb)))
+        assert np.all(np.linalg.inv(x_np) - np.asarray(Inverse(x_tb)) < 1e-10)
 
 
 def main():

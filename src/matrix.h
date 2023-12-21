@@ -362,12 +362,7 @@ template <typename T, ORDERING ORD>
 auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
   size_t L = m.SizeCols();
   Matrix<T, ORD> eye(L, L);
-  std::cout << "The matrix that was passed is" << std::endl;
-  std::cout << m << std::endl;
-
   Matrix<T, ORD> A(m);
-  std::cout << "If I copy the matrix then I obtain" << std::endl;
-  std::cout << A << std::endl;
 
   if constexpr (std::is_same<T, dcomplex>::value) {
     eye = dcomplex(0, 0);
@@ -391,9 +386,6 @@ auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
         eye.Row(j) = eye.Row(j) - factor * eye.Row(i);
         A.Row(j) = A.Row(j) - factor * A.Row(i);
       }
-      std::cout << "(i,j) = (" << i << "," << j << ") : " << std::endl;
-      std::cout << "A" << std::endl << A << std::endl;
-      std::cout << "eye" << std::endl << eye << std::endl;
     }
   }
   return eye;

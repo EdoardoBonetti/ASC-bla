@@ -8,6 +8,8 @@
 
 namespace Tombino_bla {
 
+auto Complement(dcomplex& v) { return v; }
+
 template <typename T = double,
           typename TDIST = std::integral_constant<size_t, 1>>
 class VectorView : public VecExpr<VectorView<T, TDIST>> {
@@ -58,7 +60,7 @@ class VectorView : public VecExpr<VectorView<T, TDIST>> {
     return VectorView(next - first, dist_, data_ + first * dist_);
   }
   auto Slice(size_t first, size_t slice) const {
-    return VectorView<T, size_t>((size_ + 1) / slice, dist_ * slice,
+    return VectorView<T, size_t>((size_ + 1 - first) / slice, dist_ * slice,
                                  data_ + first * dist_);
   }
 
@@ -208,7 +210,13 @@ std::ostream& operator<<(std::ostream& ost, const VectorView<Args...>& v) {
 template <typename T>
 auto InnerProduct(const VectorView<T>& v1, const VectorView<T>& v2) {
   T sum = 0;
-  for (size_t i = 0; i < v1.Size(); i++) sum += v1(i) * v2(i);
+  for (size_t i = 0; i < v1.Size(); i++) {
+    if constexpr (std::is_same<T, dcomplex>::value)
+      sum += v1(i) * Complement(v2(i));
+    else
+      sum += v1(i) * v2(i);
+  }
+
   return sum;
 }
 
