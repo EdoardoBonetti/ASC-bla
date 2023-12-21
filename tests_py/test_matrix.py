@@ -218,7 +218,7 @@ def test_matrix_inverse():
 
         # print(Inverse(x_tb))
         print(np.linalg.inv(x_np))
-        print(np.asarray(Inverse(x_tb)))
+        print(np.asarray(Transpose(Inverse(x_tb))))
 
         assert np.all(np.linalg.inv(x_np) == np.asarray(Inverse(x_tb)))
 

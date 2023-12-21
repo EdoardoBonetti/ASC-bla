@@ -16,9 +16,14 @@ using std::endl;
 int main()
 {
   // define a matrix
+  std::cout << "Define the matrices" << std::endl;
   int n = 3;
   Matrix<double, RowMajor> A(n, n);
   Matrix<double, RowMajor> invA(n, n);
+  std::cout << "A :" << std::endl;
+  std::cout << A << std::endl;
+  std::cout << "invA :" << std::endl;
+  std::cout << invA << std::endl;
 
   // -4 -6 2
   // -5 -1 3
@@ -34,13 +39,9 @@ int main()
   A(2, 2) = -3;
 
   // print it
+  cout << "Add value to the matrices" << endl;
   cout << "A = " << endl;
   cout << A << endl;
-
-  // compute the inverse
-  cout << "A^-1 = " << endl;
-  invA = Inverse(A);
-  cout << invA << endl;
 
   //  S = {{-9/118, -5/59, -8/59}, {-21/118, 8/59, 1/59}, {-11/59, 14/59,
   //  -13/59}}
@@ -58,6 +59,12 @@ int main()
   // print S- A^-1
   cout << "S  = " << endl;
   cout << S << endl;
+
+  // compute the inverse
+
+  cout << "Compute the inverse with ouw metod = " << endl;
+  invA = Inverse(A);
+  cout << invA << endl;
 
   cout << "S - A^-1 = " << endl;
   cout << S - invA << endl;

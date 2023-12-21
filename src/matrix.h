@@ -239,7 +239,7 @@ class Matrix : public MatrixView<T, ORD> {
       : MatrixView<T, ORD>(rows, cols, new T[rows * cols]) {
     ;
   }
-
+  Matrix(size_t size) : MatrixView<T, ORD>(size, size, new T[size * size]) { ; }
   // Copy constructor from Matrix
   Matrix(const Matrix& m) : Matrix(m.SizeRows(), m.SizeCols()) { *this = m; }
 
@@ -269,11 +269,10 @@ class Matrix : public MatrixView<T, ORD> {
     for (size_t i = 0; i < this->SizeRows(); i++) {
       for (size_t j = 0; j < this->SizeCols(); j++) {
         if constexpr (ORD == RowMajor) {
-          data_[i + cols_ * j] = m2(i, j);
+          data_[j + cols_ * i] = m2(i, j);
         } else {
-          data_[i * rows_ + j] = m2(i, j);
+          data_[j * rows_ + i] = m2(i, j);
         }
-        // data_[i + cols_ * j] = m2(i, j);
       }
     }
 
@@ -328,7 +327,7 @@ auto Transpose(const MatrixView<T, ORD>& m) {
 }
 
 template <typename T, ORDERING ORD>
-auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
+auto InverseII(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
   size_t L = m.SizeCols();
   Matrix<T, ORD> eye(L, L);
   Matrix<T, ORD> A(m);
@@ -357,6 +356,47 @@ auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
     }
   }
   return Transpose(eye);
+}
+
+template <typename T, ORDERING ORD>
+auto Inverse(const Matrix<T, ORD>& m) {  // TODO: implement for the Transpose
+  size_t L = m.SizeCols();
+  Matrix<T, ORD> eye(L, L);
+  std::cout << "The matrix that was passed is" << std::endl;
+  std::cout << m << std::endl;
+
+  Matrix<T, ORD> A(m);
+  std::cout << "If I copy the matrix then I obtain" << std::endl;
+  std::cout << A << std::endl;
+
+  if constexpr (std::is_same<T, dcomplex>::value) {
+    eye = dcomplex(0, 0);
+    eye.Diag() = dcomplex(1, 0);
+  } else {
+    eye = 0;
+    eye.Diag() = 1;
+  }
+
+  for (size_t i = 0; i < L; i++) {
+    T pivot = A(i, i);
+
+    // std::cout << "Row/=" << std::endl;
+    eye.Row(i) /= pivot;
+    A.Row(i) /= pivot;
+
+    for (size_t j = 0; j < L; j++) {
+      if (j != i) {
+        T factor = A(j, i);
+
+        eye.Row(j) = eye.Row(j) - factor * eye.Row(i);
+        A.Row(j) = A.Row(j) - factor * A.Row(i);
+      }
+      std::cout << "(i,j) = (" << i << "," << j << ") : " << std::endl;
+      std::cout << "A" << std::endl << A << std::endl;
+      std::cout << "eye" << std::endl << eye << std::endl;
+    }
+  }
+  return eye;
 }
 
 // in the class VectorView<T, TDIST> we have a AsMatrix(size_t rows, size_t
