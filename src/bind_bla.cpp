@@ -19,6 +19,8 @@ extern "C" {
 #include "clapack.h"
 }
 
+using std::cout;
+using std::endl;
 using Tombino_bla::dcomplex;
 using Tombino_bla::Matrix;
 using Tombino_bla::Vec;
@@ -184,9 +186,9 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
                                             &step, &n))
                throw py::error_already_set();
              if (std::get<1>(inds) < 0) std::get<1>(inds) += self.SizeCols();
-             return self.Col((size_t)std::get<1>(inds))
-                 .Range(start, stop)
-                 .Slice(0, step);
+             return Vector<T>(self.Col((size_t)std::get<1>(inds))
+                                  .Range(start, stop)
+                                  .Slice(0, step));
            })
       .def("__setitem__",
            [](Matrix<T, ORD>& self, std::tuple<py::slice, int> inds, T val) {
@@ -206,9 +208,9 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
                                             &step, &n))
                throw py::error_already_set();
              if (std::get<0>(inds) < 0) std::get<0>(inds) += self.SizeRows();
-             return self.Row((size_t)std::get<0>(inds))
-                 .Range(start, stop)
-                 .Slice(0, step);
+             return Vector<T>(self.Row((size_t)std::get<0>(inds))
+                                  .Range(start, stop)
+                                  .Slice(0, step));
            })
       .def("__setitem__",
            [](Matrix<T, ORD>& self, std::tuple<int, py::slice> inds, T val) {
@@ -231,16 +233,16 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
              if (!std::get<1>(inds).compute(self.SizeCols(), &start2, &stop2,
                                             &step2, &n2))
                throw py::error_already_set();
+
              return Matrix<T, ORD>(self.Rows(start1, stop1)
-                                       .RSlice(0, step1)
                                        .Cols(start2, stop2)
+                                       .RSlice(0, step1)
                                        .CSlice(0, step2));
            })
       .def("__setitem__",
            [](Matrix<T, ORD>& self, std::tuple<py::slice, py::slice> inds,
               T val) {
              size_t start1, stop1, step1, n1;
-
              size_t start2, stop2, step2, n2;
 
              if (!std::get<0>(inds).compute(self.SizeRows(), &start1, &stop1,
@@ -250,8 +252,8 @@ void declare_matrix_class(py::module& m, const std::string& typestr) {
                                             &step2, &n2))
                throw py::error_already_set();
              self.Rows(start1, stop1)
-                 .RSlice(0, step1)
                  .Cols(start2, stop2)
+                 .RSlice(0, step1)
                  .CSlice(0, step2) = val;
            })
       .def("__add__",

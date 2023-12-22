@@ -36,7 +36,6 @@ def test_matrix_set():
             assert x_tb[i, -j] == x_np[i, -j]
             assert x_tb[-i, j] == x_np[-i, j]
 
-
 def test_matrix_set_slice():
     """Test the setting of a matrix slice"""
     m, n = 5, 3
@@ -45,8 +44,8 @@ def test_matrix_set_slice():
 
     for i in range(m):
         for j in range(n):
-            x_tb[i, j] = i * m + j
-            x_np[i, j] = i * m + j
+            x_tb[i, j] = i * n + j
+            x_np[i, j] = i * n + j
 
     # create s and t slices
     s = slice(0, m, 2)
@@ -55,20 +54,16 @@ def test_matrix_set_slice():
     # i, j must be random integers between -m and m and -n and n
     i = np.random.randint(0, m)
     j = np.random.randint(0, n)
-    print(s, t, i, j)
-    print("the matrices are:")
+
+    assert np.all(np.asarray(x_tb[i, t]) == x_np[i, t])
+    assert np.all(np.asarray(x_tb[s, j]) == x_np[s, j])
+    # assert np.all(np.asarray(x_tb[s, t]) == x_np[s, t])
     print(x_tb)
     print(x_np)
-    print("the column slices are:")
-    print(x_tb[:, t])
-    print(x_np[:, t])
-    # assert np.all(x_tb[s, t] == x_np[s, t])
-    # assert np.all(x_tb[i, t] == x_np[i, t])
-    # assert np.all(x_tb[s, j] == x_np[s, j])
 
-    print("the row slices are:")
-    print(x_tb[s, :])
-    print(x_np[s, :])
+    print(x_tb[s, t])
+    print(x_np[s, t])
+
 
 
 def test_matrix_add():
@@ -125,7 +120,6 @@ def test_matrix_inner_product():
             x_np[i, j] = i * m + j
             y_np[j, i] = i * m + j
 
-    print(InnerProduct(x_tb, y_tb))
     total = 0
     for i in range(m):
         for j in range(n):
@@ -152,8 +146,7 @@ def test_matrix_vector_mul():
         y_np[i] = i
 
     assert np.all(x_tb * y_tb == x_np @ y_np)
-    print(x_tb, "\n", y_tb, "\n", x_tb * y_tb)
-    print(x_np, "\n", y_np, "\n", x_np @ y_np)
+
 
 
 # def test_matrix_pickle():
@@ -196,11 +189,6 @@ def test_matrix_transpose():
             r = np.random.rand()
             x_tb[i, j] = r
             x_np[i, j] = r
-
-    print(x_tb)
-    print(x_np)
-    print(x_tb.T)
-    print(x_np.T)
     assert np.all(Transpose(x_tb) == x_np.T)
 
 
@@ -215,16 +203,72 @@ def test_matrix_inverse():
                 r = np.random.rand()
                 x_tb[i, j] = r
                 x_np[i, j] = r
-
-        # print(Inverse(x_tb))
-        print(np.linalg.inv(x_np) - np.asarray(Inverse(x_tb)))
-
         assert np.all(np.linalg.inv(x_np) - np.asarray(Inverse(x_tb)) < 1e-10)
 
+
+def test_matrix_vector_mul():
+    """Test the multiplication of a matrix and a vector"""
+    m, n = 10, 5
+    x_tb = Matrix(m, n)
+    y_tb = Vector(n)
+
+    y_np = np.zeros(n)
+    x_np = np.zeros((m, n))
+
+    for i in range(m):
+        for j in range(n):
+            x_tb[i, j] = i * m + j
+            x_np[i, j] = i * m + j
+
+    for i in range(n):
+        y_tb[i] = i
+        y_np[i] = i
+
+    assert np.all(x_tb * y_tb == x_np @ y_np)
+
+
+# def test_matrix_pickle():
+#    """Test the pickle of a matrix"""
+#    m, n = 10, 5
+#    x_tb = Matrix(m, n)
+#    y_tb = Vector(n)
+#
+#    y_np = np.zeros(n)
+#    x_np = np.zeros((m, n))
+#
+#    for i in range(m):
+#        for j in range(n):
+#            x_tb[i, j] = i * m + j
+#            x_np[i, j] = i * m + j
+#
+#    for i in range(n):
+#        y_tb[i] = i
+#        y_np[i] = i
+#
+#    # pickle is made by a tuple
+#    with open("test_matrix.pickle", "wb") as f:
+#        pickle.dump((x_tb, y_tb), f)
+#
+#    with open("test_matrix.pickle", "rb") as f:
+#        x_tb = pickle.load(f)
+#
+#    assert np.all(x_tb == x_np)
+#    assert np.all(y_tb == y_np)
+#
 
 def main():
     """Run all tests"""
     test_matrix_inverse()
+    test_matrix_transpose()
+    test_matrix_init()
+    test_matrix_set()
+    test_matrix_set_slice()
+    test_matrix_add()
+    test_matrix_mul()
+    test_matrix_inner_product()
+    test_matrix_vector_mul()
+    # test_matrix_pickle()
+    print("All tests passed!")
 
 
 if __name__ == "__main__":

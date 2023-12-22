@@ -216,7 +216,6 @@ auto InnerProduct(const VectorView<T>& v1, const VectorView<T>& v2) {
     else
       sum += v1(i) * v2(i);
   }
-
   return sum;
 }
 

@@ -92,23 +92,13 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   }
 
   auto Rows(size_t first, size_t next) const {
-    // if constexpr (ORD == RowMajor) {
-    //   return MatrixView<T, ORD>(next - first, cols_, d_r_, d_c_, data_ +
-    //   first * d_r_);
-    // } else {
     return MatrixView<T, ORD>(next - first, cols_, d_r_, d_c_,
                               data_ + first * d_r_);
-    //}
   }
 
   auto Cols(size_t first, size_t next) const {
-    // if constexpr (ORD == RowMajor) {
-    //   return MatrixView<T, ORD>(rows_, next - first, d_r_, d_c_, data_ +
-    //   first * d_c_);
-    // } else {
     return MatrixView<T, ORD>(rows_, next - first, d_r_, d_c_,
                               data_ + first * d_c_);
-    // }
   }
 
   // Ranges
@@ -143,8 +133,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
   */
   auto RSlice(size_t first, size_t slice) const {
     if constexpr (ORD == RowMajor) {
-      return MatrixView<T, ORD>(rows_, (cols_ + 1) / slice, d_r_, d_c_ * slice,
-                                data_ + first * d_c_);
+      return MatrixView<T, ORD>(rows_, (cols_ + 1 - first) / slice, d_r_,
+                                d_c_ * slice, data_ + first * d_c_);
     } else {
       return MatrixView<T, ORD>(rows_, cols_ / slice, d_r_, d_c_ * slice,
                                 data_ + first * d_c_);
@@ -158,8 +148,8 @@ class MatrixView : public MatExpr<MatrixView<T, ORD>> {
 
       std::cout << "rows_ / slice = " << rows_ / slice << std::endl;
 
-      return MatrixView<T, ORD>((rows_ + 1) / slice, cols_, d_r_ * slice, d_c_,
-                                data_ + first * d_r_);
+      return MatrixView<T, ORD>((rows_ + 1 + first) / slice, cols_,
+                                d_r_ * slice, d_c_, data_ + first * d_r_);
     } else {
       return MatrixView<T, ORD>(rows_ / slice, cols_, d_r_ * slice, d_c_,
                                 data_ + first * d_r_);
